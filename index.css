@@ -1,75 +1,68 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* 首页主要样式 */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-body, html {
-    width: 100%;
-    height: 100%;
-    background-color: #f5f5f5;
+.brandBanner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('utils/hotel-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 200px 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.header,.menu {
+.brandBanner h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.brandBanner p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.comment {
+    text-align: center;
+    padding: 40px;
+    margin-top: 20px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10%;
-    height: 50px;
-    background-color: white;
+    justify-content: space-around;
 }
 
-.headerLeft {
-    display: flex;
-    align-items: center;
+.comment>div{
+    padding: 5em 5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .brandBanner {
+        padding: 60px 15px;
+    }
+    
+    .brandBanner h2 {
+        font-size: 28px;
+    }
+    
+    .brandBanner p {
+        font-size: 16px;
+    }
 }
 
-.headerRight {
-    display: flex;
-    gap: 15px;
-}
-
-.signIn, .logIn {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    border: 1px solid green;
-    color: green !important;
-}
-
-.signIn:hover, .logIn:hover {
-    background-color: lightgreen;
-}
-
-.menu{
-    background-color: #dddcdc;
-    padding: 0 20%;
-}
-
-.menu div{
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    border: 1px solid black;
-}
-
-.menu div:hover{
-    background-color: white;
-}
-
-.menu div a {
-    text-decoration: none;
-    color: black !important;
+@media screen and (max-width: 480px) {
+    .brandBanner {
+        padding: 40px 10px;
+    }
+    
+    .brandBanner h2 {
+        font-size: 24px;
+    }
 }

@@ -10,66 +10,185 @@ body, html {
     background-color: #f5f5f5;
 }
 
-.header,.menu {
+.header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 10%;
-    height: 50px;
-    background-color: white;
+    align-items: center;
+    padding: 10px 20%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .headerLeft {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.headerLeft .logo {
+    text-decoration: none;
+    color: #333;
     font-size: 24px;
     font-weight: bold;
-    color: black;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 10px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.menu a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4a90e2;
+    transition: all 0.3s ease;
 }
 
 .headerRight {
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
-.signIn, .logIn {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.3s ease;
+.headerRight a {
     text-decoration: none;
-    border: 1px solid green;
-    color: green !important;
-}
-
-.signIn:hover, .logIn:hover {
-    background-color: lightgreen;
-}
-
-.menu{
-    background-color: #dddcdc;
-    padding: 0 20%;
-}
-
-.menu div{
-    padding: 8px 16px;
+    color: #666;
+    padding: 8px 20px;
     border-radius: 4px;
-    font-size: 16px;
     transition: all 0.3s ease;
-    border: 1px solid black;
 }
 
-.menu div:hover{
-    background-color: white;
+.headerRight .logIn {
+    background-color: #4a90e2;
+    color: white;
 }
 
-.menu div a {
-    text-decoration: none;
-    color: black !important;
+.headerRight .signIn:hover {
+    background-color: #f5f5f5;
+}
+
+.headerRight .logIn:hover {
+    background-color: #357abd;
+}
+
+/* 平板端样式 (小于 992px) */
+@media screen and (max-width: 992px) {
+    .header {
+        padding: 10px 20px;
+    }
+
+    .headerLeft .logo {
+        font-size: 20px;
+    }
+
+    .menu {
+        gap: 20px;
+    }
+}
+
+/* 手机端样式 (小于 768px) */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .headerLeft {
+        width: auto;
+    }
+
+    .headerRight {
+        width: auto;
+    }
+
+    .menu {
+        order: 2;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .menu div {
+        text-align: center;
+    }
+
+    .menu a {
+        display: block;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu a:hover::after {
+        display: none;
+    }
+
+    .menu a:hover {
+        background-color: #4a90e2;
+        color: white;
+    }
+
+    .headerRight a {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+}
+
+/* 小屏手机端样式 (小于 480px) */
+@media screen and (max-width: 480px) {
+    .header {
+        flex-direction: column;
+    }
+    
+    .headerLeft {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .headerLeft .logo img {
+        height: 40px;
+        width: 56px;
+    }
+
+    .headerLeft .logo {
+        font-size: 18px;
+    }
+
+    .menu {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .menu div {
+        width: 100%;
+    }
+
+    .headerRight {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .headerRight a {
+        width: 200px;
+        text-align: center;
+    }
 }
