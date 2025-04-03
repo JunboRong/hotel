@@ -1,0 +1,68 @@
+/* 首页主要样式 */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brandBanner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('utils/hotel-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 200px 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.brandBanner h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.brandBanner p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.comment {
+    text-align: center;
+    padding: 40px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.comment>div{
+    padding: 5em 5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .brandBanner {
+        padding: 60px 15px;
+    }
+    
+    .brandBanner h2 {
+        font-size: 28px;
+    }
+    
+    .brandBanner p {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .brandBanner {
+        padding: 40px 10px;
+    }
+    
+    .brandBanner h2 {
+        font-size: 24px;
+    }
+}
