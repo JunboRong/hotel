@@ -6,7 +6,7 @@ main {
 }
 
 .brandBanner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('utils/hotel-bg.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../image/hotel-bg.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -40,6 +40,12 @@ main {
     padding: 5em 5em;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+}
+
+.comment p{
+    font-size: 1.6em;
+    color: #4a90e2;
 }
 
 /* 响应式调整 */

@@ -3,57 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <title>三山酒店</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="chooseRoom.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/chooseRoom.css">
 </head>
+
 <body>
 <!--navigate start-->
-<div class="header">
+<nav class="header">
     <div class="headerLeft">
         <a class="logo" href="index.html">
-            <img src="utils/logo.jpg" height="50" width="70" alt="三山酒店">
+            <img src="image/logo.jpg" height="50" width="70" alt="三山酒店">
         </a>
         <a class="logo" href="index.html">三山酒店</a>
+    </div>
+    <div class="menu">
+        <div><a href="index.html">首页</a></div>
+        <div><a href="reservation.html">客房预定</a></div>
+        <div><a href="expenses.html">客房费用</a></div>
+        <div><a href="service.html">客房服务</a></div>
     </div>
     <div class="headerRight">
         <a class="signIn" href="signIn.html">注册</a>
         <a class="logIn" href="logIn.html">登入</a>
     </div>
-</div>
-<div class="menu">
-    <div><a href="index.html">首页</a></div>
-    <div><a href="reservation.html">客房预定</a></div>
-    <div><a href="expenses.html">客房费用</a></div>
-    <div><a href="service.html">客房服务</a></div>
-</div>
+</nav>
 <!--navigate end-->
+<main>
+    <div class="chooseRoom">
+        <ul>
+            <li>
+                <div class="room" onclick="selectRoom(this)">
+                    <img src="image/example.jpg" alt="普通大床房">
+                    <div class="room-info">
+                        <h2>普通大床房</h2>
+                        <div class="room-features">
+                            <span class="feature">1.8米大床</span>
+                            <span class="feature">35平方米</span>
+                            <span class="feature">城市景观</span>
+                        </div>
+                        <div class="room-detail">
+                            <p>舒适温馨的客房，配备高品质床具和家具，为您提供完美的休息体验。</p>
+                        </div>
+                        <div class="room-price">
+                            <span class="price">¥388</span>
+                            <span class="price-unit">/晚</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="room" onclick="selectRoom(this)">
+                    <img src="image/example.jpg" alt="普通双床房">
+                    <div class="room-info">
+                        <h2>普通双床房</h2>
+                        <div class="room-features">
+                            <span class="feature">两张1.2米床</span>
+                            <span class="feature">35平方米</span>
+                            <span class="feature">城市景观</span>
+                        </div>
+                        <div class="room-detail">
+                            <p>双床设计，适合朋友或家人同住，配备独立卫浴和办公区域。</p>
+                        </div>
+                        <div class="room-price">
+                            <span class="price">¥428</span>
+                            <span class="price-unit">/晚</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="room" onclick="selectRoom(this)">
+                    <img src="image/example.jpg" alt="豪华大床房">
+                    <div class="room-info">
+                        <h2>豪华大床房</h2>
+                        <div class="room-features">
+                            <span class="feature">2米大床</span>
+                            <span class="feature">45平方米</span>
+                            <span class="feature">江景房</span>
+                        </div>
+                        <div class="room-detail">
+                            <p>豪华装修，配备高级床具，独立会客区，享受江景视野。</p>
+                        </div>
+                        <div class="room-price">
+                            <span class="price">¥688</span>
+                            <span class="price-unit">/晚</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="room" onclick="selectRoom(this)">
+                    <img src="image/example.jpg" alt="豪华双床房">
+                    <div class="room-info">
+                        <h2>豪华双床房</h2>
+                        <div class="room-features">
+                            <span class="feature">两张1.5米床</span>
+                            <span class="feature">45平方米</span>
+                            <span class="feature">江景房</span>
+                        </div>
+                        <div class="room-detail">
+                            <p>豪华双床设计，配备独立会客区，享受江景视野，适合家庭入住。</p>
+                        </div>
+                        <div class="room-price">
+                            <span class="price">¥728</span>
+                            <span class="price-unit">/晚</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div>
 
-<div class="chooseRoom">
-    <ul>
-        <li>
-            <div class="room">
-                <img src="utils/example.jpg" height="300" width="600" alt="普通大床房">
-                <ul>
-                    <li><h2>普通大床房</h2></li>
-                    <li>
-                        <div class="roomDetail">房价摘要</div>
-                    </li>
-                    <li>
-                        <div class="roomCost">房价价格</div>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <div>普通双床房</div>
-        </li>
-        <li>
-            <div>豪华大床房</div>
-        </li>
-        <li>
-            <div>豪华双床房</div>
-        </li>
-    </ul>
-</div>
+        </div>
+    </div>
+</main>
+
+<script src="js/reservation.js"></script>
 </body>
 </html>
