@@ -84,6 +84,46 @@ body, html {
     background-color: #357abd;
 }
 
+/* 用户登录后的样式 */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info .username {
+    color: #333;
+    font-size: 14px;
+}
+
+.user-info .logout-btn {
+    background-color: #f5f5f5;
+    color: #666;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-info .logout-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* 登录状态下的导航栏样式 */
+.logged-in .headerRight .logIn,
+.logged-in .headerRight .signIn {
+    display: none;
+}
+
+.logged-in .user-info {
+    display: flex;
+}
+
+/* 未登录状态下的导航栏样式 */
+.not-logged-in .user-info {
+    display: none;
+}
+
 /* 平板端样式 (小于 992px) */
 @media screen and (max-width: 992px) {
     .header {
