@@ -13,15 +13,13 @@ const bookingState = {
 };
 
 // 更新计数器显示
-function updateCount(type, change) {
-    const count = document.getElementById(`${type}-count`);
+function updateCount(change) {
+    const count = document.getElementById('adults-count');
     let currentValue = parseInt(count.textContent);
     let newValue = currentValue + change;
 
     // 设置限制
-    if (type === 'adults') {
-        newValue = Math.max(1, Math.min(newValue, 2)); // 成人数量限制在1-2之间
-    }
+    newValue = Math.max(1, Math.min(newValue, 2)); // 成人数量限制在1-2之间
 
     count.textContent = newValue;
     bookingState.adults = newValue;
@@ -134,12 +132,17 @@ function initializeDatePickers() {
         bookingState.checkIn = this.value;
         bookingState.checkOut = checkOut.value;
         
+        // 更新晚数显示
+        updateNightsDisplay();
+        
         // 更新摘要
         updateSummary();
     });
     
     checkOut.addEventListener('change', function() {
         bookingState.checkOut = this.value;
+        // 更新晚数显示
+        updateNightsDisplay();
         updateSummary();
     });
 }
@@ -162,3 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateButtonStates();
     updateSummary();
 });
+
+// 添加更新晚数显示的函数
+function updateNightsDisplay() {
+    const nights = calculateNights();
+    document.querySelector('.stay-nights').textContent = `${nights}晚`;
+}
