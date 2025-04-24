@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>三山酒店</title>
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-
+<main class="auth-container">
+    <div class="auth-box">
+        <h2>欢迎回来</h2>
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="tel" id="username" name="username" required placeholder="请输入手机号">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" required placeholder="请输入密码">
+            </div>
+            <div class="form-group remember">
+                <a href="#" class="forgot-password">忘记密码？</a>
+            </div>
+            <button type="submit" class="submit-btn">登录</button>
+        </form>
+        <div class="auth-footer">
+            <p>还没有账号？ <a href="signIn.html">立即注册</a></p>
+        </div>
+    </div>
+</main>
+<script src="js/auth.js"></script>
 </body>
 </html>
