@@ -22,8 +22,12 @@
         <div><a href="expenses.html">客房费用</a></div>
     </div>
     <div class="headerRight">
-        <a class="signIn" href="signIn.html">注册</a>
-        <a class="logIn" href="logIn.html">登入</a>
+        <a href="logIn.html" class="logIn">登录</a>
+        <a href="signIn.html" class="signIn">注册</a>
+        <div class="user-info">
+            <span class="username"></span>
+            <button class="logout-btn" onclick="handleLogout()">退出登录</button>
+        </div>
     </div>
 </nav>
 <!--navigate end-->
@@ -48,5 +52,6 @@
         </div>
     </div>
 </main>
+<script src="js/auth.js"></script>
 </body>
 </html>
