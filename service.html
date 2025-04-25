@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>三山酒店</title>
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/service.css">
 </head>
 
 <body>
@@ -32,6 +33,58 @@
 </nav>
 <!--navigate end-->
 
+<main class="service-container">
+    <div class="service-header">
+        <h1>客房服务</h1>
+        <p>为您提供24小时优质服务</p>
+    </div>
+
+    <div class="service-content">
+        <!-- 服务申请表单 -->
+        <div class="service-form">
+            <h2>服务申请</h2>
+            <form id="serviceRequestForm">
+                <div class="form-group">
+                    <label for="roomNumber">房间号码</label>
+                    <input type="text" id="roomNumber" name="roomNumber" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="serviceType">服务类型</label>
+                    <select id="serviceType" name="serviceType" required>
+                        <option value="">请选择服务类型</option>
+                        <option value="cleaning">客房清洁</option>
+                        <option value="supplies">物品补充</option>
+                        <option value="maintenance">设备报修</option>
+                        <option value="other">其他服务</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">具体需求</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="expectedTime">期望服务时间</label>
+                    <input type="datetime-local" id="expectedTime" name="expectedTime" required>
+                </div>
+
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+
+        <!-- 服务跟踪列表 -->
+        <div class="service-tracking">
+            <h2>服务跟踪</h2>
+            <div class="tracking-list" id="trackingList">
+                <!-- 服务记录将通过 JavaScript 动态添加 -->
+            </div>
+        </div>
+    </div>
+</main>
+
 <script src="js/auth.js"></script>
+<script src="js/service.js"></script>
 </body>
 </html>

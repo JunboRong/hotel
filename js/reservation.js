@@ -165,9 +165,3 @@ document.addEventListener('DOMContentLoaded', () => {
     updateButtonStates();
     updateSummary();
 });
-
-// 添加更新晚数显示的函数
-function updateNightsDisplay() {
-    const nights = calculateNights();
-    document.querySelector('.stay-nights').textContent = `${nights}晚`;
-}
