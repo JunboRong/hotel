@@ -95,6 +95,12 @@ function calculateNights() {
     return Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 }
 
+// 更新晚数显示
+function updateNightsDisplay() {
+    const nights = calculateNights();
+    document.querySelector('.stay-nights').textContent = `${nights}晚`;
+}
+
 // 初始化日期选择器
 function initializeDatePickers() {
     const today = new Date();
