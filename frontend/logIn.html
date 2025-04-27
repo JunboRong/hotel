@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>三山酒店 - 登录</title>
-    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
-<a class="logo" href="index.html"><img src="image/logo.jpg" height="50" width="70" alt="三山酒店"></a>
+<a class="logo" href="index.html"><img src="../image/logo.jpg" height="50" width="70" alt="三山酒店"></a>
 <main class="auth-container">
     <div class="auth-box">
         <h2>欢迎回来</h2>
         <form id="loginForm" onsubmit="return handleLogin(event)">
             <div class="form-group">
-                <label for="username">手机号</label>
-                <input type="tel" id="username" name="username" required placeholder="请输入手机号">
+                <label for="username">账号</label>
+                <input type="text" id="username" name="username" required placeholder="请输入手机号/管理员账号">
             </div>
             <div class="form-group">
                 <label for="password">密码</label>
                 <input type="password" id="password" name="password" required placeholder="请输入密码">
             </div>
-            <div class="form-group remember">
+            <div class="form-group admin-toggle">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="isAdmin">
+                    <span>管理员登录</span>
+                </label>
                 <a href="#" class="forgot-password">忘记密码？</a>
             </div>
             <button type="submit" class="submit-btn">登录</button>
+            <div class="auth-footer">
+                <p>还没有账号？ <a href="signIn.html">立即注册</a></p>
+            </div>
         </form>
     </div>
 </main>
-<script src="js/auth.js"></script>
+<script src="../js/auth.js"></script>
 </body>
 </html>

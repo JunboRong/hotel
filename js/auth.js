@@ -66,21 +66,51 @@ const users = [
     }
 ];
 
+// 模拟管理员数据
+const admins = [
+    {
+        username: '123',
+        password: '123',
+        name: '系统管理员',
+        role: 'admin'
+    }
+];
+
 // 处理登录
 function handleLogin(event) {
     event.preventDefault();
     
-    const phone = document.getElementById('username').value;
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const isAdmin = document.getElementById('isAdmin').checked;
     
-    // 验证用户
-    const user = users.find(u => u.phone === phone && u.password === password);
+    if (isAdmin) {
+        // 验证管理员
+        const admin = admins.find(a => a.username === username && a.password === password);
+        if (admin) {
+            // 登录成功，保存管理员信息到localStorage
+            localStorage.setItem('currentUser', JSON.stringify({
+                ...admin,
+                isAdmin: true
+            }));
+            // 跳转到管理页面
+            window.location.href = '../backend/index.html';
+            return false;
+        }
+        alert('管理员账号或密码错误！');
+        return false;
+    }
     
+    // 验证普通用户
+    const user = users.find(u => u.phone === username && u.password === password);
     if (user) {
         // 登录成功，保存用户信息到localStorage
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('currentUser', JSON.stringify({
+            ...user,
+            isAdmin: false
+        }));
         // 跳转到首页
-        window.location.href = 'index.html';
+        window.location.href = '../frontend/index.html';
     } else {
         alert('用户名或密码错误！');
     }
@@ -135,7 +165,7 @@ function handleSignup(event) {
     alert("注册成功！欢迎加入三山酒店！");
 
     // 跳转到首页
-    window.location.href = 'index.html';
+    window.location.href = 'frontend/index.html';
     
     return false;
 }
@@ -149,10 +179,16 @@ function checkLogin() {
     return null;
 }
 
+// 检查是否是管理员
+function isAdmin() {
+    const currentUser = checkLogin();
+    return currentUser && currentUser.isAdmin === true;
+}
+
 // 退出登录
 function handleLogout() {
     localStorage.removeItem('currentUser');
-    window.location.href = 'logIn.html';
+    window.location.href = '../frontend/logIn.html';
 }
 
 // 页面加载时检查登录状态
