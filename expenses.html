@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>三山酒店</title>
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/expenses.css">
 </head>
 <body>
 <!--navigate start-->
@@ -31,7 +32,82 @@
 </nav>
 <!--navigate end-->
 
+<main class="expenses-container">
+    <div class="expenses-header">
+        <h1>费用管理</h1>
+        <p>查看和管理您的所有消费明细</p>
+    </div>
+
+    <div class="expenses-content">
+        <!-- 费用明细表格 -->
+        <div class="expenses-table">
+            <h2>消费明细</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>项目</th>
+                        <th>类型</th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>金额</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- 费用明细将通过JavaScript动态添加 -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 费用汇总和支付部分 -->
+        <div class="expenses-summary">
+            <h2>费用汇总</h2>
+            <div class="summary-item">
+                <span>房费总计</span>
+                <span id="roomTotal">¥0.00</span>
+            </div>
+            <div class="summary-item">
+                <span>餐饮费用</span>
+                <span id="diningTotal">¥0.00</span>
+            </div>
+            <div class="summary-item">
+                <span>额外服务</span>
+                <span id="serviceTotal">¥0.00</span>
+            </div>
+            <div class="summary-item summary-total">
+                <span>总计</span>
+                <span id="grandTotal">¥0.00</span>
+            </div>
+
+            <!-- 支付方式选择 -->
+            <div class="payment-methods">
+                <h3>选择支付方式</h3>
+                <div class="payment-option" onclick="selectPayment('cash')">
+                    <img src="image/cash.png" alt="现金">
+                    <span>现金支付</span>
+                </div>
+                <div class="payment-option" onclick="selectPayment('card')">
+                    <img src="image/card.png" alt="银行卡">
+                    <span>银行卡支付</span>
+                </div>
+                <div class="payment-option" onclick="selectPayment('wechat')">
+                    <img src="image/wechat.png" alt="微信">
+                    <span>微信支付</span>
+                </div>
+                <div class="payment-option" onclick="selectPayment('alipay')">
+                    <img src="image/alipay.png" alt="支付宝">
+                    <span>支付宝支付</span>
+                </div>
+            </div>
+
+            <button class="pay-button" onclick="handlePayment()" disabled>
+                确认支付
+            </button>
+        </div>
+    </div>
+</main>
 
 <script src="js/auth.js"></script>
+<script src="js/expenses.js"></script>
 </body>
 </html>
