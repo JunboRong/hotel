@@ -1,0 +1,173 @@
+{
+    "roomTypes": {
+        "standard_single": {
+            "name": "标准单人房",
+            "price": 288
+        },
+        "standard_double": {
+            "name": "标准双床房",
+            "price": 328
+        },
+        "deluxe_single": {
+            "name": "豪华大床房",
+            "price": 688
+        },
+        "deluxe_double": {
+            "name": "豪华双床房",
+            "price": 728
+        }
+    },
+    "diningMenu": {
+        "breakfast": {
+            "name": "早餐",
+            "price": 68
+        },
+        "lunch": {
+            "name": "午餐",
+            "price": 98
+        },
+        "dinner": {
+            "name": "晚餐",
+            "price": 128
+        },
+        "snacks": {
+            "name": "小吃",
+            "price": 38
+        }
+    },
+    "services": {
+        "laundry": {
+            "name": "洗衣服务",
+            "price": 100
+        },
+        "massage": {
+            "name": "按摩服务",
+            "price": 298
+        },
+        "carService": {
+            "name": "接送服务",
+            "price": 200
+        },
+        "roomCleaning": {
+            "name": "客房清洁",
+            "price": 50
+        }
+    },
+    "mockExpenses": {
+        "roomCharges": [
+            {
+                "date": "2024-03-20",
+                "item": "豪华大床房",
+                "type": "房费",
+                "quantity": 1,
+                "price": 688,
+                "amount": 688,
+                "roomNumber": "801"
+            },
+            {
+                "date": "2024-03-19",
+                "item": "标准双床房",
+                "type": "房费",
+                "quantity": 1,
+                "price": 328,
+                "amount": 328,
+                "roomNumber": "506"
+            }
+        ],
+        "diningCharges": [
+            {
+                "date": "2024-03-20",
+                "item": "早餐",
+                "type": "餐饮",
+                "quantity": 2,
+                "price": 68,
+                "amount": 136,
+                "location": "一楼餐厅"
+            },
+            {
+                "date": "2024-03-20",
+                "item": "晚餐",
+                "type": "餐饮",
+                "quantity": 2,
+                "price": 128,
+                "amount": 256,
+                "location": "一楼餐厅"
+            },
+            {
+                "date": "2024-03-19",
+                "item": "小吃",
+                "type": "餐饮",
+                "quantity": 1,
+                "price": 38,
+                "amount": 38,
+                "location": "客房服务"
+            }
+        ],
+        "serviceCharges": [
+            {
+                "date": "2024-03-20",
+                "item": "洗衣服务",
+                "type": "服务",
+                "quantity": 1,
+                "price": 100,
+                "amount": 100,
+                "status": "已完成"
+            },
+            {
+                "date": "2024-03-19",
+                "item": "按摩服务",
+                "type": "服务",
+                "quantity": 1,
+                "price": 298,
+                "amount": 298,
+                "status": "已完成"
+            }
+        ]
+    },
+    "discounts": {
+        "vip": {
+            "name": "VIP会员",
+            "roomDiscount": 0.9,
+            "diningDiscount": 0.85,
+            "serviceDiscount": 0.95
+        },
+        "seasonal": {
+            "name": "季节性优惠",
+            "roomDiscount": 0.85,
+            "diningDiscount": 0.9,
+            "serviceDiscount": 0.9,
+            "startDate": "2024-01-01",
+            "endDate": "2024-03-31"
+        },
+        "group": {
+            "name": "团体优惠",
+            "minPeople": 5,
+            "roomDiscount": 0.8,
+            "diningDiscount": 0.8,
+            "serviceDiscount": 0.85
+        }
+    },
+    "paymentMethods": {
+        "cash": {
+            "name": "现金支付",
+            "icon": "cash.png",
+            "enabled": true
+        },
+        "card": {
+            "name": "银行卡支付",
+            "icon": "card.png",
+            "enabled": true,
+            "supportedCards": ["Visa", "MasterCard", "UnionPay"]
+        },
+        "wechat": {
+            "name": "微信支付",
+            "icon": "wechat.png",
+            "enabled": true
+        },
+        "alipay": {
+            "name": "支付宝支付",
+            "icon": "alipay.png",
+            "enabled": true
+        }
+    }
+} 
