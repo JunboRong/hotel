@@ -24,11 +24,6 @@ ul {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.room.selected {
-    border: 2px solid #4CAF50;
-    background-color: rgba(76, 175, 80, 0.05);
-}
-
 .room img {
     height: 250px;
     width: 550px;
@@ -144,7 +139,7 @@ ul {
     gap: 15px;
 }
 
-.guest-info label {
+.guest-info label, .guest-info p{
     color: #666;
     font-size: 14px;
 }
@@ -173,10 +168,6 @@ ul {
     background-color: #f5f5f5;
 }
 
-.counter-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
 
 .count {
     font-size: 16px;
