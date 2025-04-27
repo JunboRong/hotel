@@ -1,0 +1,155 @@
+{
+    "membershipLevels": {
+        "regular": {
+            "name": "普通会员",
+            "minPoints": 0,
+            "discount": 0.95,
+            "benefits": ["积分累计", "生日礼遇"]
+        },
+        "silver": {
+            "name": "白银会员",
+            "minPoints": 1000,
+            "discount": 0.9,
+            "benefits": ["积分累计", "生日礼遇", "免费早餐", "延迟退房"]
+        },
+        "gold": {
+            "name": "黄金会员",
+            "minPoints": 5000,
+            "discount": 0.85,
+            "benefits": ["积分累计", "生日礼遇", "免费早餐", "延迟退房", "房型升级", "专属客服"]
+        },
+        "platinum": {
+            "name": "铂金会员",
+            "minPoints": 20000,
+            "discount": 0.8,
+            "benefits": ["积分累计", "生日礼遇", "免费早餐", "延迟退房", "房型升级", "专属客服", "机场接送", "贵宾厅"]
+        }
+    },
+    "pointsRules": {
+        "roomStay": {
+            "description": "住宿消费",
+            "ratio": 1
+        },
+        "dining": {
+            "description": "餐饮消费",
+            "ratio": 0.5
+        },
+        "service": {
+            "description": "其他服务",
+            "ratio": 0.3
+        },
+        "review": {
+            "description": "评价反馈",
+            "points": 100
+        },
+        "referral": {
+            "description": "推荐新客户",
+            "points": 500
+        }
+    },
+    "mockCustomers": [
+        {
+            "id": "C001",
+            "name": "张三",
+            "phone": "13800138000",
+            "email": "zhangsan@example.com",
+            "birthDate": "1990-05-15",
+            "membershipLevel": "gold",
+            "points": 6800,
+            "registrationDate": "2023-01-15",
+            "preferences": {
+                "roomType": "deluxe_single",
+                "floorPreference": "high",
+                "smokingPreference": false,
+                "dietaryRestrictions": ["无麸质", "素食"],
+                "specialRequests": "需要加湿器"
+            },
+            "stayHistory": [
+                {
+                    "checkIn": "2024-03-15",
+                    "checkOut": "2024-03-17",
+                    "roomNumber": "801",
+                    "roomType": "deluxe_single",
+                    "totalSpent": 1688,
+                    "pointsEarned": 1688
+                },
+                {
+                    "checkIn": "2024-02-20",
+                    "checkOut": "2024-02-22",
+                    "roomNumber": "805",
+                    "roomType": "deluxe_single",
+                    "totalSpent": 1588,
+                    "pointsEarned": 1588
+                }
+            ],
+            "feedback": [
+                {
+                    "date": "2024-03-17",
+                    "rating": 5,
+                    "comment": "服务很周到，房间干净整洁",
+                    "category": "整体体验"
+                },
+                {
+                    "date": "2024-02-22",
+                    "rating": 4,
+                    "comment": "早餐品种可以再丰富些",
+                    "category": "餐饮服务"
+                }
+            ]
+        },
+        {
+            "id": "C002",
+            "name": "李四",
+            "phone": "13900139000",
+            "email": "lisi@example.com",
+            "birthDate": "1988-08-08",
+            "membershipLevel": "silver",
+            "points": 2500,
+            "registrationDate": "2023-06-20",
+            "preferences": {
+                "roomType": "standard_double",
+                "floorPreference": "low",
+                "smokingPreference": false,
+                "dietaryRestrictions": [],
+                "specialRequests": "需要额外枕头"
+            },
+            "stayHistory": [
+                {
+                    "checkIn": "2024-03-10",
+                    "checkOut": "2024-03-12",
+                    "roomNumber": "306",
+                    "roomType": "standard_double",
+                    "totalSpent": 988,
+                    "pointsEarned": 988
+                }
+            ],
+            "feedback": [
+                {
+                    "date": "2024-03-12",
+                    "rating": 5,
+                    "comment": "性价比很高，服务态度好",
+                    "category": "整体体验"
+                }
+            ]
+        }
+    ],
+    "feedbackCategories": [
+        "整体体验",
+        "客房设施",
+        "餐饮服务",
+        "前台服务",
+        "清洁卫生",
+        "位置交通",
+        "性价比",
+        "其他"
+    ],
+    "satisfactionMetrics": {
+        "overall": 4.5,
+        "cleanliness": 4.8,
+        "service": 4.6,
+        "comfort": 4.4,
+        "location": 4.7,
+        "facilities": 4.3,
+        "valueForMoney": 4.2
+    }
+} 

@@ -1,7 +1,69 @@
 // 模拟用户数据
 const users = [
-    { phone: '123456', password: '123456' },
-    { phone: '1', password: '1' }
+    {
+        phone: '13800138000',
+        password: '123456',
+        name: '张三',
+        email: 'zhangsan@example.com',
+        membershipLevel: 'gold',
+        points: 5000,
+        registrationDate: '2023-01-15',
+        preferences: {
+            roomType: 'deluxe_double',
+            floorPreference: 'high',
+            smokingPreference: false,
+            dietaryRestrictions: ['无麸质', '素食'],
+            specialRequests: '需要额外的枕头'
+        }
+    },
+    {
+        phone: '13900139000',
+        password: '123456',
+        name: '李四',
+        email: 'lisi@example.com',
+        membershipLevel: 'silver',
+        points: 2500,
+        registrationDate: '2023-03-20',
+        preferences: {
+            roomType: 'standard_single',
+            floorPreference: 'middle',
+            smokingPreference: false,
+            dietaryRestrictions: [],
+            specialRequests: ''
+        }
+    },
+    {
+        phone: '13700137000',
+        password: '123456',
+        name: '王五',
+        email: 'wangwu@example.com',
+        membershipLevel: 'platinum',
+        points: 10000,
+        registrationDate: '2022-12-01',
+        preferences: {
+            roomType: 'deluxe_single',
+            floorPreference: 'high',
+            smokingPreference: false,
+            dietaryRestrictions: ['海鲜过敏'],
+            specialRequests: '需要安静的房间'
+        }
+    },
+    {
+        phone: '1',
+        password: '1',
+        name: '测试用户',
+        email: 'test@example.com',
+        membershipLevel: 'gold',
+        points: 3000,
+        registrationDate: '2023-06-01',
+        preferences: {
+            roomType: 'standard_double',
+            floorPreference: 'low',
+            smokingPreference: false,
+            dietaryRestrictions: [],
+            specialRequests: '无特殊要求'
+        }
+    }
 ];
 
 // 处理登录
@@ -16,7 +78,7 @@ function handleLogin(event) {
     
     if (user) {
         // 登录成功，保存用户信息到localStorage
-        localStorage.setItem('currentUser', JSON.stringify({ phone: user.phone }));
+        localStorage.setItem('currentUser', JSON.stringify(user));
         // 跳转到首页
         window.location.href = 'index.html';
     } else {
@@ -46,13 +108,31 @@ function handleSignup(event) {
         return false;
     }
     
+    // 创建新用户
+    const newUser = {
+        phone,
+        password,
+        name: '新会员',
+        email: '',
+        membershipLevel: 'bronze',
+        points: 0,
+        registrationDate: new Date().toISOString().split('T')[0],
+        preferences: {
+            roomType: 'standard_single',
+            floorPreference: 'middle',
+            smokingPreference: false,
+            dietaryRestrictions: [],
+            specialRequests: ''
+        }
+    };
+    
     // 添加新用户
-    users.push({ phone, password });
+    users.push(newUser);
     
     // 注册成功，保存用户信息到localStorage
-    localStorage.setItem('currentUser', JSON.stringify({ phone }));
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
 
-    alert("注册成功")
+    alert("注册成功！欢迎加入三山酒店！");
 
     // 跳转到首页
     window.location.href = 'index.html';
@@ -70,10 +150,11 @@ function checkLogin() {
 }
 
 // 退出登录
-function logout() {
+function handleLogout() {
     localStorage.removeItem('currentUser');
     window.location.href = 'logIn.html';
 }
+
 // 页面加载时检查登录状态
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
@@ -87,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 更新用户信息显示
         const userInfo = document.querySelector('.user-info .username');
         if (userInfo) {
-            userInfo.textContent = currentUser.phone;
+            userInfo.textContent = currentUser.name || currentUser.phone;
         }
     } else {
         // 用户未登录
@@ -95,7 +176,3 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.remove('logged-in');
     }
 });
-// 处理退出登录
-function handleLogout() {
-    logout();
-}
