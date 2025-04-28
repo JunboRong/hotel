@@ -71,34 +71,28 @@ main {
 
 .comment:nth-child(1) {
     top: 5%;
-    animation: yAxis1 2s ease-out forwards, move 25s 2s linear infinite;
+    animation: yAxis1 2s ease-out forwards, move 25s 5s linear infinite;
 }
 
 .comment:nth-child(2) {
     top: 25%;
-    animation: yAxis2 2s 1s ease-out forwards, move 25s 3s linear infinite;
+    animation: yAxis2 2s 1s ease-out forwards, move 25s 20s linear infinite;
 }
 
 .comment:nth-child(3) {
     top: 45%;
-    animation: yAxis3 2s 2s ease-out forwards, move 25s 5s linear infinite;
+    animation: yAxis3 2s 2s ease-out forwards, move 25s 2s linear infinite;
 }
 
 .comment:nth-child(4) {
     top: 65%;
-    animation: yAxis4 2s 3s ease-out forwards, move 25s 7s linear infinite;
+    animation: yAxis4 2s 3s ease-out forwards, move 25s 10s linear infinite;
 }
 
 .comment:nth-child(5) {
     top: 85%;
-    animation: yAxis5 2s 4s ease-out forwards, move 25s 10s linear infinite;
+    animation: yAxis5 2s 4s ease-out forwards, move 25s 15s linear infinite;
 }
-/* Y轴入场动画 */
-@keyframes yAxis1 { from { opacity: 0; transform: translateY(20%); } }
-@keyframes yAxis2 { from { opacity: 0; transform: translateY(40%); } }
-@keyframes yAxis3 { from { opacity: 0; transform: translateY(60%); } }
-@keyframes yAxis4 { from { opacity: 0; transform: translateY(80%); } }
-@keyframes yAxis5 { from { opacity: 0; transform: translateY(100%); } }
 
 /* 水平移动动画 */
 @keyframes move {
