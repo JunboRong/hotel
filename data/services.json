@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+      "id": "S001",
+      "roomNumber": "101",
+      "type": "清洁服务",
+      "status": "待处理",
+      "requestTime": "2024-03-20T10:30:00",
+      "description": "需要更换床单和毛巾",
+      "priority": "普通"
+    },
+    {
+      "id": "S002",
+      "roomNumber": "102",
+      "type": "维修服务",
+      "status": "处理中",
+      "requestTime": "2024-03-20T09:15:00",
+      "description": "空调温度调节不灵敏",
+      "priority": "紧急"
+    },
+    {
+      "id": "S003",
+      "roomNumber": "201",
+      "type": "餐饮服务",
+      "status": "已完成",
+      "requestTime": "2024-03-20T08:00:00",
+      "description": "送餐到房间",
+      "priority": "普通"
+    },
+    {
+      "id": "S004",
+      "roomNumber": "202",
+      "type": "其他服务",
+      "status": "待处理",
+      "requestTime": "2024-03-20T11:00:00",
+      "description": "需要额外的枕头",
+      "priority": "普通"
+    }
+  ]
+} 

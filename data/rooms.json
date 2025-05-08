@@ -1,0 +1,32 @@
+{
+  "rooms": [
+    {
+      "roomNumber": "101",
+      "type": "标准间",
+      "status": "空闲",
+      "lastUpdate": "2024-03-20T10:00:00",
+      "notes": ""
+    },
+    {
+      "roomNumber": "102",
+      "type": "标准间",
+      "status": "已入住",
+      "lastUpdate": "2024-03-20T10:00:00",
+      "notes": ""
+    },
+    {
+      "roomNumber": "201",
+      "type": "豪华间",
+      "status": "打扫中",
+      "lastUpdate": "2024-03-20T10:00:00",
+      "notes": ""
+    },
+    {
+      "roomNumber": "202",
+      "type": "豪华间",
+      "status": "维修中",
+      "lastUpdate": "2024-03-20T10:00:00",
+      "notes": "空调维修"
+    }
+  ]
+} 

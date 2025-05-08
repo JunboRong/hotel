@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>客房服务 - 三山酒店</title>
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/service.css">
 </head>
 <body>
 <!--navigate start-->
@@ -31,6 +32,29 @@
 </nav>
 <!--navigate end-->
 
+<div class="service-container">
+    <h2>客房服务管理</h2>
+    <div class="filter-controls">
+        <select id="typeFilter">
+            <option value="all">所有服务类型</option>
+            <option value="清洁服务">清洁服务</option>
+            <option value="维修服务">维修服务</option>
+            <option value="餐饮服务">餐饮服务</option>
+            <option value="其他服务">其他服务</option>
+        </select>
+        <select id="statusFilter">
+            <option value="all">所有状态</option>
+            <option value="待处理">待处理</option>
+            <option value="处理中">处理中</option>
+            <option value="已完成">已完成</option>
+        </select>
+    </div>
+    <div class="service-grid" id="serviceGrid">
+        <!-- 服务信息将通过 JavaScript 动态加载 -->
+    </div>
+</div>
+
 <script src="../js/auth.js"></script>
+<script src="../js/service.js"></script>
 </body>
 </html>

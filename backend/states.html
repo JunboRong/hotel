@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>客房状态 - 三山酒店</title>
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/states.css">
 </head>
 <body>
 <!--navigate start-->
@@ -31,6 +32,28 @@
 </nav>
 <!--navigate end-->
 
+<div class="room-status-container">
+    <h2>客房状态实时监控</h2>
+    <div class="filter-controls">
+        <select id="statusFilter">
+            <option value="all">所有状态</option>
+            <option value="空闲">空闲</option>
+            <option value="已入住">已入住</option>
+            <option value="打扫中">打扫中</option>
+            <option value="维修中">维修中</option>
+        </select>
+        <select id="typeFilter">
+            <option value="all">所有房型</option>
+            <option value="标准间">标准间</option>
+            <option value="豪华间">豪华间</option>
+        </select>
+    </div>
+    <div class="room-grid" id="roomGrid">
+        <!-- 房间信息将通过 JavaScript 动态加载 -->
+    </div>
+</div>
+
 <script src="../js/auth.js"></script>
+<script src="../js/states.js"></script>
 </body>
 </html>
