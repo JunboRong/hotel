@@ -94,7 +94,7 @@ function handleLogin(event) {
                 isAdmin: true
             }));
             // 跳转到管理页面
-            window.location.href = '../backend/index.html';
+            window.location.href = '../backend/states.html';
             return false;
         }
         alert('管理员账号或密码错误！');
