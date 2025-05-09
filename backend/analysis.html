@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>三山酒店</title>
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/backendAnalysis.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
 <!--navigate start-->
@@ -31,6 +33,105 @@
 </nav>
 <!--navigate end-->
 
+<div class="container">
+    <div class="analysis-section">
+        <div class="analysis-header">
+            <h2>数据分析</h2>
+            <div class="date-filter">
+                <input type="date" id="startDate">
+                <span>至</span>
+                <input type="date" id="endDate">
+                <button class="btn">查询</button>
+            </div>
+        </div>
+
+        <!-- 摘要卡片 -->
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3>入住率</h3>
+                <div class="value" id="occupancyRate">85.5%</div>
+                <div class="trend up" id="occupancyRateTrend">↑ 2.3%</div>
+            </div>
+            <div class="summary-card">
+                <h3>收入</h3>
+                <div class="value" id="revenue">¥256,800</div>
+                <div class="trend up" id="revenueTrend">↑ 5.8%</div>
+            </div>
+            <div class="summary-card">
+                <h3>客户满意度</h3>
+                <div class="value" id="satisfaction">4.6</div>
+                <div class="trend up" id="satisfactionTrend">↑ 0.2</div>
+            </div>
+            <div class="summary-card">
+                <h3>新增客户</h3>
+                <div class="value" id="newCustomers">128</div>
+                <div class="trend down" id="newCustomersTrend">↓ 3.5%</div>
+            </div>
+        </div>
+
+        <!-- 选项卡按钮 -->
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="overview">概览</button>
+            <button class="tab-button" data-tab="occupancy">入住分析</button>
+            <button class="tab-button" data-tab="revenue">收入分析</button>
+            <button class="tab-button" data-tab="customer">客户分析</button>
+        </div>
+
+        <!-- 图表容器 -->
+        <div class="chart-container">
+            <div class="chart-box">
+                <div id="occupancyChart" style="width: 100%; height: 300px;"></div>
+            </div>
+            <div class="chart-box">
+                <div id="revenueChart" style="width: 100%; height: 300px;"></div>
+            </div>
+            <div class="chart-box">
+                <div id="roomTypeChart" style="width: 100%; height: 300px;"></div>
+            </div>
+            <div class="chart-box">
+                <div id="satisfactionChart" style="width: 100%; height: 300px;"></div>
+            </div>
+        </div>
+
+        <!-- 详细数据表格 -->
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>入住率</th>
+                    <th>收入</th>
+                    <th>新增客户</th>
+                    <th>客户满意度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024-06-01</td>
+                    <td>85.5%</td>
+                    <td>¥256,800</td>
+                    <td>128</td>
+                    <td>4.6</td>
+                </tr>
+                <tr>
+                    <td>2024-05-01</td>
+                    <td>88.0%</td>
+                    <td>¥240,000</td>
+                    <td>132</td>
+                    <td>4.5</td>
+                </tr>
+                <tr>
+                    <td>2024-04-01</td>
+                    <td>85.0%</td>
+                    <td>¥225,000</td>
+                    <td>125</td>
+                    <td>4.5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <script src="../js/auth.js"></script>
+<script src="../js/backendAnalysis.js"></script>
 </body>
 </html>

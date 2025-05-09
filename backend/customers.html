@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>三山酒店</title>
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/backendCustomers.css">
 </head>
 <body>
 <!--navigate start-->
@@ -31,6 +32,36 @@
 </nav>
 <!--navigate end-->
 
+<div class="container">
+    <div class="member-section">
+        <div class="member-header">
+            <h2>会员管理</h2>
+            <div class="search-box">
+                <input type="text" placeholder="搜索会员...">
+                <button class="btn">搜索</button>
+                <button class="btn">添加会员</button>
+            </div>
+        </div>
+        <table class="member-table">
+            <thead>
+                <tr>
+                    <th>会员ID</th>
+                    <th>姓名</th>
+                    <th>手机号</th>
+                    <th>会员等级</th>
+                    <th>积分</th>
+                    <th>注册时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 会员数据将通过JavaScript动态加载 -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <script src="../js/auth.js"></script>
+<script src="../js/backendCustomers.js"></script>
 </body>
 </html>
