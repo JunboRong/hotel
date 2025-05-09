@@ -1,3 +1,9 @@
+.logo img {
+    height: 50px;
+    width: 70px;
+    transition: all 0.3s ease;
+}
+
 .auth-container {
     display: flex;
     justify-content: center;
