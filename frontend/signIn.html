@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>三山酒店</title>
+    <title>注册 - 三山酒店</title>
     <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
@@ -10,7 +10,7 @@
 <main class="auth-container">
     <div class="auth-box">
         <h2>创建账号</h2>
-        <form id="signupForm" onsubmit="return handleSignup(event)">
+        <form id="signupForm">
             <div class="form-group">
                 <label for="phone">手机号码</label>
                 <input type="tel" id="phone" name="phone" required placeholder="请输入手机号码">
@@ -31,5 +31,28 @@
     </div>
 </main>
 <script src="../js/auth.js"></script>
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    // 验证密码是否匹配
+    if (password !== confirmPassword) {
+        alert('两次输入的密码不一致！');
+        return;
+    }
+    
+    try {
+        await auth.register(phone, password);
+        alert('注册成功！欢迎加入三山酒店！');
+        window.location.href = 'index.html';
+    } catch (error) {
+        alert('注册失败：' + error.message);
+    }
+});
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <!--navigate start-->
-<nav class="header">
+<nav class="header not-logged-in">
     <div class="headerLeft">
         <a class="logo" href="../frontend/index.html">
             <img src="../image/logo.jpg" alt="三山酒店">
@@ -26,7 +26,7 @@
         <a href="../frontend/signIn.html" class="signIn">注册</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="handleLogout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
         </div>
     </div>
 </nav>

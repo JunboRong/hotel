@@ -1,0 +1,47 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "phone": "13800138000",
+            "password": "123456",
+            "name": "张三",
+            "email": "zhangsan@example.com",
+            "membershipLevel": "gold",
+            "points": 5000,
+            "registrationDate": "2023-01-15",
+            "preferences": {
+                "roomType": "deluxe_double",
+                "floorPreference": "high",
+                "smokingPreference": false,
+                "dietaryRestrictions": ["无麸质", "素食"],
+                "specialRequests": "需要额外的枕头"
+            }
+        },
+        {
+            "id": "2",
+            "phone": "13900139000",
+            "password": "123456",
+            "name": "李四",
+            "email": "lisi@example.com",
+            "membershipLevel": "silver",
+            "points": 2500,
+            "registrationDate": "2023-03-20",
+            "preferences": {
+                "roomType": "standard_single",
+                "floorPreference": "middle",
+                "smokingPreference": false,
+                "dietaryRestrictions": [],
+                "specialRequests": ""
+            }
+        }
+    ],
+    "admins": [
+        {
+            "id": "admin1",
+            "username": "a",
+            "password": "a",
+            "name": "系统管理员",
+            "role": "admin"
+        }
+    ]
+} 
