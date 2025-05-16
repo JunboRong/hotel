@@ -250,41 +250,16 @@ const ExpenseType = {
     SERVICE: '服务'
 };
 
-// 初始化支付方式
-function initializePaymentMethods(paymentMethods) {
-    const container = document.querySelector('.payment-methods');
-    if (!container) return;
-
-    // 清空现有的支付方式
-    container.innerHTML = '<h3>选择支付方式</h3>';
-
-    // 添加支付方式
-    Object.entries(paymentMethods).forEach(([key, method]) => {
-        if (method.enabled) {
-            const paymentOption = document.createElement('div');
-            paymentOption.className = 'payment-option';
-            paymentOption.onclick = () => selectPayment(key);
-            paymentOption.innerHTML = `
-                <img src="image/${method.icon}" alt="${method.name}">
-                <span>${method.name}</span>
-            `;
-            container.appendChild(paymentOption);
-        }
-    });
-}
 
 // 选择支付方式
 function selectPayment(method) {
-    // 移除其他支付方式的选中状态
     document.querySelectorAll('.payment-option').forEach(option => {
         option.classList.remove('selected');
     });
-
-    // 添加当前支付方式的选中状态
-    const selectedOption = document.querySelector(`.payment-option[onclick*="${method}"]`);
+    const selectedOption = document.querySelector(`.payment-option[data-key="${method}"]`);
     if (selectedOption) {
         selectedOption.classList.add('selected');
-        document.querySelector('.pay-button').disabled = false;
+        document.querySelector('.pay-btn').disabled = false;
     }
 }
 

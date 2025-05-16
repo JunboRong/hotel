@@ -110,9 +110,24 @@
             <div class="payment-section">
                 <h3>选择支付方式</h3>
                 <div class="payment-methods" id="paymentMethods">
-                    <!-- 支付方式将通过JavaScript动态添加 -->
+                    <div class="payment-option" data-key="cash" onclick="selectPayment('cash')">
+                        <img src="../image/cash.png" alt="现金支付">
+                        <span>现金支付</span>
+                    </div>
+                    <div class="payment-option" data-key="card" onclick="selectPayment('card')">
+                        <img src="../image/card.png" alt="银行卡支付">
+                        <span>银行卡支付</span>
+                    </div>
+                    <div class="payment-option" data-key="wechat" onclick="selectPayment('wechat')">
+                        <img src="../image/wechat.png" alt="微信支付">
+                        <span>微信支付</span>
+                    </div>
+                    <div class="payment-option" data-key="alipay" onclick="selectPayment('alipay')">
+                        <img src="../image/alipay.png" alt="支付宝支付">
+                        <span>支付宝支付</span>
+                    </div>
                 </div>
-                <button class="pay-btn" onclick="handlePayment()">立即支付</button>
+                <button class="pay-btn" onclick="handlePayment()" disabled>立即支付</button>
             </div>
         </div>
     </div>

@@ -12,6 +12,62 @@ const bookingState = {
     }
 };
 
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查登录状态
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = 'logIn.html';
+        return;
+    }
+
+    // 设置日期选择器的最小值为今天
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkIn').min = today;
+    document.getElementById('checkOut').min = today;
+
+    // 加载用户的预订历史
+    loadBookingHistory();
+});
+
+// 加载预订历史
+function loadBookingHistory() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const bookingHistory = JSON.parse(localStorage.getItem(`bookingHistory_${currentUser.id}`)) || [];
+    
+    // 更新预订历史显示
+    updateBookingHistoryDisplay(bookingHistory);
+}
+
+// 更新预订历史显示
+function updateBookingHistoryDisplay(history) {
+    const historyContainer = document.getElementById('bookingHistory');
+    if (!historyContainer) return;
+
+    historyContainer.innerHTML = '';
+    
+    if (history.length === 0) {
+        historyContainer.innerHTML = '<p class="no-history">暂无预订记录</p>';
+        return;
+    }
+
+    history.forEach(booking => {
+        const bookingElement = document.createElement('div');
+        bookingElement.className = 'booking-item';
+        bookingElement.innerHTML = `
+            <div class="booking-info">
+                <h3>${booking.roomType}</h3>
+                <p>入住日期：${formatDate(booking.checkIn)}</p>
+                <p>退房日期：${formatDate(booking.checkOut)}</p>
+                <p>入住人数：${booking.adults}人</p>
+                <p>总价：¥${booking.totalPrice}</p>
+                <p>状态：${booking.status}</p>
+            </div>
+        `;
+        historyContainer.appendChild(bookingElement);
+    });
+}
+
 // 更新计数器显示
 function updateCount(change) {
     const count = document.getElementById('adults-count');
@@ -76,6 +132,16 @@ function updateSummary() {
     }
 }
 
+// 计算入住天数
+function calculateNights() {
+    if (!bookingState.checkIn || !bookingState.checkOut) return 0;
+    
+    const checkIn = new Date(bookingState.checkIn);
+    const checkOut = new Date(bookingState.checkOut);
+    const diffTime = Math.abs(checkOut - checkIn);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
 // 格式化日期
 function formatDate(dateString) {
     if (!dateString) return '未选择';
@@ -85,14 +151,6 @@ function formatDate(dateString) {
         month: '2-digit',
         day: '2-digit'
     });
-}
-
-// 计算入住晚数
-function calculateNights() {
-    if (!bookingState.checkIn || !bookingState.checkOut) return 0;
-    const checkIn = new Date(bookingState.checkIn);
-    const checkOut = new Date(bookingState.checkOut);
-    return Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 }
 
 // 更新晚数显示
@@ -154,15 +212,89 @@ function initializeDatePickers() {
 }
 
 // 提交预订
-function submitBooking() {
-    if (!bookingState.selectedRoom) {
-        alert('请选择客房类型');
+async function submitBooking() {
+    // 验证必填信息
+    if (!bookingState.checkIn || !bookingState.checkOut || !bookingState.selectedRoom) {
+        alert('请填写完整的预订信息');
         return;
     }
+
+    // 验证日期
+    const checkIn = new Date(bookingState.checkIn);
+    const checkOut = new Date(bookingState.checkOut);
+    if (checkIn >= checkOut) {
+        alert('退房日期必须晚于入住日期');
+        return;
+    }
+
+    // 获取当前用户
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = 'logIn.html';
+        return;
+    }
+
+    // 创建预订记录
+    const booking = {
+        id: Date.now().toString(),
+        userId: currentUser.id,
+        roomType: bookingState.selectedRoom,
+        checkIn: bookingState.checkIn,
+        checkOut: bookingState.checkOut,
+        adults: bookingState.adults,
+        totalPrice: bookingState.roomPrices[bookingState.selectedRoom] * calculateNights(),
+        status: '已确认',
+        createTime: new Date().toISOString()
+    };
+
+    // 保存预订记录
+    const bookingHistory = JSON.parse(localStorage.getItem(`bookingHistory_${currentUser.id}`)) || [];
+    bookingHistory.push(booking);
+    localStorage.setItem(`bookingHistory_${currentUser.id}`, JSON.stringify(bookingHistory));
+
+    // 添加到费用系统
+    const roomData = {
+        type: booking.roomType,
+        nights: calculateNights(),
+        price: bookingState.roomPrices[bookingState.selectedRoom],
+        roomNumber: generateRoomNumber() // 生成随机房间号
+    };
     
-    // 这里可以添加提交预订的逻辑
-    console.log('提交预订信息：', bookingState);
+    // 调用费用管理器添加房费
+    if (typeof expenseManager !== 'undefined') {
+        expenseManager.addRoomCharge(roomData);
+    }
+
+    // 显示成功消息
     alert('预订成功！');
+    
+    // 重置表单
+    resetBookingForm();
+    
+    // 更新预订历史显示
+    updateBookingHistoryDisplay(bookingHistory);
+}
+
+// 生成随机房间号
+function generateRoomNumber() {
+    return Math.floor(Math.random() * 900 + 100).toString(); // 生成3位随机数
+}
+
+// 重置预订表单
+function resetBookingForm() {
+    bookingState.checkIn = '';
+    bookingState.checkOut = '';
+    bookingState.adults = 2;
+    bookingState.selectedRoom = null;
+    
+    document.getElementById('checkIn').value = '';
+    document.getElementById('checkOut').value = '';
+    document.getElementById('adults-count').textContent = '2';
+    document.querySelectorAll('.room-option').forEach(room => {
+        room.classList.remove('selected');
+    });
+    
+    updateSummary();
 }
 
 // 页面加载时初始化
