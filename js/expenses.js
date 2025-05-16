@@ -1,9 +1,247 @@
-// 费用数据
-let expensesData = {
-    roomCharges: [],
-    diningCharges: [],
-    serviceCharges: []
-};
+// 费用管理类
+class ExpenseManager {
+    constructor() {
+        this.expenses = {
+            roomCharges: [],
+            diningCharges: [],
+            serviceCharges: []
+        };
+        this.discounts = {};
+        this.paymentMethods = {};
+        this.currentUser = null;
+    }
+
+    // 初始化
+    async initialize() {
+        try {
+            // 从localStorage获取当前用户
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!this.currentUser) {
+                throw new Error('用户未登录');
+            }
+
+            // 加载费用配置
+            const response = await fetch('../data/expenses.json');
+            const data = await response.json();
+            
+            // 初始化折扣信息
+            this.discounts = data.discounts;
+            
+            // 初始化支付方式
+            this.paymentMethods = data.paymentMethods;
+
+            // 从localStorage加载费用数据
+            this.loadExpensesFromStorage();
+            
+            // 更新显示
+            this.updateDisplay();
+        } catch (error) {
+            console.error('初始化失败:', error);
+            throw error;
+        }
+    }
+
+    // 从localStorage加载费用数据
+    loadExpensesFromStorage() {
+        const storedExpenses = localStorage.getItem(`expenses_${this.currentUser.id}`);
+        if (storedExpenses) {
+            this.expenses = JSON.parse(storedExpenses);
+        }
+    }
+
+    // 保存费用数据到localStorage
+    saveExpensesToStorage() {
+        localStorage.setItem(`expenses_${this.currentUser.id}`, JSON.stringify(this.expenses));
+    }
+
+    // 添加房费
+    addRoomCharge(roomData) {
+        const charge = {
+            date: new Date().toISOString().split('T')[0],
+            item: roomData.type,
+            type: '房费',
+            quantity: roomData.nights,
+            price: roomData.price,
+            amount: roomData.nights * roomData.price,
+            roomNumber: roomData.roomNumber,
+            status: '待支付'
+        };
+
+        this.expenses.roomCharges.push(charge);
+        this.saveExpensesToStorage();
+        this.updateDisplay();
+    }
+
+    // 添加餐饮费用
+    addDiningCharge(diningData) {
+        const charge = {
+            date: new Date().toISOString().split('T')[0],
+            item: diningData.name,
+            type: '餐饮',
+            quantity: diningData.quantity,
+            price: diningData.price,
+            amount: diningData.quantity * diningData.price,
+            location: diningData.location,
+            status: '待支付'
+        };
+
+        this.expenses.diningCharges.push(charge);
+        this.saveExpensesToStorage();
+        this.updateDisplay();
+    }
+
+    // 添加服务费用
+    addServiceCharge(serviceData) {
+        const charge = {
+            date: new Date().toISOString().split('T')[0],
+            item: serviceData.name,
+            type: '服务',
+            quantity: serviceData.quantity,
+            price: serviceData.price,
+            amount: serviceData.quantity * serviceData.price,
+            status: '待支付'
+        };
+
+        this.expenses.serviceCharges.push(charge);
+        this.saveExpensesToStorage();
+        this.updateDisplay();
+    }
+
+    // 计算折扣后的金额
+    calculateDiscountedAmount(amount, type) {
+        let discount = 1;
+        
+        // 应用会员折扣
+        if (this.currentUser.membershipLevel) {
+            const membershipDiscount = this.discounts.vip;
+            switch (type) {
+                case '房费':
+                    discount *= membershipDiscount.roomDiscount;
+                    break;
+                case '餐饮':
+                    discount *= membershipDiscount.diningDiscount;
+                    break;
+                case '服务':
+                    discount *= membershipDiscount.serviceDiscount;
+                    break;
+            }
+        }
+
+        // 应用季节性折扣
+        const now = new Date();
+        const seasonalDiscount = this.discounts.seasonal;
+        if (now >= new Date(seasonalDiscount.startDate) && now <= new Date(seasonalDiscount.endDate)) {
+            switch (type) {
+                case '房费':
+                    discount *= seasonalDiscount.roomDiscount;
+                    break;
+                case '餐饮':
+                    discount *= seasonalDiscount.diningDiscount;
+                    break;
+                case '服务':
+                    discount *= seasonalDiscount.serviceDiscount;
+                    break;
+            }
+        }
+
+        return amount * discount;
+    }
+
+    // 更新显示
+    updateDisplay() {
+        // 更新费用表格
+        const tableBody = document.getElementById('expensesTableBody');
+        if (!tableBody) return;
+
+        tableBody.innerHTML = '';
+        
+        // 合并所有费用并按日期排序
+        const allExpenses = [
+            ...this.expenses.roomCharges,
+            ...this.expenses.diningCharges,
+            ...this.expenses.serviceCharges
+        ].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        allExpenses.forEach(expense => {
+            const row = document.createElement('tr');
+            const discountedAmount = this.calculateDiscountedAmount(expense.amount, expense.type);
+            
+            row.innerHTML = `
+                <td>${expense.date}</td>
+                <td>${expense.item}</td>
+                <td>${expense.type}</td>
+                <td>${expense.quantity}</td>
+                <td>¥${expense.price.toFixed(2)}</td>
+                <td>¥${discountedAmount.toFixed(2)}</td>
+                <td>${expense.status}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // 更新费用汇总
+        this.updateSummary();
+    }
+
+    // 更新费用汇总
+    updateSummary() {
+        const roomTotal = this.calculateTotal(this.expenses.roomCharges, '房费');
+        const diningTotal = this.calculateTotal(this.expenses.diningCharges, '餐饮');
+        const serviceTotal = this.calculateTotal(this.expenses.serviceCharges, '服务');
+        const grandTotal = roomTotal + diningTotal + serviceTotal;
+
+        document.getElementById('roomTotal').textContent = `¥${roomTotal.toFixed(2)}`;
+        document.getElementById('diningTotal').textContent = `¥${diningTotal.toFixed(2)}`;
+        document.getElementById('serviceTotal').textContent = `¥${serviceTotal.toFixed(2)}`;
+        document.getElementById('grandTotal').textContent = `¥${grandTotal.toFixed(2)}`;
+    }
+
+    // 计算总金额（考虑折扣）
+    calculateTotal(charges, type) {
+        return charges.reduce((total, charge) => {
+            return total + this.calculateDiscountedAmount(charge.amount, type);
+        }, 0);
+    }
+
+    // 支付费用
+    async payExpenses(paymentMethod) {
+        try {
+            // 这里应该调用实际的支付API
+            // 目前仅做模拟
+            const allExpenses = [
+                ...this.expenses.roomCharges,
+                ...this.expenses.diningCharges,
+                ...this.expenses.serviceCharges
+            ];
+
+            // 更新所有费用状态为已支付
+            allExpenses.forEach(expense => {
+                expense.status = '已支付';
+            });
+
+            // 保存更新后的数据
+            this.saveExpensesToStorage();
+            this.updateDisplay();
+
+            return true;
+        } catch (error) {
+            console.error('支付失败:', error);
+            throw error;
+        }
+    }
+}
+
+// 创建费用管理器实例
+const expenseManager = new ExpenseManager();
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await expenseManager.initialize();
+    } catch (error) {
+        console.error('初始化失败:', error);
+        window.location.href = 'logIn.html';
+    }
+});
 
 // 费用类型枚举
 const ExpenseType = {
@@ -11,35 +249,6 @@ const ExpenseType = {
     DINING: '餐饮',
     SERVICE: '服务'
 };
-
-// 初始化页面
-document.addEventListener('DOMContentLoaded', async function() {
-    // 检查登录状态
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
-        window.location.href = 'logIn.html';
-        return;
-    }
-
-    try {
-        // 加载JSON数据
-        const response = await fetch('data/expenses.json');
-        const data = await response.json();
-        
-        // 更新费用数据
-        expensesData = data.mockExpenses;
-        
-        // 更新显示
-        updateExpensesTable();
-        updateSummary();
-        
-        // 初始化支付方式
-        initializePaymentMethods(data.paymentMethods);
-    } catch (error) {
-        console.error('加载数据失败:', error);
-        alert('加载数据失败，请刷新页面重试');
-    }
-});
 
 // 初始化支付方式
 function initializePaymentMethods(paymentMethods) {
@@ -61,68 +270,6 @@ function initializePaymentMethods(paymentMethods) {
             `;
             container.appendChild(paymentOption);
         }
-    });
-}
-
-// 更新费用表格
-function updateExpensesTable() {
-    const tableBody = document.getElementById('expensesTableBody');
-    if (!tableBody) return;
-    
-    tableBody.innerHTML = '';
-
-    // 合并所有费用数据
-    const allCharges = [
-        ...expensesData.roomCharges,
-        ...expensesData.diningCharges,
-        ...expensesData.serviceCharges
-    ];
-
-    // 按日期排序
-    allCharges.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // 创建表格行
-    allCharges.forEach(charge => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${formatDate(charge.date)}</td>
-            <td>${charge.item}</td>
-            <td>${charge.type}</td>
-            <td>${charge.quantity}</td>
-            <td>¥${charge.price.toFixed(2)}</td>
-            <td>¥${charge.amount.toFixed(2)}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// 更新费用汇总
-function updateSummary() {
-    // 计算各类费用总额
-    const roomTotal = calculateTotal(expensesData.roomCharges);
-    const diningTotal = calculateTotal(expensesData.diningCharges);
-    const serviceTotal = calculateTotal(expensesData.serviceCharges);
-    const grandTotal = roomTotal + diningTotal + serviceTotal;
-
-    // 更新显示
-    document.getElementById('roomTotal').textContent = `¥${roomTotal.toFixed(2)}`;
-    document.getElementById('diningTotal').textContent = `¥${diningTotal.toFixed(2)}`;
-    document.getElementById('serviceTotal').textContent = `¥${serviceTotal.toFixed(2)}`;
-    document.getElementById('grandTotal').textContent = `¥${grandTotal.toFixed(2)}`;
-}
-
-// 计算总额
-function calculateTotal(charges) {
-    return charges.reduce((total, charge) => total + charge.amount, 0);
-}
-
-// 格式化日期
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('zh-CN', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
     });
 }
 
@@ -162,13 +309,13 @@ function handlePayment() {
 
 // 清除费用数据
 function clearExpenses() {
-    expensesData = {
+    expenseManager.expenses = {
         roomCharges: [],
         diningCharges: [],
         serviceCharges: []
     };
-    updateExpensesTable();
-    updateSummary();
+    expenseManager.saveExpensesToStorage();
+    expenseManager.updateDisplay();
 }
 
 // 添加新的费用项目
@@ -184,18 +331,18 @@ function addExpense(type, item, quantity, price) {
 
     switch (type) {
         case ExpenseType.ROOM:
-            expensesData.roomCharges.push(expense);
+            expenseManager.expenses.roomCharges.push(expense);
             break;
         case ExpenseType.DINING:
-            expensesData.diningCharges.push(expense);
+            expenseManager.expenses.diningCharges.push(expense);
             break;
         case ExpenseType.SERVICE:
-            expensesData.serviceCharges.push(expense);
+            expenseManager.expenses.serviceCharges.push(expense);
             break;
     }
 
-    updateExpensesTable();
-    updateSummary();
+    expenseManager.saveExpensesToStorage();
+    expenseManager.updateDisplay();
 }
 
 // 导出费用报表
