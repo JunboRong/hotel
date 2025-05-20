@@ -10,13 +10,34 @@ class Auth {
     // 初始化
     async init() {
         try {
-            const response = await fetch('/data/users.json');
-            const data = await response.json();
-            this.users = data.users;
-            this.admins = data.admins;
+            // 从文件加载用户数据
+            const usersResponse = await fetch('../data/users.json');
+            const data = await usersResponse.json();
+            this.users = data.users || [];
+            this.admins = data.admins || [];
+            
+            // 保存到localStorage作为备份
+            localStorage.setItem('users', JSON.stringify(this.users));
+            localStorage.setItem('admins', JSON.stringify(this.admins));
+            
+            // 检查登录状态
             this.checkLoginStatus();
         } catch (error) {
             console.error('加载用户数据失败:', error);
+            // 如果加载失败，尝试从localStorage恢复
+            const usersStr = localStorage.getItem('users');
+            const adminsStr = localStorage.getItem('admins');
+            
+            if (usersStr) {
+                this.users = JSON.parse(usersStr);
+            }
+            
+            if (adminsStr) {
+                this.admins = JSON.parse(adminsStr);
+            }
+            
+            // 检查登录状态
+            this.checkLoginStatus();
         }
     }
 
@@ -26,12 +47,16 @@ class Auth {
         if (userStr) {
             try {
                 this.currentUser = JSON.parse(userStr);
+                // 立即更新UI
                 this.updateUI();
+                return true;
             } catch (error) {
                 console.error('解析用户数据失败:', error);
                 this.logout();
+                return false;
             }
         }
+        return false;
     }
 
     // 更新UI显示
@@ -63,7 +88,7 @@ class Auth {
     }
 
     // 用户登录
-    async login(username, password, isAdmin = false) {
+    login(username, password, isAdmin = false) {
         let user = null;
 
         if (isAdmin) {
@@ -77,7 +102,9 @@ class Auth {
 
         if (user) {
             this.currentUser = user;
+            // 保存用户信息到localStorage
             localStorage.setItem('currentUser', JSON.stringify(user));
+            // 更新UI
             this.updateUI();
             return true;
         }
@@ -85,7 +112,7 @@ class Auth {
     }
 
     // 用户注册
-    async register(phone, password, name = '新会员') {
+    register(phone, password, name = '新会员') {
         // 检查手机号是否已注册
         if (this.users.some(u => u.phone === phone)) {
             throw new Error('该手机号已被注册');
@@ -111,6 +138,7 @@ class Auth {
 
         this.users.push(newUser);
         this.currentUser = newUser;
+        localStorage.setItem('users', JSON.stringify(this.users));
         localStorage.setItem('currentUser', JSON.stringify(newUser));
         this.updateUI();
         return newUser;
@@ -121,12 +149,29 @@ class Auth {
         this.currentUser = null;
         localStorage.removeItem('currentUser');
         this.updateUI();
-        window.location.href = '../frontend/logIn.html';
+        window.location.href = 'logIn.html';
     }
 
     // 检查是否已登录
     isLoggedIn() {
-        return !!this.currentUser;
+        // 先检查内存中的状态
+        if (this.currentUser) {
+            return true;
+        }
+        // 如果内存中没有，检查localStorage
+        const userStr = localStorage.getItem('currentUser');
+        if (userStr) {
+            try {
+                this.currentUser = JSON.parse(userStr);
+                this.updateUI();
+                return true;
+            } catch (error) {
+                console.error('解析用户数据失败:', error);
+                this.logout();
+                return false;
+            }
+        }
+        return false;
     }
 
     // 检查是否是管理员
@@ -136,6 +181,17 @@ class Auth {
 
     // 获取当前用户
     getCurrentUser() {
+        if (!this.currentUser) {
+            const userStr = localStorage.getItem('currentUser');
+            if (userStr) {
+                try {
+                    this.currentUser = JSON.parse(userStr);
+                } catch (error) {
+                    console.error('解析用户数据失败:', error);
+                    return null;
+                }
+            }
+        }
         return this.currentUser;
     }
 }
