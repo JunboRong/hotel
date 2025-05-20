@@ -61,19 +61,28 @@
                 <div class="info-group">
                     <label>姓名</label>
                     <span id="customerName">加载中...</span>
+                    <input type="text" id="editName" class="edit-input" style="display: none;">
                 </div>
                 <div class="info-group">
                     <label>手机号码</label>
                     <span id="customerPhone">加载中...</span>
+                    <input type="tel" id="editPhone" class="edit-input" style="display: none;">
                 </div>
                 <div class="info-group">
                     <label>电子邮箱</label>
                     <span id="customerEmail">加载中...</span>
+                    <input type="email" id="editEmail" class="edit-input" style="display: none;">
                 </div>
                 <div class="info-group">
                     <label>注册日期</label>
                     <span id="registrationDate">加载中...</span>
                 </div>
+            </div>
+
+            <!-- 编辑表单按钮组 -->
+            <div class="edit-buttons" style="display: none;">
+                <button class="button primary-button" onclick="saveCustomerInfo()">保存</button>
+                <button class="button secondary-button" onclick="cancelEdit()">取消</button>
             </div>
 
             <!-- 选项卡 -->

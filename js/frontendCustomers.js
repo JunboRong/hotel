@@ -243,8 +243,87 @@ function resetFeedbackForm() {
 
 // 编辑客户信息
 function editCustomer() {
-    // TODO: 实现编辑客户信息的功能
-    alert('编辑功能开发中...');
+    // 显示编辑输入框
+    document.querySelectorAll('.edit-input').forEach(input => {
+        input.style.display = 'block';
+    });
+    
+    // 隐藏显示文本
+    document.querySelectorAll('.customer-info span').forEach(span => {
+        span.style.display = 'none';
+    });
+    
+    // 显示编辑按钮组
+    document.querySelector('.edit-buttons').style.display = 'block';
+    
+    // 隐藏编辑信息按钮
+    document.querySelector('.details-header .secondary-button').style.display = 'none';
+    
+    // 填充当前值到输入框
+    document.getElementById('editName').value = currentCustomer.name;
+    document.getElementById('editPhone').value = currentCustomer.phone;
+    document.getElementById('editEmail').value = currentCustomer.email;
+}
+
+// 保存客户信息
+function saveCustomerInfo() {
+    // 获取输入值
+    const newName = document.getElementById('editName').value.trim();
+    const newPhone = document.getElementById('editPhone').value.trim();
+    const newEmail = document.getElementById('editEmail').value.trim();
+    
+    // 验证输入
+    if (!newName || !newPhone || !newEmail) {
+        alert('请填写所有必填信息');
+        return;
+    }
+    
+    // 验证手机号格式
+    if (!/^1[3-9]\d{9}$/.test(newPhone)) {
+        alert('请输入正确的手机号码');
+        return;
+    }
+    
+    // 验证邮箱格式
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) {
+        alert('请输入正确的邮箱地址');
+        return;
+    }
+    
+    // 更新客户信息
+    currentCustomer.name = newName;
+    currentCustomer.phone = newPhone;
+    currentCustomer.email = newEmail;
+    
+    // 更新localStorage
+    localStorage.setItem('currentUser', JSON.stringify(currentCustomer));
+    
+    // 更新显示
+    showCustomerDetails(currentCustomer);
+    
+    // 退出编辑模式
+    cancelEdit();
+    
+    alert('信息更新成功！');
+}
+
+// 取消编辑
+function cancelEdit() {
+    // 隐藏编辑输入框
+    document.querySelectorAll('.edit-input').forEach(input => {
+        input.style.display = 'none';
+    });
+    
+    // 显示文本
+    document.querySelectorAll('.customer-info span').forEach(span => {
+        span.style.display = 'block';
+    });
+    
+    // 隐藏编辑按钮组
+    document.querySelector('.edit-buttons').style.display = 'none';
+    
+    // 显示编辑信息按钮
+    document.querySelector('.details-header .secondary-button').style.display = 'block';
 }
 
 // 获取房型名称
