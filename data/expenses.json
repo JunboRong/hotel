@@ -150,23 +150,23 @@
     "paymentMethods": {
         "cash": {
             "name": "现金支付",
-            "icon": "cash.png",
+            "icon": "../image/cash.png",
             "enabled": true
         },
         "card": {
             "name": "银行卡支付",
-            "icon": "card.png",
+            "icon": "../image/card.png",
             "enabled": true,
             "supportedCards": ["Visa", "MasterCard", "UnionPay"]
         },
         "wechat": {
             "name": "微信支付",
-            "icon": "wechat.png",
+            "icon": "../image/wechat.png",
             "enabled": true
         },
         "alipay": {
             "name": "支付宝支付",
-            "icon": "alipay.png",
+            "icon": "../image/alipay.png",
             "enabled": true
         }
     }

@@ -35,6 +35,60 @@
       "requestTime": "2024-03-20T11:00:00",
       "description": "需要额外的枕头",
       "priority": "普通"
+    },
+    {
+      "id": "S005",
+      "roomNumber": "103",
+      "type": "清洁服务",
+      "status": "待处理",
+      "requestTime": "2024-03-21T12:00:00",
+      "description": "清理房间内的垃圾",
+      "priority": "普通"
+    },
+    {
+      "id": "S006",
+      "roomNumber": "104",
+      "type": "维修服务",
+      "status": "待处理",
+      "requestTime": "2024-03-21T13:30:00",
+      "description": "电视遥控器电池耗尽",
+      "priority": "普通"
+    },
+    {
+      "id": "S007",
+      "roomNumber": "203",
+      "type": "餐饮服务",
+      "status": "处理中",
+      "requestTime": "2024-03-21T14:45:00",
+      "description": "预订晚餐送房间",
+      "priority": "普通"
+    },
+    {
+      "id": "S008",
+      "roomNumber": "204",
+      "type": "其他服务",
+      "status": "已完成",
+      "requestTime": "2024-03-21T15:20:00",
+      "description": "提供婴儿床",
+      "priority": "普通"
+    },
+    {
+      "id": "S009",
+      "roomNumber": "301",
+      "type": "清洁服务",
+      "status": "处理中",
+      "requestTime": "2024-03-21T16:10:00",
+      "description": "深度清洁房间",
+      "priority": "紧急"
+    },
+    {
+      "id": "S010",
+      "roomNumber": "302",
+      "type": "维修服务",
+      "status": "待处理",
+      "requestTime": "2024-03-21T17:00:00",
+      "description": "淋浴间水压低",
+      "priority": "紧急"
     }
   ]
-} 
+}
