@@ -4,8 +4,21 @@ let serviceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || [];
 // 获取服务数据
 async function fetchServices() {
     try {
+        // 从services.json获取数据
         const response = await fetch('../data/services.json');
         const data = await response.json();
+        
+        // 获取localStorage中的数据
+        const savedServices = localStorage.getItem('serviceRequests');
+        if (savedServices) {
+            const savedData = JSON.parse(savedServices);
+            // 合并数据，优先使用localStorage中的数据
+            return data.services.map(service => {
+                const savedService = savedData.find(s => s.id === service.id);
+                return savedService || service;
+            });
+        }
+        
         return data.services;
     } catch (error) {
         console.error('获取服务数据失败:', error);
@@ -114,8 +127,11 @@ async function updateServiceStatus(serviceId, newStatus) {
         const serviceIndex = services.findIndex(s => s.id === serviceId);
         if (serviceIndex !== -1) {
             services[serviceIndex].status = newStatus;
-            // 在实际应用中，这里应该调用后端 API 来更新数据
-            // 这里仅作为演示，直接更新显示
+            
+            // 保存更新后的数据到localStorage
+            localStorage.setItem('serviceRequests', JSON.stringify(services));
+            
+            // 更新显示
             updateServiceDisplay(services);
         }
     } catch (error) {

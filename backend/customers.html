@@ -39,7 +39,7 @@
             <div class="search-box">
                 <input type="text" placeholder="搜索会员...">
                 <button class="btn">搜索</button>
-                <button class="btn">添加会员</button>
+                <button class="btn" id="addMemberBtn">添加会员</button>
             </div>
         </div>
         <table class="member-table">
@@ -58,6 +58,134 @@
                 <!-- 会员数据将通过JavaScript动态加载 -->
             </tbody>
         </table>
+    </div>
+</div>
+
+<!-- 添加会员模态框 -->
+<div class="modal" id="addMemberModal" style="display: none;">
+    <div class="modal-content">
+        <h2>添加会员</h2>
+        <form id="addMemberForm">
+            <div class="form-group">
+                <label for="name" class="required">姓名</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone" class="required">手机号</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email" class="required">邮箱</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="birthDate" class="required">生日</label>
+                <input type="date" id="birthDate" required>
+            </div>
+            <div class="form-group">
+                <label for="membershipLevel" class="required">会员等级</label>
+                <select id="membershipLevel" required>
+                    <option value="regular">普通会员</option>
+                    <option value="silver">白银会员</option>
+                    <option value="gold">黄金会员</option>
+                    <option value="platinum">铂金会员</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">添加</button>
+                <button type="button" class="cancel-btn" onclick="closeModal('addMemberModal')">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 编辑会员模态框 -->
+<div class="modal" id="editMemberModal" style="display: none;">
+    <div class="modal-content">
+        <h2>编辑会员</h2>
+        <form id="editMemberForm">
+            <div class="form-group">
+                <label for="editName" class="required">姓名</label>
+                <input type="text" id="editName" required>
+            </div>
+            <div class="form-group">
+                <label for="editPhone" class="required">手机号</label>
+                <input type="tel" id="editPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="editEmail" class="required">邮箱</label>
+                <input type="email" id="editEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="editBirthDate" class="required">生日</label>
+                <input type="date" id="editBirthDate" required>
+            </div>
+            <div class="form-group">
+                <label for="editMembershipLevel" class="required">会员等级</label>
+                <select id="editMembershipLevel" required>
+                    <option value="regular">普通会员</option>
+                    <option value="silver">白银会员</option>
+                    <option value="gold">黄金会员</option>
+                    <option value="platinum">铂金会员</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editPoints" class="required">积分</label>
+                <input type="number" id="editPoints" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">保存</button>
+                <button type="button" class="cancel-btn" onclick="closeModal('editMemberModal')">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 会员详情模态框 -->
+<div class="modal" id="memberDetailModal" style="display: none;">
+    <div class="modal-content">
+        <h2>会员详情</h2>
+        <div class="customer-info">
+            <p><strong>会员ID：</strong><span id="detailId"></span></p>
+            <p><strong>姓名：</strong><span id="detailName"></span></p>
+            <p><strong>手机：</strong><span id="detailPhone"></span></p>
+            <p><strong>邮箱：</strong><span id="detailEmail"></span></p>
+            <p><strong>生日：</strong><span id="detailBirthDate"></span></p>
+            <p><strong>会员等级：</strong><span id="detailMembershipLevel"></span></p>
+            <p><strong>积分：</strong><span id="detailPoints"></span></p>
+            <p><strong>注册时间：</strong><span id="detailRegistrationDate"></span></p>
+        </div>
+        <div class="preferences">
+            <h3>偏好设置</h3>
+            <p><strong>房间类型：</strong><span id="detailRoomType"></span></p>
+            <p><strong>楼层偏好：</strong><span id="detailFloorPreference"></span></p>
+            <p><strong>吸烟偏好：</strong><span id="detailSmokingPreference"></span></p>
+            <p><strong>饮食限制：</strong><span id="detailDietaryRestrictions"></span></p>
+            <p><strong>特殊要求：</strong><span id="detailSpecialRequests"></span></p>
+        </div>
+        <div class="stay-history">
+            <h3>入住历史</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>入住日期</th>
+                        <th>退房日期</th>
+                        <th>房间号</th>
+                        <th>房型</th>
+                        <th>消费金额</th>
+                        <th>获得积分</th>
+                    </tr>
+                </thead>
+                <tbody id="detailStayHistory">
+                </tbody>
+            </table>
+        </div>
+        <div class="feedback">
+            <h3>反馈评价</h3>
+            <div id="detailFeedback">
+            </div>
+        </div>
+        <button class="close-btn" onclick="closeModal('memberDetailModal')">关闭</button>
     </div>
 </div>
 

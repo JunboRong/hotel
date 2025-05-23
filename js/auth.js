@@ -72,15 +72,6 @@ class Auth {
             if (usernameElement) {
                 usernameElement.textContent = this.currentUser.name || this.currentUser.phone;
             }
-
-            // 如果是管理员，添加管理入口
-            if (this.currentUser.isAdmin) {
-                const adminLink = document.createElement('a');
-                adminLink.href = '/backend/states.html';
-                adminLink.className = 'admin-link';
-                adminLink.textContent = '管理后台';
-                header.querySelector('.headerRight').prepend(adminLink);
-            }
         } else {
             header.classList.add('not-logged-in');
             header.classList.remove('logged-in');
