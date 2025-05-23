@@ -1,0 +1,172 @@
+{
+    "summary": {
+        "occupancyRate": {
+            "value": 85.5,
+            "trend": 2.3
+        },
+        "revenue": {
+            "value": 256800,
+            "trend": 5.8
+        },
+        "satisfaction": {
+            "value": 4.6,
+            "trend": 0.2
+        },
+        "newCustomers": {
+            "value": 128,
+            "trend": -3.5
+        }
+    },
+    "dailyData": [
+        {
+            "date": "2024-06-01",
+            "occupancyRate": 85.5,
+            "revenue": 256800,
+            "newCustomers": 128,
+            "satisfaction": 4.6
+        },
+        {
+            "date": "2024-05-31",
+            "occupancyRate": 88.0,
+            "revenue": 240000,
+            "newCustomers": 132,
+            "satisfaction": 4.5
+        },
+        {
+            "date": "2024-05-30",
+            "occupancyRate": 85.0,
+            "revenue": 225000,
+            "newCustomers": 125,
+            "satisfaction": 4.5
+        },
+        {
+            "date": "2024-05-29",
+            "occupancyRate": 82.5,
+            "revenue": 218000,
+            "newCustomers": 118,
+            "satisfaction": 4.4
+        },
+        {
+            "date": "2024-05-28",
+            "occupancyRate": 80.0,
+            "revenue": 210000,
+            "newCustomers": 115,
+            "satisfaction": 4.3
+        },
+        {
+            "date": "2024-05-27",
+            "occupancyRate": 78.5,
+            "revenue": 205000,
+            "newCustomers": 110,
+            "satisfaction": 4.4
+        },
+        {
+            "date": "2024-05-26",
+            "occupancyRate": 90.0,
+            "revenue": 280000,
+            "newCustomers": 145,
+            "satisfaction": 4.7
+        },
+        {
+            "date": "2024-05-25",
+            "occupancyRate": 92.5,
+            "revenue": 295000,
+            "newCustomers": 150,
+            "satisfaction": 4.8
+        },
+        {
+            "date": "2024-05-24",
+            "occupancyRate": 91.0,
+            "revenue": 285000,
+            "newCustomers": 148,
+            "satisfaction": 4.7
+        },
+        {
+            "date": "2024-05-23",
+            "occupancyRate": 89.5,
+            "revenue": 275000,
+            "newCustomers": 142,
+            "satisfaction": 4.6
+        },
+        {
+            "date": "2024-05-22",
+            "occupancyRate": 87.0,
+            "revenue": 265000,
+            "newCustomers": 138,
+            "satisfaction": 4.5
+        },
+        {
+            "date": "2024-05-21",
+            "occupancyRate": 86.5,
+            "revenue": 260000,
+            "newCustomers": 135,
+            "satisfaction": 4.5
+        },
+        {
+            "date": "2024-05-20",
+            "occupancyRate": 85.0,
+            "revenue": 255000,
+            "newCustomers": 130,
+            "satisfaction": 4.4
+        },
+        {
+            "date": "2024-05-19",
+            "occupancyRate": 88.5,
+            "revenue": 270000,
+            "newCustomers": 140,
+            "satisfaction": 4.6
+        },
+        {
+            "date": "2024-05-18",
+            "occupancyRate": 90.0,
+            "revenue": 285000,
+            "newCustomers": 145,
+            "satisfaction": 4.7
+        }
+    ],
+    "roomTypeData": {
+        "types": ["普通大床房", "普通双床房", "豪华大床房", "豪华双床房", "行政套房", "总统套房"],
+        "occupancy": [75, 85, 90, 95, 80, 70],
+        "revenue": [150000, 180000, 200000, 220000, 250000, 300000],
+        "averageStay": [2.5, 2.8, 3.0, 3.2, 3.5, 4.0],
+        "customerRating": [4.3, 4.4, 4.6, 4.7, 4.8, 4.9]
+    },
+    "satisfactionData": {
+        "categories": ["服务态度", "房间清洁", "设施设备", "餐饮质量", "性价比", "位置便利", "周边环境", "停车服务"],
+        "scores": [4.8, 4.6, 4.5, 4.7, 4.4, 4.9, 4.6, 4.3],
+        "monthlyTrend": {
+            "service": [4.7, 4.8, 4.8, 4.9, 4.8, 4.8],
+            "cleanliness": [4.5, 4.6, 4.6, 4.7, 4.6, 4.6],
+            "facilities": [4.4, 4.5, 4.5, 4.6, 4.5, 4.5],
+            "food": [4.6, 4.7, 4.7, 4.8, 4.7, 4.7]
+        }
+    },
+    "customerAnalysis": {
+        "ageGroups": ["18-25", "26-35", "36-45", "46-55", "56-65", "65+"],
+        "distribution": [15, 35, 25, 15, 7, 3],
+        "bookingChannels": ["官网", "携程", "飞猪", "美团", "电话", "其他"],
+        "channelDistribution": [30, 25, 20, 15, 5, 5],
+        "stayDuration": {
+            "1天": 20,
+            "2天": 35,
+            "3天": 25,
+            "4天": 10,
+            "5天及以上": 10
+        }
+    },
+    "revenueAnalysis": {
+        "monthlyRevenue": [1800000, 1950000, 2100000, 2250000, 2400000, 2568000],
+        "revenueSources": {
+            "房费": 65,
+            "餐饮": 20,
+            "会议": 8,
+            "其他服务": 7
+        },
+        "paymentMethods": {
+            "微信支付": 45,
+            "支付宝": 30,
+            "银行卡": 15,
+            "现金": 10
+        }
+    }
+} 

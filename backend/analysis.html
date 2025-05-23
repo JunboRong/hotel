@@ -41,7 +41,7 @@
                 <input type="date" id="startDate">
                 <span>至</span>
                 <input type="date" id="endDate">
-                <button class="btn">查询</button>
+                <button class="btn" id="queryBtn">查询</button>
             </div>
         </div>
 
@@ -67,14 +67,6 @@
                 <div class="value" id="newCustomers">128</div>
                 <div class="trend down" id="newCustomersTrend">↓ 3.5%</div>
             </div>
-        </div>
-
-        <!-- 选项卡按钮 -->
-        <div class="tab-buttons">
-            <button class="tab-button active" data-tab="overview">概览</button>
-            <button class="tab-button" data-tab="occupancy">入住分析</button>
-            <button class="tab-button" data-tab="revenue">收入分析</button>
-            <button class="tab-button" data-tab="customer">客户分析</button>
         </div>
 
         <!-- 图表容器 -->
@@ -104,28 +96,8 @@
                     <th>客户满意度</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>2024-06-01</td>
-                    <td>85.5%</td>
-                    <td>¥256,800</td>
-                    <td>128</td>
-                    <td>4.6</td>
-                </tr>
-                <tr>
-                    <td>2024-05-01</td>
-                    <td>88.0%</td>
-                    <td>¥240,000</td>
-                    <td>132</td>
-                    <td>4.5</td>
-                </tr>
-                <tr>
-                    <td>2024-04-01</td>
-                    <td>85.0%</td>
-                    <td>¥225,000</td>
-                    <td>125</td>
-                    <td>4.5</td>
-                </tr>
+            <tbody id="dataTableBody">
+                <!-- 数据将通过JavaScript动态加载 -->
             </tbody>
         </table>
     </div>
