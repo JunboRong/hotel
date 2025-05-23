@@ -26,7 +26,7 @@
         <a href="../frontend/signIn.html" class="signIn">注册</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="handleLogout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
         </div>
     </div>
 </nav>
@@ -38,7 +38,7 @@
             <h2>会员管理</h2>
             <div class="search-box">
                 <input type="text" placeholder="搜索会员...">
-                <button class="btn">搜索</button>
+                <button class="btn" id="searchBtn">搜索</button>
                 <button class="btn" id="addMemberBtn">添加会员</button>
             </div>
         </div>

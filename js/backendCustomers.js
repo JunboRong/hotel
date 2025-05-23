@@ -2,9 +2,6 @@
 async function fetchCustomers() {
     try {
         const response = await fetch('../data/customers.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const data = await response.json();
         return data.mockCustomers || [];
     } catch (error) {
@@ -25,96 +22,69 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 // 加载会员数据
-async function loadMemberData() {
-    const tbody = document.querySelector('.member-table tbody');
-    tbody.innerHTML = ''; // 清空现有数据
+function createMemberRow(customer) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${customer.id}</td>
+        <td>${customer.name}</td>
+        <td>${customer.phone}</td>
+        <td>${customer.membershipLevel}</td>
+        <td>${customer.points}</td>
+        <td>${customer.registrationDate}</td>
+        <td>
+            <button class="action-btn edit-btn" data-id="${customer.id}">编辑</button>
+            <button class="action-btn delete-btn" data-id="${customer.id}">删除</button>
+            <button class="action-btn detail-btn" data-id="${customer.id}">详情</button>
+        </td>
+    `;
+    return tr;
+}
 
-    const customers = await fetchCustomers();
-    customers.forEach(customer => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${customer.id}</td>
-            <td>${customer.name}</td>
-            <td>${customer.phone}</td>
-            <td>${customer.membershipLevel}</td>
-            <td>${customer.points}</td>
-            <td>${customer.registrationDate}</td>
-            <td>
-                <button class="action-btn edit-btn" data-id="${customer.id}">编辑</button>
-                <button class="action-btn delete-btn" data-id="${customer.id}">删除</button>
-                <button class="action-btn detail-btn" data-id="${customer.id}">详情</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
+async function loadMemberData(customers) {
+    const tbody = document.querySelector('.member-table tbody');
+    tbody.innerHTML = '';
+    (customers || await fetchCustomers()).forEach(customer => {
+        tbody.appendChild(createMemberRow(customer));
     });
 }
 
 // 初始化事件监听
 function initializeEventListeners() {
-    console.log('开始初始化事件监听器');
-    
     // 搜索功能
     const searchInput = document.querySelector('.search-box input');
-    const searchButton = document.querySelector('.search-box .btn:first-child');
-    
-    if (searchButton) {
-        searchButton.addEventListener('click', async () => {
-            console.log('搜索按钮被点击');
-            const searchTerm = searchInput.value.toLowerCase();
-            const customers = await fetchCustomers();
-            const filteredCustomers = customers.filter(customer => 
-                customer.name.toLowerCase().includes(searchTerm) ||
-                customer.phone.includes(searchTerm) ||
-                customer.id.toLowerCase().includes(searchTerm)
-            );
-            displayFilteredMembers(filteredCustomers);
-        });
-    } else {
-        console.error('搜索按钮未找到');
-    }
+    document.getElementById('searchBtn').addEventListener('click', async () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const customers = await fetchCustomers();
+        const filtered = customers.filter(customer =>
+            customer.name.toLowerCase().includes(searchTerm) ||
+            customer.phone.includes(searchTerm) ||
+            customer.id.toLowerCase().includes(searchTerm)
+        );
+        loadMemberData(filtered);
+    });
 
     // 添加会员按钮
-    const addButton = document.getElementById('addMemberBtn');
-    if (addButton) {
-        addButton.addEventListener('click', () => {
-            console.log('添加会员按钮被点击');
-            document.getElementById('addMemberModal').style.display = 'flex';
-        });
-    } else {
-        console.error('添加会员按钮未找到');
-    }
+    document.getElementById('addMemberBtn').addEventListener('click', () => {
+        document.getElementById('addMemberModal').style.display = 'flex';
+    });
 
-    // 编辑、删除和详情按钮事件委托
-    const memberTable = document.querySelector('.member-table');
-    if (memberTable) {
-        memberTable.addEventListener('click', async (e) => {
-            const customerId = e.target.dataset.id;
-            if (!customerId) return;
+    // 表格操作事件委托
+    document.querySelector('.member-table').addEventListener('click', async (e) => {
+        const customerId = e.target.dataset.id;
+        if (!customerId) return;
 
-            if (e.target.classList.contains('edit-btn')) {
-                console.log('编辑按钮被点击:', customerId);
-                const customers = await fetchCustomers();
-                const customer = customers.find(c => c.id === customerId);
-                if (customer) {
-                    showEditMemberModal(customer);
-                }
-            } else if (e.target.classList.contains('delete-btn')) {
-                console.log('删除按钮被点击:', customerId);
-                if (confirm('确定要删除该会员吗？')) {
-                    await deleteMember(customerId);
-                }
-            } else if (e.target.classList.contains('detail-btn')) {
-                console.log('详情按钮被点击:', customerId);
-                const customers = await fetchCustomers();
-                const customer = customers.find(c => c.id === customerId);
-                if (customer) {
-                    showCustomerDetails(customer);
-                }
-            }
-        });
-    } else {
-        console.error('会员表格未找到');
-    }
+        const customers = await fetchCustomers();
+        const customer = customers.find(c => c.id === customerId);
+        if (!customer) return;
+
+        if (e.target.classList.contains('edit-btn')) {
+            showEditMemberModal(customer);
+        } else if (e.target.classList.contains('delete-btn')) {
+            if (confirm('确定要删除该会员吗？')) await deleteMember(customerId);
+        } else if (e.target.classList.contains('detail-btn')) {
+            showCustomerDetails(customer);
+        }
+    });
 
     // 添加会员表单提交
     const addMemberForm = document.getElementById('addMemberForm');
@@ -159,7 +129,7 @@ function initializeEventListeners() {
             const customerId = e.target.dataset.customerId;
             const customers = await fetchCustomers();
             const customer = customers.find(c => c.id === customerId);
-            
+
             if (customer) {
                 const updatedMember = {
                     ...customer,
@@ -178,33 +148,11 @@ function initializeEventListeners() {
     } else {
         console.error('编辑会员表单未找到');
     }
-    
+
     console.log('事件监听器初始化完成');
 }
 
-// 显示过滤后的会员数据
-function displayFilteredMembers(customers) {
-    const tbody = document.querySelector('.member-table tbody');
-    tbody.innerHTML = '';
 
-    customers.forEach(customer => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${customer.id}</td>
-            <td>${customer.name}</td>
-            <td>${customer.phone}</td>
-            <td>${customer.membershipLevel}</td>
-            <td>${customer.points}</td>
-            <td>${customer.registrationDate}</td>
-            <td>
-                <button class="action-btn edit-btn" data-id="${customer.id}">编辑</button>
-                <button class="action-btn delete-btn" data-id="${customer.id}">删除</button>
-                <button class="action-btn detail-btn" data-id="${customer.id}">详情</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
-    });
-}
 
 // 显示编辑会员模态框
 function showEditMemberModal(customer) {
@@ -272,7 +220,7 @@ function closeModal(modalId) {
 // 生成会员ID
 function generateMemberId() {
     const customers = JSON.parse(localStorage.getItem('customers') || '[]');
-    const lastId = customers.length > 0 ? 
+    const lastId = customers.length > 0 ?
         Math.max(...customers.map(c => parseInt(c.id.substring(1)))) : 0;
     return `C${String(lastId + 1).padStart(3, '0')}`;
 }
@@ -320,4 +268,4 @@ async function deleteMember(memberId) {
         console.error('删除会员失败:', error);
         alert('删除会员失败，请重试！');
     }
-} 
+}

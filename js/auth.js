@@ -140,7 +140,7 @@ class Auth {
         this.currentUser = null;
         localStorage.removeItem('currentUser');
         this.updateUI();
-        window.location.href = 'logIn.html';
+        window.location.href = '../frontend/logIn.html';
     }
 
     // 检查是否已登录
