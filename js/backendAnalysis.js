@@ -25,25 +25,25 @@ function formatDate(date) {
 // Update summary cards
 function updateSummaryCards(data) {
     const summary = data.summary;
-    
+
     // Update occupancy rate
     document.getElementById('occupancyRate').textContent = `${summary.occupancyRate.value}%`;
-    document.getElementById('occupancyRateTrend').textContent = 
+    document.getElementById('occupancyRateTrend').textContent =
         `${summary.occupancyRate.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.occupancyRate.trend)}%`;
-    
+
     // Update revenue
     document.getElementById('revenue').textContent = `¥${formatNumber(summary.revenue.value)}`;
-    document.getElementById('revenueTrend').textContent = 
+    document.getElementById('revenueTrend').textContent =
         `${summary.revenue.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.revenue.trend)}%`;
-    
+
     // Update satisfaction
     document.getElementById('satisfaction').textContent = summary.satisfaction.value.toFixed(1);
-    document.getElementById('satisfactionTrend').textContent = 
+    document.getElementById('satisfactionTrend').textContent =
         `${summary.satisfaction.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.satisfaction.trend)}`;
-    
+
     // Update new customers
     document.getElementById('newCustomers').textContent = summary.newCustomers.value;
-    document.getElementById('newCustomersTrend').textContent = 
+    document.getElementById('newCustomersTrend').textContent =
         `${summary.newCustomers.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.newCustomers.trend)}%`;
 }
 
@@ -70,13 +70,13 @@ function initCharts(data) {
     // Occupancy rate chart
     const occupancyChart = echarts.init(document.getElementById('occupancyChart'));
     occupancyChart.setOption({
-        title: { text: 'Occupancy Rate Trend' },
-        tooltip: { trigger: 'axis' },
+        title: {text: 'Occupancy Rate Trend'},
+        tooltip: {trigger: 'axis'},
         xAxis: {
             type: 'category',
             data: data.dailyData.map(item => formatDate(item.date))
         },
-        yAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
+        yAxis: {type: 'value', axisLabel: {formatter: '{value}%'}},
         series: [{
             data: data.dailyData.map(item => item.occupancyRate),
             type: 'line',
@@ -87,13 +87,13 @@ function initCharts(data) {
     // Revenue chart
     const revenueChart = echarts.init(document.getElementById('revenueChart'));
     revenueChart.setOption({
-        title: { text: 'Revenue Trend' },
-        tooltip: { trigger: 'axis' },
+        title: {text: 'Revenue Trend'},
+        tooltip: {trigger: 'axis'},
         xAxis: {
             type: 'category',
             data: data.dailyData.map(item => formatDate(item.date))
         },
-        yAxis: { type: 'value', axisLabel: { formatter: '¥{value}' } },
+        yAxis: {type: 'value', axisLabel: {formatter: '¥{value}'}},
         series: [{
             data: data.dailyData.map(item => item.revenue),
             type: 'line',
@@ -104,13 +104,18 @@ function initCharts(data) {
     // Room type analysis chart
     const roomTypeChart = echarts.init(document.getElementById('roomTypeChart'));
     roomTypeChart.setOption({
-        title: { text: 'Room Type Analysis' },
-        tooltip: { trigger: 'axis' },
-        legend: { data: ['Occupancy Rate', 'Revenue'] },
-        xAxis: { type: 'category', data: data.roomTypeData.types },
+        title: {text: 'Room Type Analysis'},
+        tooltip: {trigger: 'axis'},
+        legend: {
+            data: ['Occupancy Rate', 'Revenue'],
+            orient: 'horizontal',
+            x: 'center',
+            y: 'bottom'
+        },
+        xAxis: {type: 'category', data: data.roomTypeData.types},
         yAxis: [
-            { type: 'value', name: 'Occupancy Rate', axisLabel: { formatter: '{value}%' } },
-            { type: 'value', name: 'Revenue', axisLabel: { formatter: '¥{value}' } }
+            {type: 'value', name: 'Occupancy Rate', axisLabel: {formatter: '{value}%'}},
+            {type: 'value', name: 'Revenue', axisLabel: {formatter: '¥{value}'}}
         ],
         series: [
             {
@@ -136,7 +141,8 @@ function initCharts(data) {
             indicator: data.satisfactionData.categories.map(category => ({
                 name: category,
                 max: 5
-            }))
+            })),
+            radius: '65%'
         },
         series: [{
             type: 'radar',
@@ -195,13 +201,13 @@ function filterDataByDateRange(data, startDate, endDate) {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
     try {
         // Set default date range (last 30 days)
         const endDate = new Date();
         const startDate = new Date();
         startDate.setDate(startDate.getDate() - 30);
-        
+
         document.getElementById('startDate').value = startDate.toISOString().split('T')[0];
         document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
 
@@ -217,7 +223,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.getElementById('queryBtn').addEventListener('click', async () => {
             const startDate = new Date(document.getElementById('startDate').value);
             const endDate = new Date(document.getElementById('endDate').value);
-            
+
             if (startDate > endDate) {
                 alert('Start date cannot be greater than end date');
                 return;
