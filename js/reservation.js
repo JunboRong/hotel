@@ -1,12 +1,12 @@
-// 房间类型和价格映射
+// Room type and price mapping
 const roomPrices = {
-    '普通大床房': 388,
-    '普通双床房': 428,
-    '豪华大床房': 688,
-    '豪华双床房': 728
+    'Standard King Room': 388,
+    'Standard Twin Room': 428,
+    'Deluxe King Room': 688,
+    'Deluxe Twin Room': 728
 };
 
-// 全局变量存储预订信息
+// Global variable to store booking information
 let bookingInfo = {
     checkIn: '',
     checkOut: '',
@@ -15,7 +15,7 @@ let bookingInfo = {
     totalPrice: 0
 };
 
-// 初始化日期选择器
+// Initialize date pickers
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date();
     const tomorrow = new Date(today);
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateBookingSummary();
 });
 
-// 更新入住人数
+// Update number of guests
 function updateCount(change) {
     const countElement = document.getElementById('adults-count');
     let count = parseInt(countElement.textContent);
@@ -39,20 +39,20 @@ function updateCount(change) {
     updateBookingSummary();
 }
 
-// 选择房间类型
+// Select room type
 function selectRoomType(element, roomType) {
-    // 移除其他房间的选中状态
+    // Remove selected state from other rooms
     document.querySelectorAll('.room-option').forEach(room => {
         room.classList.remove('selected');
     });
     
-    // 添加选中状态
+    // Add selected state
     element.classList.add('selected');
     bookingInfo.roomType = roomType;
     updateBookingSummary();
 }
 
-// 更新预订摘要
+// Update booking summary
 function updateBookingSummary() {
     const checkIn = document.getElementById('checkIn').value;
     const checkOut = document.getElementById('checkOut').value;
@@ -62,13 +62,13 @@ function updateBookingSummary() {
         bookingInfo.checkIn = checkIn;
         bookingInfo.checkOut = checkOut;
         
-        // 更新晚数显示
-        document.querySelector('.stay-nights').textContent = `${nights}晚`;
+        // Update nights display
+        document.querySelector('.stay-nights').textContent = `${nights} nights`;
         
         document.getElementById('summary-checkin').textContent = formatDate(checkIn);
         document.getElementById('summary-checkout').textContent = formatDate(checkOut);
-        document.getElementById('summary-guests').textContent = `${bookingInfo.adults}人`;
-        document.getElementById('summary-room').textContent = bookingInfo.roomType || '未选择';
+        document.getElementById('summary-guests').textContent = `${bookingInfo.adults} guests`;
+        document.getElementById('summary-room').textContent = bookingInfo.roomType || 'Not selected';
         
         if (bookingInfo.roomType) {
             const price = roomPrices[bookingInfo.roomType] * nights;
@@ -80,7 +80,7 @@ function updateBookingSummary() {
     }
 }
 
-// 计算入住天数
+// Calculate number of nights
 function calculateNights(checkIn, checkOut) {
     const start = new Date(checkIn);
     const end = new Date(checkOut);
@@ -88,53 +88,53 @@ function calculateNights(checkIn, checkOut) {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
-// 格式化日期
+// Format date
 function formatDate(dateString) {
     const date = new Date(dateString);
-    return `${date.getMonth() + 1}月${date.getDate()}日`;
+    return `${date.getMonth() + 1}/${date.getDate()}`;
 }
 
-// 提交预订
+// Submit booking
 function submitBooking() {
     if (!bookingInfo.roomType) {
-        alert('请选择房间类型');
+        alert('Please select a room type');
         return;
     }
     
     if (!bookingInfo.checkIn || !bookingInfo.checkOut) {
-        alert('请选择入住和退房日期');
+        alert('Please select check-in and check-out dates');
         return;
     }
     
-    // 检查是否登录
+    // Check if logged in
     if (!auth.isLoggedIn()) {
-        alert('请先登录后再预订');
+        alert('Please log in before booking');
         window.location.href = 'logIn.html';
         return;
     }
     
-    // 模拟预订成功
+    // Simulate successful booking
     const bookingData = {
         ...bookingInfo,
         bookingId: generateBookingId(),
-        status: '待支付',
+        status: 'Pending',
         createTime: new Date().toISOString()
     };
     
-    // 保存预订信息到localStorage
+    // Save booking information to localStorage
     const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
     bookings.push(bookingData);
     localStorage.setItem('bookings', JSON.stringify(bookings));
     
-    alert('预订成功！请前往费用管理页面完成支付。');
+    alert('Booking successful! Please go to the expenses management page to complete the payment.');
     window.location.href = 'expenses.html';
 }
 
-// 生成预订ID
+// Generate booking ID
 function generateBookingId() {
     return 'BK' + Date.now().toString().slice(-8);
 }
 
-// 监听日期变化
+// Listen for date changes
 document.getElementById('checkIn').addEventListener('change', updateBookingSummary);
 document.getElementById('checkOut').addEventListener('change', updateBookingSummary);

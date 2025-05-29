@@ -1,20 +1,20 @@
-// 全局变量
+// Global variables
 let selectedPaymentMethod = null;
 let expenses = [];
 
-// 初始化页面
+// Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    // 检查登录状态
+    // Check login status
     if (!auth.isLoggedIn()) {
-        alert('请先登录');
+        alert('Please log in first');
         window.location.href = '../frontend/logIn.html';
         return;
     }
 
-    // 加载费用数据
+    // Load expense data
     loadExpenses();
     
-    // 设置日期选择器的默认值
+    // Set default values for date pickers
     const today = new Date();
     const lastMonth = new Date(today);
     lastMonth.setMonth(lastMonth.getMonth() - 1);
@@ -22,46 +22,46 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('startDate').value = lastMonth.toISOString().split('T')[0];
     document.getElementById('endDate').value = today.toISOString().split('T')[0];
     
-    // 添加事件监听器
+    // Add event listeners
     document.getElementById('typeFilter').addEventListener('change', filterExpenses);
     document.getElementById('statusFilter').addEventListener('change', filterExpenses);
     document.getElementById('startDate').addEventListener('change', filterExpenses);
     document.getElementById('endDate').addEventListener('change', filterExpenses);
 
-    // 初始化费用总览为零
+    // Initialize expense summary to zero
     resetSummary();
 });
 
-// 加载费用数据
+// Load expense data
 function loadExpenses() {
-    // 从localStorage获取预订数据
+    // Get booking data from localStorage
     const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
     
-    // 转换预订数据为费用数据
+    // Convert booking data to expense data
     expenses = bookings.map(booking => ({
         id: booking.bookingId,
         date: booking.createTime,
         item: booking.roomType,
-        type: '房费',
+        type: 'Room Fee',
         quantity: calculateNights(booking.checkIn, booking.checkOut),
         unitPrice: getRoomPrice(booking.roomType),
         amount: booking.totalPrice,
         status: booking.status
     }));
     
-    // 显示费用数据
+    // Display expense data
     displayExpenses(expenses);
     updateSummary();
 }
 
-// 显示费用数据
+// Display expense data
 function displayExpenses(expensesToShow) {
     const tbody = document.getElementById('expensesTableBody');
     tbody.innerHTML = '';
     const discountRate = 0.05;
     expensesToShow.forEach((expense, idx) => {
         let payAmount = expense.amount;
-        if (expense.type === '房费') {
+        if (expense.type === 'Room Fee') {
             payAmount = (expense.amount * (1 - discountRate)).toFixed(2);
         }
         const row = document.createElement('tr');
@@ -73,12 +73,12 @@ function displayExpenses(expensesToShow) {
             <td>¥${payAmount}</td>
             <td>${expense.status}</td>
         `;
-        // 只允许点击待支付的行
-        if (expense.status === '待支付') {
+        // Only allow clicking on pending payment rows
+        if (expense.status === 'Pending') {
             row.style.cursor = 'pointer';
             row.addEventListener('click', function() {
                 showSummaryForExpense(expense);
-                // 记录当前选中的待支付订单
+                // Record the currently selected pending payment order
                 window.selectedExpenseForPay = expense;
             });
         }
@@ -86,23 +86,23 @@ function displayExpenses(expensesToShow) {
     });
 }
 
-// 显示某条订单的费用到右侧
+// Display expense summary for a specific order on the right
 function showSummaryForExpense(expense) {
     const discountRate = 0.05;
     let discount = 0;
     let grandTotal = expense.amount;
-    if (expense.type === '房费') {
+    if (expense.type === 'Room Fee') {
         discount = (expense.amount * discountRate).toFixed(2);
         grandTotal = (expense.amount - discount).toFixed(2);
     }
-    document.getElementById('roomTotal').textContent = expense.type === '房费' ? `¥${expense.amount}` : '¥0.00';
-    document.getElementById('diningTotal').textContent = expense.type === '餐饮' ? `¥${expense.amount}` : '¥0.00';
-    document.getElementById('serviceTotal').textContent = expense.type === '服务' ? `¥${expense.amount}` : '¥0.00';
-    document.getElementById('discountAmount').textContent = expense.type === '房费' ? `-¥${discount}` : '-¥0.00';
+    document.getElementById('roomTotal').textContent = expense.type === 'Room Fee' ? `¥${expense.amount}` : '¥0.00';
+    document.getElementById('diningTotal').textContent = expense.type === 'Dining' ? `¥${expense.amount}` : '¥0.00';
+    document.getElementById('serviceTotal').textContent = expense.type === 'Service' ? `¥${expense.amount}` : '¥0.00';
+    document.getElementById('discountAmount').textContent = expense.type === 'Room Fee' ? `-¥${discount}` : '-¥0.00';
     document.getElementById('grandTotal').textContent = `¥${grandTotal}`;
 }
 
-// 重置费用总览为零
+// Reset expense summary to zero
 function resetSummary() {
     document.getElementById('roomTotal').textContent = '¥0.00';
     document.getElementById('diningTotal').textContent = '¥0.00';
@@ -112,21 +112,21 @@ function resetSummary() {
     window.selectedExpenseForPay = null;
 }
 
-// 更新费用汇总
+// Update expense summary
 function updateSummary() {
     const roomTotal = expenses
-        .filter(e => e.type === '房费')
+        .filter(e => e.type === 'Room Fee')
         .reduce((sum, e) => sum + e.amount, 0);
     
     const diningTotal = expenses
-        .filter(e => e.type === '餐饮')
+        .filter(e => e.type === 'Dining')
         .reduce((sum, e) => sum + e.amount, 0);
     
     const serviceTotal = expenses
-        .filter(e => e.type === '服务')
+        .filter(e => e.type === 'Service')
         .reduce((sum, e) => sum + e.amount, 0);
     
-    // 计算会员折扣（示例：95折）
+    // Calculate member discount (example: 95% off)
     const discount = ((roomTotal + diningTotal + serviceTotal) * 0.05).toFixed(2);
     const grandTotal = (roomTotal + diningTotal + serviceTotal - discount).toFixed(2);
     
@@ -137,7 +137,7 @@ function updateSummary() {
     document.getElementById('grandTotal').textContent = `¥${grandTotal}`;
 }
 
-// 筛选费用
+// Filter expenses
 function filterExpenses() {
     const typeFilter = document.getElementById('typeFilter').value;
     const statusFilter = document.getElementById('statusFilter').value;
@@ -156,52 +156,52 @@ function filterExpenses() {
     displayExpenses(filteredExpenses);
 }
 
-// 选择支付方式
+// Select payment method
 function selectPayment(method) {
     selectedPaymentMethod = method;
     
-    // 更新UI
+    // Update UI
     document.querySelectorAll('.payment-option').forEach(option => {
         option.classList.remove('selected');
     });
     document.querySelector(`[data-key="${method}"]`).classList.add('selected');
     
-    // 启用支付按钮
+    // Enable payment button
     document.querySelector('.pay-btn').disabled = false;
 }
 
-// 处理支付
+// Handle payment
 function handlePayment() {
     if (!selectedPaymentMethod) {
-        alert('请选择支付方式');
+        alert('Please select a payment method');
         return;
     }
-    // 只支付当前选中的待支付订单
+    // Only pay for the currently selected pending payment order
     const expense = window.selectedExpenseForPay;
-    if (!expense || expense.status !== '待支付') {
-        alert('请先点击左侧待支付的订单');
+    if (!expense || expense.status !== 'Pending') {
+        alert('Please click on a pending payment order first');
         return;
     }
-    // 模拟支付过程
-    alert(`正在使用${selectedPaymentMethod}支付...`);
-    // 更新费用状态
-    expense.status = '已支付';
-    // 更新localStorage中的预订状态
+    // Simulate payment process
+    alert(`Processing payment with ${selectedPaymentMethod}...`);
+    // Update expense status
+    expense.status = 'Paid';
+    // Update booking status in localStorage
     const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
     bookings.forEach(booking => {
         if (booking.bookingId === expense.id) {
-            booking.status = '已支付';
+            booking.status = 'Paid';
         }
     });
     localStorage.setItem('bookings', JSON.stringify(bookings));
-    // 刷新显示
+    // Refresh display
     loadExpenses();
-    // 支付完成后，费用总汇内容全部初始化为零
+    // Reset expense summary to zero after payment
     resetSummary();
-    alert('支付成功！');
+    alert('Payment successful!');
 }
 
-// 辅助函数
+// Helper functions
 function calculateNights(checkIn, checkOut) {
     const start = new Date(checkIn);
     const end = new Date(checkOut);
@@ -211,10 +211,10 @@ function calculateNights(checkIn, checkOut) {
 
 function getRoomPrice(roomType) {
     const prices = {
-        '普通大床房': 388,
-        '普通双床房': 428,
-        '豪华大床房': 688,
-        '豪华双床房': 728
+        'Standard King Room': 388,
+        'Standard Twin Room': 428,
+        'Deluxe King Room': 688,
+        'Deluxe Twin Room': 728
     };
     return prices[roomType] || 0;
 }

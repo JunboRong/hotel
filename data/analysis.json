@@ -125,14 +125,14 @@
         }
     ],
     "roomTypeData": {
-        "types": ["普通大床房", "普通双床房", "豪华大床房", "豪华双床房", "行政套房", "总统套房"],
+        "types": ["Standard King Room", "Standard Twin Room", "Deluxe King Room", "Deluxe Twin Room", "Executive Suite", "Presidential Suite"],
         "occupancy": [75, 85, 90, 95, 80, 70],
         "revenue": [150000, 180000, 200000, 220000, 250000, 300000],
         "averageStay": [2.5, 2.8, 3.0, 3.2, 3.5, 4.0],
         "customerRating": [4.3, 4.4, 4.6, 4.7, 4.8, 4.9]
     },
     "satisfactionData": {
-        "categories": ["服务态度", "房间清洁", "设施设备", "餐饮质量", "性价比", "位置便利", "周边环境", "停车服务"],
+        "categories": ["Service Attitude", "Room Cleanliness", "Facilities", "Food Quality", "Value for Money", "Location Convenience", "Surrounding Environment", "Parking Service"],
         "scores": [4.8, 4.6, 4.5, 4.7, 4.4, 4.9, 4.6, 4.3],
         "monthlyTrend": {
             "service": [4.7, 4.8, 4.8, 4.9, 4.8, 4.8],
@@ -144,29 +144,29 @@
     "customerAnalysis": {
         "ageGroups": ["18-25", "26-35", "36-45", "46-55", "56-65", "65+"],
         "distribution": [15, 35, 25, 15, 7, 3],
-        "bookingChannels": ["官网", "携程", "飞猪", "美团", "电话", "其他"],
+        "bookingChannels": ["Official Website", "Ctrip", "Fliggy", "Meituan", "Phone", "Other"],
         "channelDistribution": [30, 25, 20, 15, 5, 5],
         "stayDuration": {
-            "1天": 20,
-            "2天": 35,
-            "3天": 25,
-            "4天": 10,
-            "5天及以上": 10
+            "1 day": 20,
+            "2 days": 35,
+            "3 days": 25,
+            "4 days": 10,
+            "5 days and above": 10
         }
     },
     "revenueAnalysis": {
         "monthlyRevenue": [1800000, 1950000, 2100000, 2250000, 2400000, 2568000],
         "revenueSources": {
-            "房费": 65,
-            "餐饮": 20,
-            "会议": 8,
-            "其他服务": 7
+            "Room Fee": 65,
+            "Dining": 20,
+            "Conference": 8,
+            "Other Services": 7
         },
         "paymentMethods": {
-            "微信支付": 45,
-            "支付宝": 30,
-            "银行卡": 15,
-            "现金": 10
+            "WeChat Pay": 45,
+            "Alipay": 30,
+            "Bank Card": 15,
+            "Cash": 10
         }
     }
 } 

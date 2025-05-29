@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>三山酒店 - 费用管理</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/expenses.css">
 </head>
@@ -11,23 +11,23 @@
 <nav class="header">
     <div class="headerLeft">
         <a class="logo" href="index.html">
-            <img src="../image/logo.jpg" alt="三山酒店">
+            <img src="../image/logo.jpg" alt="Mountains Hotel">
         </a>
-        <a class="logo" href="index.html">三山酒店</a>
+        <a class="logo" href="index.html">Mountains Hotel</a>
     </div>
     <div class="menu">
-        <div><a href="index.html">首页</a></div>
-        <div><a href="reservation.html">客房预定</a></div>
-        <div><a href="service.html">客房服务</a></div>
-        <div><a href="expenses.html">客房费用</a></div>
-        <div><a href="customers.html">会员中心</a></div>
+        <div><a href="index.html">Home</a></div>
+        <div><a href="reservation.html">Room Reservation</a></div>
+        <div><a href="service.html">Room Service</a></div>
+        <div><a href="expenses.html">Room Expenses</a></div>
+        <div><a href="customers.html">Member Center</a></div>
     </div>
     <div class="headerRight">
-        <a href="logIn.html" class="logIn">登录</a>
-        <a href="signIn.html" class="signIn">注册</a>
+        <a href="logIn.html" class="logIn">Login</a>
+        <a href="signIn.html" class="signIn">Register</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">Logout</button>
         </div>
     </div>
 </nav>
@@ -35,97 +35,97 @@
 
 <main class="expenses-container">
     <div class="expenses-header">
-        <h1>费用管理</h1>
-        <p>查看和管理您的所有消费明细</p>
+        <h1>Expense Management</h1>
+        <p>View and manage all your expense details</p>
     </div>
 
     <div class="expenses-content">
-        <!-- 费用明细表格 -->
+        <!-- Expense details table -->
         <div class="expenses-table">
-            <h2>消费明细</h2>
+            <h2>Expense Details</h2>
             <div class="table-controls">
                 <div class="filter-controls">
                     <select id="typeFilter">
-                        <option value="all">所有类型</option>
-                        <option value="房费">房费</option>
-                        <option value="餐饮">餐饮</option>
-                        <option value="服务">服务</option>
+                        <option value="all">All Types</option>
+                        <option value="房费">Room Fee</option>
+                        <option value="餐饮">Dining</option>
+                        <option value="服务">Service</option>
                     </select>
                     <select id="statusFilter">
-                        <option value="all">所有状态</option>
-                        <option value="待支付">待支付</option>
-                        <option value="已支付">已支付</option>
+                        <option value="all">All Statuses</option>
+                        <option value="待支付">Pending Payment</option>
+                        <option value="已支付">Paid</option>
                     </select>
                 </div>
                 <div class="date-range">
                     <input type="date" id="startDate">
-                    <span>至</span>
+                    <span>to</span>
                     <input type="date" id="endDate">
                 </div>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>日期</th>
-                        <th>项目</th>
-                        <th>类型</th>
-                        <th>总价</th>
-                        <th>应付</th>
-                        <th>状态</th>
+                        <th>Date</th>
+                        <th>Item</th>
+                        <th>Type</th>
+                        <th>Total Price</th>
+                        <th>Amount Due</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody id="expensesTableBody">
-                    <!-- 费用明细将通过JavaScript动态添加 -->
+                    <!-- Expense details will be dynamically added via JavaScript -->
                 </tbody>
             </table>
         </div>
 
-        <!-- 费用汇总和支付部分 -->
+        <!-- Expense summary and payment section -->
         <div class="expenses-summary">
-            <h2>费用汇总</h2>
+            <h2>Expense Summary</h2>
             <div class="summary-item">
-                <span>房费总计</span>
+                <span>Total Room Fee</span>
                 <span id="roomTotal">¥0.00</span>
             </div>
             <div class="summary-item">
-                <span>餐饮费用</span>
+                <span>Dining Expenses</span>
                 <span id="diningTotal">¥0.00</span>
             </div>
             <div class="summary-item">
-                <span>额外服务</span>
+                <span>Additional Services</span>
                 <span id="serviceTotal">¥0.00</span>
             </div>
             <div class="summary-item discount">
-                <span>会员折扣</span>
+                <span>Member Discount</span>
                 <span id="discountAmount">-¥0.00</span>
             </div>
             <div class="summary-item summary-total">
-                <span>总计</span>
+                <span>Total</span>
                 <span id="grandTotal">¥0.00</span>
             </div>
 
-            <!-- 支付部分 -->
+            <!-- Payment section -->
             <div class="payment-section">
-                <h3>选择支付方式</h3>
+                <h3>Select Payment Method</h3>
                 <div class="payment-methods" id="paymentMethods">
                     <div class="payment-option" data-key="cash" onclick="selectPayment('cash')">
-                        <img src="../image/cash.png" alt="现金支付">
-                        <span>现金支付</span>
+                        <img src="../image/cash.png" alt="Cash Payment">
+                        <span>Cash Payment</span>
                     </div>
                     <div class="payment-option" data-key="card" onclick="selectPayment('card')">
-                        <img src="../image/card.png" alt="银行卡支付">
-                        <span>银行卡支付</span>
+                        <img src="../image/card.png" alt="Card Payment">
+                        <span>Card Payment</span>
                     </div>
                     <div class="payment-option" data-key="wechat" onclick="selectPayment('wechat')">
-                        <img src="../image/wechat.png" alt="微信支付">
-                        <span>微信支付</span>
+                        <img src="../image/wechat.png" alt="WeChat Payment">
+                        <span>WeChat Payment</span>
                     </div>
                     <div class="payment-option" data-key="alipay" onclick="selectPayment('alipay')">
-                        <img src="../image/alipay.png" alt="支付宝支付">
-                        <span>支付宝支付</span>
+                        <img src="../image/alipay.png" alt="Alipay Payment">
+                        <span>Alipay Payment</span>
                     </div>
                 </div>
-                <button class="pay-btn" onclick="handlePayment()" disabled>立即支付</button>
+                <button class="pay-btn" onclick="handlePayment()" disabled>Pay Now</button>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>三山酒店</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/chooseRoom.css">
 </head>
@@ -12,23 +12,23 @@
 <nav class="header not-logged-in">
     <div class="headerLeft">
         <a class="logo" href="index.html">
-            <img src="../image/logo.jpg" alt="三山酒店">
+            <img src="../image/logo.jpg" alt="Mountains Hotel">
         </a>
-        <a class="logo" href="index.html">三山酒店</a>
+        <a class="logo" href="index.html">Mountains Hotel</a>
     </div>
     <div class="menu">
-        <div><a href="index.html">首页</a></div>
-        <div><a href="reservation.html">客房预定</a></div>
-        <div><a href="service.html">客房服务</a></div>
-        <div><a href="expenses.html">客房费用</a></div>
-        <div><a href="customers.html">会员中心</a></div>
+        <div><a href="index.html">Home</a></div>
+        <div><a href="reservation.html">Room Reservation</a></div>
+        <div><a href="service.html">Room Service</a></div>
+        <div><a href="expenses.html">Room Expenses</a></div>
+        <div><a href="customers.html">Member Center</a></div>
     </div>
     <div class="headerRight">
-        <a href="logIn.html" class="logIn">登录</a>
-        <a href="signIn.html" class="signIn">注册</a>
+        <a href="logIn.html" class="logIn">Login</a>
+        <a href="signIn.html" class="signIn">Register</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">Logout</button>
         </div>
     </div>
 </nav>
@@ -40,146 +40,146 @@
             <div class="date-selector">
                 <div class="input-field">
                     <input type="date" id="checkIn" name="checkIn" required>
-                    <span class="stay-nights">1晚</span>
+                    <span class="stay-nights">1 night</span>
                     <input type="date" id="checkOut" name="checkOut" required>
                 </div>
             </div>
             <div class="guest-info">
                 <div class="input-field">
-                    <label>成人</label>
+                    <label>Adults</label>
                     <div class="counter-controls">
                         <button class="counter-btn minus" onclick="updateCount(-1)">-</button>
                         <span class="count" id="adults-count">2</span>
                         <button class="counter-btn plus" onclick="updateCount(1)">+</button>
                     </div>
-                    <p>每个房间最多住两个人</p>
+                    <p>Maximum two people per room</p>
                 </div>
             </div>
         </div>
         <div class="room-selection">
-            <h3>请选择客房类型</h3>
+            <h3>Please select a room type</h3>
             <div class="room-options">
-                <div class="room-option" onclick="selectRoomType(this, '普通大床房')">
-                    <div class="room-type">普通大床房</div>
-                    <div class="room-price">¥388/晚</div>
+                <div class="room-option" onclick="selectRoomType(this, 'Standard King Room')">
+                    <div class="room-type">Standard King Room</div>
+                    <div class="room-price">¥388/night</div>
                 </div>
-                <div class="room-option" onclick="selectRoomType(this, '普通双床房')">
-                    <div class="room-type">普通双床房</div>
-                    <div class="room-price">¥428/晚</div>
+                <div class="room-option" onclick="selectRoomType(this, 'Standard Twin Room')">
+                    <div class="room-type">Standard Twin Room</div>
+                    <div class="room-price">¥428/night</div>
                 </div>
-                <div class="room-option" onclick="selectRoomType(this, '豪华大床房')">
-                    <div class="room-type">豪华大床房</div>
-                    <div class="room-price">¥688/晚</div>
+                <div class="room-option" onclick="selectRoomType(this, 'Deluxe King Room')">
+                    <div class="room-type">Deluxe King Room</div>
+                    <div class="room-price">¥688/night</div>
                 </div>
-                <div class="room-option" onclick="selectRoomType(this, '豪华双床房')">
-                    <div class="room-type">豪华双床房</div>
-                    <div class="room-price">¥728/晚</div>
+                <div class="room-option" onclick="selectRoomType(this, 'Deluxe Twin Room')">
+                    <div class="room-type">Deluxe Twin Room</div>
+                    <div class="room-price">¥728/night</div>
                 </div>
             </div>
         </div>
         <div class="booking-summary">
             <div class="summary-item">
-                <span>入住日期：</span>
+                <span>Check-in Date:</span>
                 <span id="summary-checkin"></span>
             </div>
             <div class="summary-item">
-                <span>退房日期：</span>
+                <span>Check-out Date:</span>
                 <span id="summary-checkout"></span>
             </div>
             <div class="summary-item">
-                <span>入住人数：</span>
+                <span>Number of Guests:</span>
                 <span id="summary-guests"></span>
             </div>
             <div class="summary-item">
-                <span>客房类型：</span>
+                <span>Room Type:</span>
                 <span id="summary-room"></span>
             </div>
             <div class="summary-item total">
-                <span>总价：</span>
+                <span>Total Price:</span>
                 <span id="summary-total"></span>
             </div>
         </div>
-        <button class="submit-btn" onclick="submitBooking()">提交预订</button>
+        <button class="submit-btn" onclick="submitBooking()">Submit Booking</button>
     </div>
     <!--choose room-->
     <div class="chooseRoom">
         <ul>
             <li>
                 <div class="room" onclick="selectRoom(this)">
-                    <img src="../image/example.jpg" alt="普通大床房">
+                    <img src="../image/example.jpg" alt="Standard King Room">
                     <div class="room-info">
-                        <h2>普通大床房</h2>
+                        <h2>Standard King Room</h2>
                         <div class="room-features">
-                            <span class="feature">1.8米大床</span>
-                            <span class="feature">35平方米</span>
-                            <span class="feature">城市景观</span>
+                            <span class="feature">1.8m King Bed</span>
+                            <span class="feature">35 square meters</span>
+                            <span class="feature">City View</span>
                         </div>
                         <div class="room-detail">
-                            <p>舒适温馨的客房，配备高品质床具和家具，为您提供完美的休息体验。</p>
+                            <p>Comfortable and cozy room, equipped with high-quality bedding and furniture, providing a perfect rest experience.</p>
                         </div>
                         <div class="room-price">
                             <span class="price">¥388</span>
-                            <span class="price-unit">/晚</span>
+                            <span class="price-unit">/night</span>
                         </div>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="room" onclick="selectRoom(this)">
-                    <img src="../image/example.jpg" alt="普通双床房">
+                    <img src="../image/example.jpg" alt="Standard Twin Room">
                     <div class="room-info">
-                        <h2>普通双床房</h2>
+                        <h2>Standard Twin Room</h2>
                         <div class="room-features">
-                            <span class="feature">两张1.2米床</span>
-                            <span class="feature">35平方米</span>
-                            <span class="feature">城市景观</span>
+                            <span class="feature">Two 1.2m Beds</span>
+                            <span class="feature">35 square meters</span>
+                            <span class="feature">City View</span>
                         </div>
                         <div class="room-detail">
-                            <p>双床设计，适合朋友或家人同住，配备独立卫浴和办公区域。</p>
+                            <p>Twin bed design, suitable for friends or family, equipped with private bathroom and work area.</p>
                         </div>
                         <div class="room-price">
                             <span class="price">¥428</span>
-                            <span class="price-unit">/晚</span>
+                            <span class="price-unit">/night</span>
                         </div>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="room" onclick="selectRoom(this)">
-                    <img src="../image/example.jpg" alt="豪华大床房">
+                    <img src="../image/example.jpg" alt="Deluxe King Room">
                     <div class="room-info">
-                        <h2>豪华大床房</h2>
+                        <h2>Deluxe King Room</h2>
                         <div class="room-features">
-                            <span class="feature">2米大床</span>
-                            <span class="feature">45平方米</span>
-                            <span class="feature">江景房</span>
+                            <span class="feature">2m King Bed</span>
+                            <span class="feature">45 square meters</span>
+                            <span class="feature">River View</span>
                         </div>
                         <div class="room-detail">
-                            <p>豪华装修，配备高级床具，独立会客区，享受江景视野。</p>
+                            <p>Luxury decoration, equipped with high-end bedding, independent living area, enjoy river view.</p>
                         </div>
                         <div class="room-price">
                             <span class="price">¥688</span>
-                            <span class="price-unit">/晚</span>
+                            <span class="price-unit">/night</span>
                         </div>
                     </div>
                 </div>
             </li>
             <li>
                 <div class="room" onclick="selectRoom(this)">
-                    <img src="../image/example.jpg" alt="豪华双床房">
+                    <img src="../image/example.jpg" alt="Deluxe Twin Room">
                     <div class="room-info">
-                        <h2>豪华双床房</h2>
+                        <h2>Deluxe Twin Room</h2>
                         <div class="room-features">
-                            <span class="feature">两张1.5米床</span>
-                            <span class="feature">45平方米</span>
-                            <span class="feature">江景房</span>
+                            <span class="feature">Two 1.5m Beds</span>
+                            <span class="feature">45 square meters</span>
+                            <span class="feature">River View</span>
                         </div>
                         <div class="room-detail">
-                            <p>豪华双床设计，配备独立会客区，享受江景视野，适合家庭入住。</p>
+                            <p>Luxury twin bed design, equipped with independent living area, enjoy river view, suitable for family stay.</p>
                         </div>
                         <div class="room-price">
                             <span class="price">¥728</span>
-                            <span class="price-unit">/晚</span>
+                            <span class="price-unit">/night</span>
                         </div>
                     </div>
                 </div>

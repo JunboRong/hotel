@@ -1,56 +1,56 @@
 {
     "membershipLevels": {
         "regular": {
-            "name": "普通会员",
+            "name": "Regular Member",
             "minPoints": 0,
             "discount": 0.95,
-            "benefits": ["积分累计", "生日礼遇"]
+            "benefits": ["Points Accumulation", "Birthday Benefits"]
         },
         "silver": {
-            "name": "白银会员",
+            "name": "Silver Member",
             "minPoints": 1000,
             "discount": 0.9,
-            "benefits": ["积分累计", "生日礼遇", "免费早餐", "延迟退房"]
+            "benefits": ["Points Accumulation", "Birthday Benefits", "Free Breakfast", "Late Checkout"]
         },
         "gold": {
-            "name": "黄金会员",
+            "name": "Gold Member",
             "minPoints": 5000,
             "discount": 0.85,
-            "benefits": ["积分累计", "生日礼遇", "免费早餐", "延迟退房", "房型升级", "专属客服"]
+            "benefits": ["Points Accumulation", "Birthday Benefits", "Free Breakfast", "Late Checkout", "Room Upgrade", "Dedicated Customer Service"]
         },
         "platinum": {
-            "name": "铂金会员",
+            "name": "Platinum Member",
             "minPoints": 20000,
             "discount": 0.8,
-            "benefits": ["积分累计", "生日礼遇", "免费早餐", "延迟退房", "房型升级", "专属客服", "机场接送", "贵宾厅"]
+            "benefits": ["Points Accumulation", "Birthday Benefits", "Free Breakfast", "Late Checkout", "Room Upgrade", "Dedicated Customer Service", "Airport Transfer", "VIP Lounge"]
         }
     },
     "pointsRules": {
         "roomStay": {
-            "description": "住宿消费",
+            "description": "Accommodation Expenses",
             "ratio": 1
         },
         "dining": {
-            "description": "餐饮消费",
+            "description": "Dining Expenses",
             "ratio": 0.5
         },
         "service": {
-            "description": "其他服务",
+            "description": "Other Services",
             "ratio": 0.3
         },
         "review": {
-            "description": "评价反馈",
+            "description": "Feedback",
             "points": 100
         },
         "referral": {
-            "description": "推荐新客户",
+            "description": "Refer New Customers",
             "points": 500
         }
     },
     "mockCustomers": [
         {
             "id": "C001",
-            "name": "张三",
+            "name": "Zhang San",
             "phone": "13800138000",
             "email": "zhangsan@example.com",
             "birthDate": "1990-05-15",
@@ -61,8 +61,8 @@
                 "roomType": "deluxe_single",
                 "floorPreference": "high",
                 "smokingPreference": false,
-                "dietaryRestrictions": ["无麸质", "素食"],
-                "specialRequests": "需要加湿器"
+                "dietaryRestrictions": ["Gluten-Free", "Vegetarian"],
+                "specialRequests": "Need a Humidifier"
             },
             "stayHistory": [
                 {
@@ -86,20 +86,20 @@
                 {
                     "date": "2024-03-17",
                     "rating": 5,
-                    "comment": "服务很周到，房间干净整洁",
-                    "category": "整体体验"
+                    "comment": "Service was very attentive, room was clean and tidy",
+                    "category": "Overall Experience"
                 },
                 {
                     "date": "2024-02-22",
                     "rating": 4,
-                    "comment": "早餐品种可以再丰富些",
-                    "category": "餐饮服务"
+                    "comment": "Breakfast variety could be more diverse",
+                    "category": "Dining Service"
                 }
             ]
         },
         {
             "id": "C002",
-            "name": "李四",
+            "name": "Li Si",
             "phone": "13900139000",
             "email": "lisi@example.com",
             "birthDate": "1988-08-08",
@@ -111,7 +111,7 @@
                 "floorPreference": "low",
                 "smokingPreference": false,
                 "dietaryRestrictions": [],
-                "specialRequests": "需要额外枕头"
+                "specialRequests": "Need extra pillows"
             },
             "stayHistory": [
                 {
@@ -127,21 +127,21 @@
                 {
                     "date": "2024-03-12",
                     "rating": 5,
-                    "comment": "性价比很高，服务态度好",
-                    "category": "整体体验"
+                    "comment": "Great value for money, good service attitude",
+                    "category": "Overall Experience"
                 }
             ]
         }
     ],
     "feedbackCategories": [
-        "整体体验",
-        "客房设施",
-        "餐饮服务",
-        "前台服务",
-        "清洁卫生",
-        "位置交通",
-        "性价比",
-        "其他"
+        "Overall Experience",
+        "Room Facilities",
+        "Dining Service",
+        "Front Desk Service",
+        "Cleanliness",
+        "Location and Transportation",
+        "Value for Money",
+        "Other"
     ],
     "satisfactionMetrics": {
         "overall": 4.5,

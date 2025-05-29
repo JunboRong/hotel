@@ -3,92 +3,92 @@
     {
       "id": "S001",
       "roomNumber": "101",
-      "type": "清洁服务",
-      "status": "待处理",
+      "type": "Cleaning Service",
+      "status": "Pending",
       "requestTime": "2024-03-20T10:30:00",
-      "description": "需要更换床单和毛巾",
-      "priority": "普通"
+      "description": "Need to change bed sheets and towels",
+      "priority": "Normal"
     },
     {
       "id": "S002",
       "roomNumber": "102",
-      "type": "维修服务",
-      "status": "处理中",
+      "type": "Maintenance Service",
+      "status": "In Progress",
       "requestTime": "2024-03-20T09:15:00",
-      "description": "空调温度调节不灵敏",
-      "priority": "紧急"
+      "description": "Air conditioning temperature control not responsive",
+      "priority": "Urgent"
     },
     {
       "id": "S003",
       "roomNumber": "201",
-      "type": "餐饮服务",
-      "status": "已完成",
+      "type": "Dining Service",
+      "status": "Completed",
       "requestTime": "2024-03-20T08:00:00",
-      "description": "送餐到房间",
-      "priority": "普通"
+      "description": "Room service delivery",
+      "priority": "Normal"
     },
     {
       "id": "S004",
       "roomNumber": "202",
-      "type": "其他服务",
-      "status": "待处理",
+      "type": "Other Service",
+      "status": "Pending",
       "requestTime": "2024-03-20T11:00:00",
-      "description": "需要额外的枕头",
-      "priority": "普通"
+      "description": "Need extra pillows",
+      "priority": "Normal"
     },
     {
       "id": "S005",
       "roomNumber": "103",
-      "type": "清洁服务",
-      "status": "待处理",
+      "type": "Cleaning Service",
+      "status": "Pending",
       "requestTime": "2024-03-21T12:00:00",
-      "description": "清理房间内的垃圾",
-      "priority": "普通"
+      "description": "Clean up trash in the room",
+      "priority": "Normal"
     },
     {
       "id": "S006",
       "roomNumber": "104",
-      "type": "维修服务",
-      "status": "待处理",
+      "type": "Maintenance Service",
+      "status": "Pending",
       "requestTime": "2024-03-21T13:30:00",
-      "description": "电视遥控器电池耗尽",
-      "priority": "普通"
+      "description": "TV remote battery depleted",
+      "priority": "Normal"
     },
     {
       "id": "S007",
       "roomNumber": "203",
-      "type": "餐饮服务",
-      "status": "处理中",
+      "type": "Dining Service",
+      "status": "In Progress",
       "requestTime": "2024-03-21T14:45:00",
-      "description": "预订晚餐送房间",
-      "priority": "普通"
+      "description": "Order dinner for room delivery",
+      "priority": "Normal"
     },
     {
       "id": "S008",
       "roomNumber": "204",
-      "type": "其他服务",
-      "status": "已完成",
+      "type": "Other Service",
+      "status": "Completed",
       "requestTime": "2024-03-21T15:20:00",
-      "description": "提供婴儿床",
-      "priority": "普通"
+      "description": "Provide a crib",
+      "priority": "Normal"
     },
     {
       "id": "S009",
       "roomNumber": "301",
-      "type": "清洁服务",
-      "status": "处理中",
+      "type": "Cleaning Service",
+      "status": "In Progress",
       "requestTime": "2024-03-21T16:10:00",
-      "description": "深度清洁房间",
-      "priority": "紧急"
+      "description": "Deep clean the room",
+      "priority": "Urgent"
     },
     {
       "id": "S010",
       "roomNumber": "302",
-      "type": "维修服务",
-      "status": "待处理",
+      "type": "Maintenance Service",
+      "status": "Pending",
       "requestTime": "2024-03-21T17:00:00",
-      "description": "淋浴间水压低",
-      "priority": "紧急"
+      "description": "Low water pressure in the shower",
+      "priority": "Urgent"
     }
   ]
 }

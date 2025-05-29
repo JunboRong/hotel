@@ -1,4 +1,4 @@
-// 认证模块
+// Authentication Module
 class Auth {
     constructor() {
         this.currentUser = null;
@@ -7,24 +7,24 @@ class Auth {
         this.init();
     }
 
-    // 初始化
+    // Initialize
     async init() {
         try {
-            // 从文件加载用户数据
+            // Load user data from file
             const usersResponse = await fetch('../data/users.json');
             const data = await usersResponse.json();
             this.users = data.users || [];
             this.admins = data.admins || [];
             
-            // 保存到localStorage作为备份
+            // Save to localStorage as backup
             localStorage.setItem('users', JSON.stringify(this.users));
             localStorage.setItem('admins', JSON.stringify(this.admins));
             
-            // 检查登录状态
+            // Check login status
             this.checkLoginStatus();
         } catch (error) {
-            console.error('加载用户数据失败:', error);
-            // 如果加载失败，尝试从localStorage恢复
+            console.error('Failed to load user data:', error);
+            // If loading fails, try to recover from localStorage
             const usersStr = localStorage.getItem('users');
             const adminsStr = localStorage.getItem('admins');
             
@@ -36,22 +36,22 @@ class Auth {
                 this.admins = JSON.parse(adminsStr);
             }
             
-            // 检查登录状态
+            // Check login status
             this.checkLoginStatus();
         }
     }
 
-    // 检查登录状态
+    // Check login status
     checkLoginStatus() {
         const userStr = localStorage.getItem('currentUser');
         if (userStr) {
             try {
                 this.currentUser = JSON.parse(userStr);
-                // 立即更新UI
+                // Update UI immediately
                 this.updateUI();
                 return true;
             } catch (error) {
-                console.error('解析用户数据失败:', error);
+                console.error('Failed to parse user data:', error);
                 this.logout();
                 return false;
             }
@@ -59,7 +59,7 @@ class Auth {
         return false;
     }
 
-    // 更新UI显示
+    // Update UI display
     updateUI() {
         const header = document.querySelector('.header');
         if (!header) return;
@@ -78,7 +78,7 @@ class Auth {
         }
     }
 
-    // 用户登录
+    // User login
     login(username, password, isAdmin = false) {
         let user = null;
 
@@ -93,20 +93,20 @@ class Auth {
 
         if (user) {
             this.currentUser = user;
-            // 保存用户信息到localStorage
+            // Save user info to localStorage
             localStorage.setItem('currentUser', JSON.stringify(user));
-            // 更新UI
+            // Update UI
             this.updateUI();
             return true;
         }
         return false;
     }
 
-    // 用户注册
-    register(phone, password, name = '新会员') {
-        // 检查手机号是否已注册
+    // User registration
+    register(phone, password, name = 'New Member') {
+        // Check if phone number is already registered
         if (this.users.some(u => u.phone === phone)) {
-            throw new Error('该手机号已被注册');
+            throw new Error('This phone number is already registered');
         }
 
         const newUser = {
@@ -135,7 +135,7 @@ class Auth {
         return newUser;
     }
 
-    // 退出登录
+    // Logout
     logout() {
         this.currentUser = null;
         localStorage.removeItem('currentUser');
@@ -143,13 +143,13 @@ class Auth {
         window.location.href = '../frontend/logIn.html';
     }
 
-    // 检查是否已登录
+    // Check if logged in
     isLoggedIn() {
-        // 先检查内存中的状态
+        // First check the state in memory
         if (this.currentUser) {
             return true;
         }
-        // 如果内存中没有，检查localStorage
+        // If not in memory, check localStorage
         const userStr = localStorage.getItem('currentUser');
         if (userStr) {
             try {
@@ -157,7 +157,7 @@ class Auth {
                 this.updateUI();
                 return true;
             } catch (error) {
-                console.error('解析用户数据失败:', error);
+                console.error('Failed to parse user data:', error);
                 this.logout();
                 return false;
             }
@@ -165,12 +165,12 @@ class Auth {
         return false;
     }
 
-    // 检查是否是管理员
+    // Check if admin
     isAdmin() {
         return this.currentUser && this.currentUser.isAdmin === true;
     }
 
-    // 获取当前用户
+    // Get current user
     getCurrentUser() {
         if (!this.currentUser) {
             const userStr = localStorage.getItem('currentUser');
@@ -178,7 +178,7 @@ class Auth {
                 try {
                     this.currentUser = JSON.parse(userStr);
                 } catch (error) {
-                    console.error('解析用户数据失败:', error);
+                    console.error('Failed to parse user data:', error);
                     return null;
                 }
             }
@@ -187,8 +187,8 @@ class Auth {
     }
 }
 
-// 创建全局认证实例
+// Create global authentication instance
 const auth = new Auth();
 
-// 导出认证实例
+// Export authentication instance
 window.auth = auth; 

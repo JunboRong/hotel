@@ -1,27 +1,27 @@
-// 获取会员数据
+// Fetch member data
 async function fetchCustomers() {
     try {
         const response = await fetch('../data/customers.json');
         const data = await response.json();
         return data.mockCustomers || [];
     } catch (error) {
-        console.error('获取会员数据失败:', error);
+        console.error('Failed to fetch member data:', error);
         return [];
     }
 }
 
-// 页面加载完成后初始化
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', async function() {
     try {
         await loadMemberData();
         initializeEventListeners();
-        console.log('页面初始化完成');
+        console.log('Page initialization complete');
     } catch (error) {
-        console.error('页面初始化失败:', error);
+        console.error('Page initialization failed:', error);
     }
 });
 
-// 加载会员数据
+// Load member data
 function createMemberRow(customer) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
@@ -32,9 +32,9 @@ function createMemberRow(customer) {
         <td>${customer.points}</td>
         <td>${customer.registrationDate}</td>
         <td>
-            <button class="action-btn edit-btn" data-id="${customer.id}">编辑</button>
-            <button class="action-btn delete-btn" data-id="${customer.id}">删除</button>
-            <button class="action-btn detail-btn" data-id="${customer.id}">详情</button>
+            <button class="action-btn edit-btn" data-id="${customer.id}">Edit</button>
+            <button class="action-btn delete-btn" data-id="${customer.id}">Delete</button>
+            <button class="action-btn detail-btn" data-id="${customer.id}">Details</button>
         </td>
     `;
     return tr;
@@ -48,9 +48,9 @@ async function loadMemberData(customers) {
     });
 }
 
-// 初始化事件监听
+// Initialize event listeners
 function initializeEventListeners() {
-    // 搜索功能
+    // Search functionality
     const searchInput = document.querySelector('.search-box input');
     document.getElementById('searchBtn').addEventListener('click', async () => {
         const searchTerm = searchInput.value.toLowerCase();
@@ -63,12 +63,12 @@ function initializeEventListeners() {
         loadMemberData(filtered);
     });
 
-    // 添加会员按钮
+    // Add member button
     document.getElementById('addMemberBtn').addEventListener('click', () => {
         document.getElementById('addMemberModal').style.display = 'flex';
     });
 
-    // 表格操作事件委托
+    // Table operation event delegation
     document.querySelector('.member-table').addEventListener('click', async (e) => {
         const customerId = e.target.dataset.id;
         if (!customerId) return;
@@ -80,18 +80,18 @@ function initializeEventListeners() {
         if (e.target.classList.contains('edit-btn')) {
             showEditMemberModal(customer);
         } else if (e.target.classList.contains('delete-btn')) {
-            if (confirm('确定要删除该会员吗？')) await deleteMember(customerId);
+            if (confirm('Are you sure you want to delete this member?')) await deleteMember(customerId);
         } else if (e.target.classList.contains('detail-btn')) {
             showCustomerDetails(customer);
         }
     });
 
-    // 添加会员表单提交
+    // Add member form submission
     const addMemberForm = document.getElementById('addMemberForm');
     if (addMemberForm) {
         addMemberForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            console.log('添加会员表单提交');
+            console.log('Add member form submitted');
             const newMember = {
                 id: generateMemberId(),
                 name: document.getElementById('name').value,
@@ -117,15 +117,15 @@ function initializeEventListeners() {
             e.target.reset();
         });
     } else {
-        console.error('添加会员表单未找到');
+        console.error('Add member form not found');
     }
 
-    // 编辑会员表单提交
+    // Edit member form submission
     const editMemberForm = document.getElementById('editMemberForm');
     if (editMemberForm) {
         editMemberForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            console.log('编辑会员表单提交');
+            console.log('Edit member form submitted');
             const customerId = e.target.dataset.customerId;
             const customers = await fetchCustomers();
             const customer = customers.find(c => c.id === customerId);
@@ -146,15 +146,13 @@ function initializeEventListeners() {
             }
         });
     } else {
-        console.error('编辑会员表单未找到');
+        console.error('Edit member form not found');
     }
 
-    console.log('事件监听器初始化完成');
+    console.log('Event listeners initialized');
 }
 
-
-
-// 显示编辑会员模态框
+// Show edit member modal
 function showEditMemberModal(customer) {
     document.getElementById('editName').value = customer.name;
     document.getElementById('editPhone').value = customer.phone;
@@ -166,9 +164,9 @@ function showEditMemberModal(customer) {
     document.getElementById('editMemberModal').style.display = 'flex';
 }
 
-// 显示会员详情
+// Show customer details
 function showCustomerDetails(customer) {
-    // 基本信息
+    // Basic information
     document.getElementById('detailId').textContent = customer.id;
     document.getElementById('detailName').textContent = customer.name;
     document.getElementById('detailPhone').textContent = customer.phone;
@@ -178,14 +176,14 @@ function showCustomerDetails(customer) {
     document.getElementById('detailPoints').textContent = customer.points;
     document.getElementById('detailRegistrationDate').textContent = customer.registrationDate;
 
-    // 偏好设置
-    document.getElementById('detailRoomType').textContent = customer.preferences.roomType || '无';
-    document.getElementById('detailFloorPreference').textContent = customer.preferences.floorPreference || '无';
-    document.getElementById('detailSmokingPreference').textContent = customer.preferences.smokingPreference ? '是' : '否';
-    document.getElementById('detailDietaryRestrictions').textContent = customer.preferences.dietaryRestrictions.join(', ') || '无';
-    document.getElementById('detailSpecialRequests').textContent = customer.preferences.specialRequests || '无';
+    // Preferences
+    document.getElementById('detailRoomType').textContent = customer.preferences.roomType || 'None';
+    document.getElementById('detailFloorPreference').textContent = customer.preferences.floorPreference || 'None';
+    document.getElementById('detailSmokingPreference').textContent = customer.preferences.smokingPreference ? 'Yes' : 'No';
+    document.getElementById('detailDietaryRestrictions').textContent = customer.preferences.dietaryRestrictions.join(', ') || 'None';
+    document.getElementById('detailSpecialRequests').textContent = customer.preferences.specialRequests || 'None';
 
-    // 入住历史
+    // Stay history
     const stayHistoryHtml = customer.stayHistory.map(stay => `
         <tr>
             <td>${stay.checkIn}</td>
@@ -198,13 +196,13 @@ function showCustomerDetails(customer) {
     `).join('');
     document.getElementById('detailStayHistory').innerHTML = stayHistoryHtml;
 
-    // 反馈评价
+    // Feedback
     const feedbackHtml = customer.feedback.map(fb => `
         <div class="feedback-item">
-            <p><strong>日期：</strong>${fb.date}</p>
-            <p><strong>评分：</strong>${'★'.repeat(fb.rating)}${'☆'.repeat(5-fb.rating)}</p>
-            <p><strong>类别：</strong>${fb.category}</p>
-            <p><strong>评价：</strong>${fb.comment}</p>
+            <p><strong>Date:</strong>${fb.date}</p>
+            <p><strong>Rating:</strong>${'★'.repeat(fb.rating)}${'☆'.repeat(5-fb.rating)}</p>
+            <p><strong>Category:</strong>${fb.category}</p>
+            <p><strong>Comment:</strong>${fb.comment}</p>
         </div>
     `).join('');
     document.getElementById('detailFeedback').innerHTML = feedbackHtml;
@@ -212,12 +210,12 @@ function showCustomerDetails(customer) {
     document.getElementById('memberDetailModal').style.display = 'flex';
 }
 
-// 关闭模态框
+// Close modal
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
 }
 
-// 生成会员ID
+// Generate member ID
 function generateMemberId() {
     const customers = JSON.parse(localStorage.getItem('customers') || '[]');
     const lastId = customers.length > 0 ?
@@ -225,21 +223,21 @@ function generateMemberId() {
     return `C${String(lastId + 1).padStart(3, '0')}`;
 }
 
-// 添加会员
+// Add member
 async function addMember(newMember) {
     try {
         const customers = await fetchCustomers();
         customers.push(newMember);
         localStorage.setItem('customers', JSON.stringify(customers));
         await loadMemberData();
-        alert('会员添加成功！');
+        alert('Member added successfully!');
     } catch (error) {
-        console.error('添加会员失败:', error);
-        alert('添加会员失败，请重试！');
+        console.error('Failed to add member:', error);
+        alert('Failed to add member, please try again!');
     }
 }
 
-// 更新会员
+// Update member
 async function updateMember(updatedMember) {
     try {
         const customers = await fetchCustomers();
@@ -248,24 +246,24 @@ async function updateMember(updatedMember) {
             customers[index] = updatedMember;
             localStorage.setItem('customers', JSON.stringify(customers));
             await loadMemberData();
-            alert('会员信息更新成功！');
+            alert('Member information updated successfully!');
         }
     } catch (error) {
-        console.error('更新会员失败:', error);
-        alert('更新会员失败，请重试！');
+        console.error('Failed to update member:', error);
+        alert('Failed to update member, please try again!');
     }
 }
 
-// 删除会员
+// Delete member
 async function deleteMember(memberId) {
     try {
         const customers = await fetchCustomers();
         const filteredCustomers = customers.filter(c => c.id !== memberId);
         localStorage.setItem('customers', JSON.stringify(filteredCustomers));
         await loadMemberData();
-        alert('会员删除成功！');
+        alert('Member deleted successfully!');
     } catch (error) {
-        console.error('删除会员失败:', error);
-        alert('删除会员失败，请重试！');
+        console.error('Failed to delete member:', error);
+        alert('Failed to delete member, please try again!');
     }
 }

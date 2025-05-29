@@ -1,55 +1,55 @@
 {
     "roomTypes": {
         "standard_single": {
-            "name": "标准单人房",
+            "name": "Standard Single Room",
             "price": 288
         },
         "standard_double": {
-            "name": "标准双床房",
+            "name": "Standard Twin Room",
             "price": 328
         },
         "deluxe_single": {
-            "name": "豪华大床房",
+            "name": "Deluxe King Room",
             "price": 688
         },
         "deluxe_double": {
-            "name": "豪华双床房",
+            "name": "Deluxe Twin Room",
             "price": 728
         }
     },
     "diningMenu": {
         "breakfast": {
-            "name": "早餐",
+            "name": "Breakfast",
             "price": 68
         },
         "lunch": {
-            "name": "午餐",
+            "name": "Lunch",
             "price": 98
         },
         "dinner": {
-            "name": "晚餐",
+            "name": "Dinner",
             "price": 128
         },
         "snacks": {
-            "name": "小吃",
+            "name": "Snacks",
             "price": 38
         }
     },
     "services": {
         "laundry": {
-            "name": "洗衣服务",
+            "name": "Laundry Service",
             "price": 100
         },
         "massage": {
-            "name": "按摩服务",
+            "name": "Massage Service",
             "price": 298
         },
         "carService": {
-            "name": "接送服务",
+            "name": "Car Service",
             "price": 200
         },
         "roomCleaning": {
-            "name": "客房清洁",
+            "name": "Room Cleaning",
             "price": 50
         }
     },
@@ -57,8 +57,8 @@
         "roomCharges": [
             {
                 "date": "2024-03-20",
-                "item": "豪华大床房",
-                "type": "房费",
+                "item": "Deluxe King Room",
+                "type": "Room Fee",
                 "quantity": 1,
                 "price": 688,
                 "amount": 688,
@@ -66,8 +66,8 @@
             },
             {
                 "date": "2024-03-19",
-                "item": "标准双床房",
-                "type": "房费",
+                "item": "Standard Twin Room",
+                "type": "Room Fee",
                 "quantity": 1,
                 "price": 328,
                 "amount": 328,
@@ -77,62 +77,62 @@
         "diningCharges": [
             {
                 "date": "2024-03-20",
-                "item": "早餐",
-                "type": "餐饮",
+                "item": "Breakfast",
+                "type": "Dining",
                 "quantity": 2,
                 "price": 68,
                 "amount": 136,
-                "location": "一楼餐厅"
+                "location": "First Floor Restaurant"
             },
             {
                 "date": "2024-03-20",
-                "item": "晚餐",
-                "type": "餐饮",
+                "item": "Dinner",
+                "type": "Dining",
                 "quantity": 2,
                 "price": 128,
                 "amount": 256,
-                "location": "一楼餐厅"
+                "location": "First Floor Restaurant"
             },
             {
                 "date": "2024-03-19",
-                "item": "小吃",
-                "type": "餐饮",
+                "item": "Snacks",
+                "type": "Dining",
                 "quantity": 1,
                 "price": 38,
                 "amount": 38,
-                "location": "客房服务"
+                "location": "Room Service"
             }
         ],
         "serviceCharges": [
             {
                 "date": "2024-03-20",
-                "item": "洗衣服务",
-                "type": "服务",
+                "item": "Laundry Service",
+                "type": "Service",
                 "quantity": 1,
                 "price": 100,
                 "amount": 100,
-                "status": "已完成"
+                "status": "Completed"
             },
             {
                 "date": "2024-03-19",
-                "item": "按摩服务",
-                "type": "服务",
+                "item": "Massage Service",
+                "type": "Service",
                 "quantity": 1,
                 "price": 298,
                 "amount": 298,
-                "status": "已完成"
+                "status": "Completed"
             }
         ]
     },
     "discounts": {
         "vip": {
-            "name": "VIP会员",
+            "name": "VIP Member",
             "roomDiscount": 0.9,
             "diningDiscount": 0.85,
             "serviceDiscount": 0.95
         },
         "seasonal": {
-            "name": "季节性优惠",
+            "name": "Seasonal Discount",
             "roomDiscount": 0.85,
             "diningDiscount": 0.9,
             "serviceDiscount": 0.9,
@@ -140,7 +140,7 @@
             "endDate": "2024-03-31"
         },
         "group": {
-            "name": "团体优惠",
+            "name": "Group Discount",
             "minPeople": 5,
             "roomDiscount": 0.8,
             "diningDiscount": 0.8,
@@ -149,23 +149,23 @@
     },
     "paymentMethods": {
         "cash": {
-            "name": "现金支付",
+            "name": "Cash Payment",
             "icon": "../image/cash.png",
             "enabled": true
         },
         "card": {
-            "name": "银行卡支付",
+            "name": "Card Payment",
             "icon": "../image/card.png",
             "enabled": true,
             "supportedCards": ["Visa", "MasterCard", "UnionPay"]
         },
         "wechat": {
-            "name": "微信支付",
+            "name": "WeChat Payment",
             "icon": "../image/wechat.png",
             "enabled": true
         },
         "alipay": {
-            "name": "支付宝支付",
+            "name": "Alipay Payment",
             "icon": "../image/alipay.png",
             "enabled": true
         }

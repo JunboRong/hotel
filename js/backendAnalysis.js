@@ -1,4 +1,4 @@
-// 获取分析数据
+// Fetch analysis data
 async function fetchAnalysisData() {
     try {
         const response = await fetch('../data/analysis.json');
@@ -7,47 +7,47 @@ async function fetchAnalysisData() {
         }
         return await response.json();
     } catch (error) {
-        console.error('获取分析数据失败:', error);
+        console.error('Failed to fetch analysis data:', error);
         return null;
     }
 }
 
-// 格式化数字
+// Format number
 function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// 格式化日期
+// Format date
 function formatDate(date) {
-    return new Date(date).toLocaleDateString('zh-CN');
+    return new Date(date).toLocaleDateString('en-US');
 }
 
-// 更新摘要卡片
+// Update summary cards
 function updateSummaryCards(data) {
     const summary = data.summary;
     
-    // 更新入住率
+    // Update occupancy rate
     document.getElementById('occupancyRate').textContent = `${summary.occupancyRate.value}%`;
     document.getElementById('occupancyRateTrend').textContent = 
         `${summary.occupancyRate.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.occupancyRate.trend)}%`;
     
-    // 更新收入
+    // Update revenue
     document.getElementById('revenue').textContent = `¥${formatNumber(summary.revenue.value)}`;
     document.getElementById('revenueTrend').textContent = 
         `${summary.revenue.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.revenue.trend)}%`;
     
-    // 更新满意度
+    // Update satisfaction
     document.getElementById('satisfaction').textContent = summary.satisfaction.value.toFixed(1);
     document.getElementById('satisfactionTrend').textContent = 
         `${summary.satisfaction.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.satisfaction.trend)}`;
     
-    // 更新新增客户
+    // Update new customers
     document.getElementById('newCustomers').textContent = summary.newCustomers.value;
     document.getElementById('newCustomersTrend').textContent = 
         `${summary.newCustomers.trend > 0 ? '↑' : '↓'} ${Math.abs(summary.newCustomers.trend)}%`;
 }
 
-// 更新数据表格
+// Update data table
 function updateDataTable(data) {
     const tbody = document.getElementById('dataTableBody');
     tbody.innerHTML = '';
@@ -65,12 +65,12 @@ function updateDataTable(data) {
     });
 }
 
-// 初始化图表
+// Initialize charts
 function initCharts(data) {
-    // 入住率图表
+    // Occupancy rate chart
     const occupancyChart = echarts.init(document.getElementById('occupancyChart'));
     occupancyChart.setOption({
-        title: { text: '入住率趋势' },
+        title: { text: 'Occupancy Rate Trend' },
         tooltip: { trigger: 'axis' },
         xAxis: {
             type: 'category',
@@ -84,10 +84,10 @@ function initCharts(data) {
         }]
     });
 
-    // 收入图表
+    // Revenue chart
     const revenueChart = echarts.init(document.getElementById('revenueChart'));
     revenueChart.setOption({
-        title: { text: '收入趋势' },
+        title: { text: 'Revenue Trend' },
         tooltip: { trigger: 'axis' },
         xAxis: {
             type: 'category',
@@ -101,25 +101,25 @@ function initCharts(data) {
         }]
     });
 
-    // 房型分析图表
+    // Room type analysis chart
     const roomTypeChart = echarts.init(document.getElementById('roomTypeChart'));
     roomTypeChart.setOption({
-        title: { text: '房型分析' },
+        title: { text: 'Room Type Analysis' },
         tooltip: { trigger: 'axis' },
-        legend: { data: ['入住率', '收入'] },
+        legend: { data: ['Occupancy Rate', 'Revenue'] },
         xAxis: { type: 'category', data: data.roomTypeData.types },
         yAxis: [
-            { type: 'value', name: '入住率', axisLabel: { formatter: '{value}%' } },
-            { type: 'value', name: '收入', axisLabel: { formatter: '¥{value}' } }
+            { type: 'value', name: 'Occupancy Rate', axisLabel: { formatter: '{value}%' } },
+            { type: 'value', name: 'Revenue', axisLabel: { formatter: '¥{value}' } }
         ],
         series: [
             {
-                name: '入住率',
+                name: 'Occupancy Rate',
                 type: 'bar',
                 data: data.roomTypeData.occupancy
             },
             {
-                name: '收入',
+                name: 'Revenue',
                 type: 'bar',
                 yAxisIndex: 1,
                 data: data.roomTypeData.revenue
@@ -127,10 +127,10 @@ function initCharts(data) {
         ]
     });
 
-    // 满意度图表
+    // Satisfaction chart
     const satisfactionChart = echarts.init(document.getElementById('satisfactionChart'));
     satisfactionChart.setOption({
-        title: { text: '客户满意度分析' },
+        title: { text: 'Customer Satisfaction Analysis' },
         tooltip: { trigger: 'axis' },
         radar: {
             indicator: data.satisfactionData.categories.map(category => ({
@@ -142,12 +142,12 @@ function initCharts(data) {
             type: 'radar',
             data: [{
                 value: data.satisfactionData.scores,
-                name: '满意度'
+                name: 'Satisfaction'
             }]
         }]
     });
 
-    // 监听窗口大小变化，调整图表大小
+    // Listen for window resize to adjust chart size
     window.addEventListener('resize', () => {
         occupancyChart.resize();
         revenueChart.resize();
@@ -156,7 +156,7 @@ function initCharts(data) {
     });
 }
 
-// 根据日期范围过滤数据
+// Filter data by date range
 function filterDataByDateRange(data, startDate, endDate) {
     if (!startDate || !endDate) return data;
 
@@ -168,7 +168,7 @@ function filterDataByDateRange(data, startDate, endDate) {
         })
     };
 
-    // 重新计算摘要数据
+    // Recalculate summary data
     const dailyData = filteredData.dailyData;
     if (dailyData.length > 0) {
         filteredData.summary = {
@@ -194,10 +194,10 @@ function filterDataByDateRange(data, startDate, endDate) {
     return filteredData;
 }
 
-// 页面加载完成后初始化
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', async function() {
     try {
-        // 设置默认日期范围（最近30天）
+        // Set default date range (last 30 days)
         const endDate = new Date();
         const startDate = new Date();
         startDate.setDate(startDate.getDate() - 30);
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.getElementById('startDate').value = startDate.toISOString().split('T')[0];
         document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
 
-        // 获取并显示数据
+        // Fetch and display data
         const data = await fetchAnalysisData();
         if (data) {
             updateSummaryCards(data);
@@ -213,13 +213,13 @@ document.addEventListener('DOMContentLoaded', async function() {
             initCharts(data);
         }
 
-        // 添加查询按钮事件监听
+        // Add query button event listener
         document.getElementById('queryBtn').addEventListener('click', async () => {
             const startDate = new Date(document.getElementById('startDate').value);
             const endDate = new Date(document.getElementById('endDate').value);
             
             if (startDate > endDate) {
-                alert('开始日期不能大于结束日期');
+                alert('Start date cannot be greater than end date');
                 return;
             }
 
@@ -232,6 +232,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     } catch (error) {
-        console.error('初始化失败:', error);
+        console.error('Initialization failed:', error);
     }
 }); 

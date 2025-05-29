@@ -2,108 +2,108 @@
   "rooms": [
     {
       "roomNumber": "101",
-      "type": "标准间",
-      "status": "空闲",
+      "type": "Standard Room",
+      "status": "Available",
       "lastUpdate": "2024-03-20T10:00:00",
       "notes": ""
     },
     {
       "roomNumber": "102",
-      "type": "标准间",
-      "status": "已入住",
+      "type": "Standard Room",
+      "status": "Occupied",
       "lastUpdate": "2024-03-20T10:00:00",
       "notes": ""
     },
     {
       "roomNumber": "103",
-      "type": "标准间",
-      "status": "空闲",
+      "type": "Standard Room",
+      "status": "Available",
       "lastUpdate": "2024-03-21T09:00:00",
       "notes": ""
     },
     {
       "roomNumber": "104",
-      "type": "标准间",
-      "status": "已入住",
+      "type": "Standard Room",
+      "status": "Occupied",
       "lastUpdate": "2024-03-21T10:30:00",
       "notes": ""
     },
     {
       "roomNumber": "105",
-      "type": "标准间",
-      "status": "空闲",
+      "type": "Standard Room",
+      "status": "Available",
       "lastUpdate": "2024-03-21T09:00:00",
       "notes": ""
     },
     {
       "roomNumber": "201",
-      "type": "豪华间",
-      "status": "打扫中",
+      "type": "Deluxe Room",
+      "status": "Cleaning",
       "lastUpdate": "2024-03-20T10:00:00",
       "notes": ""
     },
     {
       "roomNumber": "202",
-      "type": "豪华间",
-      "status": "维修中",
+      "type": "Deluxe Room",
+      "status": "Under Maintenance",
       "lastUpdate": "2024-03-20T10:00:00",
-      "notes": "空调维修"
+      "notes": "Air Conditioning Repair"
     },
     {
       "roomNumber": "203",
-      "type": "豪华间",
-      "status": "打扫中",
+      "type": "Deluxe Room",
+      "status": "Cleaning",
       "lastUpdate": "2024-03-21T11:00:00",
       "notes": ""
     },
     {
       "roomNumber": "204",
-      "type": "豪华间",
-      "status": "空闲",
+      "type": "Deluxe Room",
+      "status": "Available",
       "lastUpdate": "2024-03-21T12:00:00",
       "notes": ""
     },
     {
       "roomNumber": "205",
-      "type": "豪华间",
-      "status": "已入住",
+      "type": "Deluxe Room",
+      "status": "Occupied",
       "lastUpdate": "2024-03-21T13:00:00",
       "notes": ""
     },
     {
       "roomNumber": "206",
-      "type": "豪华间",
-      "status": "维修中",
+      "type": "Deluxe Room",
+      "status": "Under Maintenance",
       "lastUpdate": "2024-03-21T14:00:00",
-      "notes": "电视更换"
+      "notes": "TV Replacement"
     },
     {
       "roomNumber": "301",
-      "type": "商务间",
-      "status": "空闲",
+      "type": "Business Room",
+      "status": "Available",
       "lastUpdate": "2024-03-21T15:00:00",
       "notes": ""
     },
     {
       "roomNumber": "302",
-      "type": "商务间",
-      "status": "已入住",
+      "type": "Business Room",
+      "status": "Occupied",
       "lastUpdate": "2024-03-21T16:00:00",
       "notes": ""
     },
     {
       "roomNumber": "303",
-      "type": "商务间",
-      "status": "打扫中",
+      "type": "Business Room",
+      "status": "Cleaning",
       "lastUpdate": "2024-03-21T17:00:00",
       "notes": ""
     },
     {
       "roomNumber": "304",
-      "type": "商务间",
-      "status": "维修中",
+      "type": "Business Room",
+      "status": "Under Maintenance",
       "lastUpdate": "2024-03-21T18:00:00",
-      "notes": "更换地毯"
+      "notes": "Carpet Replacement"
     }
   ]
 }

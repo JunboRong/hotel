@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录 - 三山酒店</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
-<a class="logo" href="index.html"><img src="../image/logo.jpg" alt="三山酒店"></a>
+<a class="logo" href="index.html"><img src="../image/logo.jpg" alt="Mountains Hotel"></a>
 <main class="auth-container">
     <div class="auth-box">
-        <h2>欢迎回来</h2>
+        <h2>Welcome Back</h2>
         <form id="loginForm">
             <div class="form-group">
-                <label for="username">账号</label>
-                <input type="text" id="username" name="username" required placeholder="请输入手机号/管理员账号">
+                <label for="username">Account</label>
+                <input type="text" id="username" name="username" required placeholder="Please enter your phone number/admin account">
             </div>
             <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" name="password" required placeholder="请输入密码">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Please enter your password">
             </div>
             <div class="form-group admin-toggle">
                 <label class="checkbox-label">
                     <input type="checkbox" id="isAdmin">
-                    <span>管理员登录</span>
+                    <span>Admin Login</span>
                 </label>
-                <a href="#" class="forgot-password">忘记密码？</a>
+                <a href="#" class="forgot-password">Forgot Password?</a>
             </div>
-            <button type="submit" class="submit-btn">登录</button>
+            <button type="submit" class="submit-btn">Login</button>
             <div class="auth-footer">
-                <p>还没有账号？ <a href="signIn.html">立即注册</a></p>
+                <p>Don't have an account? <a href="signIn.html">Register Now</a></p>
             </div>
         </form>
     </div>
@@ -51,10 +51,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
                 window.location.href = 'index.html';
             }
         } else {
-            alert('账号或密码错误！');
+            alert('Incorrect account or password!');
         }
     } catch (error) {
-        alert('登录失败：' + error.message);
+        alert('Login failed: ' + error.message);
     }
 });
 </script>

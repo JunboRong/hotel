@@ -1,18 +1,18 @@
-// 服务请求列表
+// Service request list
 let serviceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || [];
 
-// 获取服务数据
+// Fetch service data
 async function fetchServices() {
     try {
-        // 从services.json获取数据
+        // Get data from services.json
         const response = await fetch('../data/services.json');
         const data = await response.json();
         
-        // 获取localStorage中的数据
+        // Get data from localStorage
         const savedServices = localStorage.getItem('serviceRequests');
         if (savedServices) {
             const savedData = JSON.parse(savedServices);
-            // 合并数据，优先使用localStorage中的数据
+            // Merge data, prioritize data from localStorage
             return data.services.map(service => {
                 const savedService = savedData.find(s => s.id === service.id);
                 return savedService || service;
@@ -21,37 +21,37 @@ async function fetchServices() {
         
         return data.services;
     } catch (error) {
-        console.error('获取服务数据失败:', error);
+        console.error('Failed to fetch service data:', error);
         return [];
     }
 }
 
-// 更新服务显示
+// Update service display
 function updateServiceDisplay(services) {
     const serviceGrid = document.getElementById('serviceGrid');
     const typeFilter = document.getElementById('typeFilter').value;
     const statusFilter = document.getElementById('statusFilter').value;
 
-    // 过滤服务
+    // Filter services
     const filteredServices = services.filter(service => {
         const typeMatch = typeFilter === 'all' || service.type === typeFilter;
         const statusMatch = statusFilter === 'all' || service.status === statusFilter;
         return typeMatch && statusMatch;
     });
 
-    // 生成服务卡片
+    // Generate service cards
     serviceGrid.innerHTML = filteredServices.map(service => `
         <div class="service-card">
             <h3>
-                房间 ${service.roomNumber}
+                Room ${service.roomNumber}
                 <span class="service-id">${service.id}</span>
             </h3>
             <div class="service-info">
-                <p>服务类型：<span class="service-type type-${getTypeClass(service.type)}">${service.type}</span></p>
-                <p>状态：<span class="service-status status-${getStatusClass(service.status)}">${service.status}</span></p>
-                <p>优先级：<span class="service-priority priority-${getPriorityClass(service.priority)}">${service.priority}</span></p>
-                <p>请求时间：${formatDate(service.requestTime)}</p>
-                <p>描述：${service.description}</p>
+                <p>Service Type: <span class="service-type type-${getTypeClass(service.type)}">${service.type}</span></p>
+                <p>Status: <span class="service-status status-${getStatusClass(service.status)}">${service.status}</span></p>
+                <p>Priority: <span class="service-priority priority-${getPriorityClass(service.priority)}">${service.priority}</span></p>
+                <p>Request Time: ${formatDate(service.requestTime)}</p>
+                <p>Description: ${service.description}</p>
             </div>
             <div class="service-actions">
                 ${getActionButtons(service)}
@@ -59,68 +59,68 @@ function updateServiceDisplay(services) {
         </div>
     `).join('');
 
-    // 添加按钮事件监听
+    // Add button event listeners
     addButtonEventListeners();
 }
 
-// 获取服务类型对应的 CSS 类名
+// Get CSS class for service type
 function getTypeClass(type) {
     const typeMap = {
-        '清洁服务': 'cleaning',
-        '维修服务': 'repair',
-        '餐饮服务': 'food',
-        '其他服务': 'other'
+        'Cleaning Service': 'cleaning',
+        'Repair Service': 'repair',
+        'Food Service': 'food',
+        'Other Service': 'other'
     };
     return typeMap[type] || 'other';
 }
 
-// 获取状态对应的 CSS 类名
+// Get CSS class for status
 function getStatusClass(status) {
     const statusMap = {
-        '待处理': 'pending',
-        '处理中': 'processing',
-        '已完成': 'completed'
+        'Pending': 'pending',
+        'Processing': 'processing',
+        'Completed': 'completed'
     };
     return statusMap[status] || 'pending';
 }
 
-// 获取优先级对应的 CSS 类名
+// Get CSS class for priority
 function getPriorityClass(priority) {
     const priorityMap = {
-        '普通': 'normal',
-        '紧急': 'urgent'
+        'Normal': 'normal',
+        'Urgent': 'urgent'
     };
     return priorityMap[priority] || 'normal';
 }
 
-// 根据服务状态获取操作按钮
+// Get action buttons based on service status
 function getActionButtons(service) {
-    if (service.status === '待处理') {
-        return `<button class="accept-btn" data-id="${service.id}">接受服务</button>`;
-    } else if (service.status === '处理中') {
-        return `<button class="complete-btn" data-id="${service.id}">完成服务</button>`;
+    if (service.status === 'Pending') {
+        return `<button class="accept-btn" data-id="${service.id}">Accept Service</button>`;
+    } else if (service.status === 'Processing') {
+        return `<button class="complete-btn" data-id="${service.id}">Complete Service</button>`;
     }
     return '';
 }
 
-// 添加按钮事件监听
+// Add button event listeners
 function addButtonEventListeners() {
     document.querySelectorAll('.accept-btn').forEach(button => {
         button.addEventListener('click', async (e) => {
             const serviceId = e.target.dataset.id;
-            await updateServiceStatus(serviceId, '处理中');
+            await updateServiceStatus(serviceId, 'Processing');
         });
     });
 
     document.querySelectorAll('.complete-btn').forEach(button => {
         button.addEventListener('click', async (e) => {
             const serviceId = e.target.dataset.id;
-            await updateServiceStatus(serviceId, '已完成');
+            await updateServiceStatus(serviceId, 'Completed');
         });
     });
 }
 
-// 更新服务状态
+// Update service status
 async function updateServiceStatus(serviceId, newStatus) {
     try {
         const services = await fetchServices();
@@ -128,21 +128,21 @@ async function updateServiceStatus(serviceId, newStatus) {
         if (serviceIndex !== -1) {
             services[serviceIndex].status = newStatus;
             
-            // 保存更新后的数据到localStorage
+            // Save updated data to localStorage
             localStorage.setItem('serviceRequests', JSON.stringify(services));
             
-            // 更新显示
+            // Update display
             updateServiceDisplay(services);
         }
     } catch (error) {
-        console.error('更新服务状态失败:', error);
+        console.error('Failed to update service status:', error);
     }
 }
 
-// 格式化日期
+// Format date
 function formatDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleString('zh-CN', {
+    return date.toLocaleString('en-US', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -151,12 +151,12 @@ function formatDate(dateString) {
     });
 }
 
-// 初始化页面
+// Initialize page
 async function initializePage() {
     const services = await fetchServices();
     updateServiceDisplay(services);
 
-    // 添加过滤器事件监听
+    // Add filter event listeners
     document.getElementById('typeFilter').addEventListener('change', () => {
         updateServiceDisplay(services);
     });
@@ -164,12 +164,12 @@ async function initializePage() {
         updateServiceDisplay(services);
     });
 
-    // 设置定时刷新（每30秒）
+    // Set interval for refresh (every 30 seconds)
     setInterval(async () => {
         const updatedServices = await fetchServices();
         updateServiceDisplay(updatedServices);
     }, 30000);
 }
 
-// 页面加载完成后初始化
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', initializePage);

@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>注册 - 三山酒店</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
-<a class="logo" href="index.html"><img src="../image/logo.jpg" alt="三山酒店"></a>
+<a class="logo" href="index.html"><img src="../image/logo.jpg" alt="Mountains Hotel"></a>
 <main class="auth-container">
     <div class="auth-box">
-        <h2>创建账号</h2>
+        <h2>Create Account</h2>
         <form id="signupForm">
             <div class="form-group">
-                <label for="phone">手机号码</label>
-                <input type="tel" id="phone" name="phone" required placeholder="请输入手机号码">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Please enter your phone number">
             </div>
             <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" name="password" required placeholder="请输入密码">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Please enter your password">
             </div>
             <div class="form-group">
-                <label for="confirmPassword">确认密码</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="请再次输入密码">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Please enter your password again">
             </div>
-            <button type="submit" class="submit-btn">注册</button>
+            <button type="submit" class="submit-btn">Register</button>
         </form>
         <div class="auth-footer">
-            <p>已有账号？ <a href="logIn.html">立即登录</a></p>
+            <p>Already have an account? <a href="logIn.html">Login Now</a></p>
         </div>
     </div>
 </main>
@@ -39,18 +39,18 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
     
-    // 验证密码是否匹配
+    // Verify if passwords match
     if (password !== confirmPassword) {
-        alert('两次输入的密码不一致！');
+        alert('Passwords do not match!');
         return;
     }
     
     try {
         await auth.register(phone, password);
-        alert('注册成功！欢迎加入三山酒店！');
+        alert('Registration successful! Welcome to Mountains Hotel!');
         window.location.href = 'index.html';
     } catch (error) {
-        alert('注册失败：' + error.message);
+        alert('Registration failed: ' + error.message);
     }
 });
 </script>

@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // 检查登录
+    // Check login
     if (!auth.isLoggedIn()) {
-        alert('请先登录');
+        alert('Please log in first');
         window.location.href = '../frontend/logIn.html';
         return;
     }
 
-    // 加载服务跟踪
+    // Load service tracking
     loadServiceTracking();
 
-    // 表单提交事件
+    // Form submission event
     document.getElementById('serviceRequestForm').addEventListener('submit', function (e) {
         e.preventDefault();
         const user = auth.getCurrentUser();
@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const expectedTime = document.getElementById('expectedTime').value;
 
         if (!roomNumber || !serviceType || !description || !expectedTime) {
-            alert('请完整填写所有信息');
+            alert('Please fill in all information completely');
             return;
         }
 
-        // 保存到localStorage
+        // Save to localStorage
         const requests = JSON.parse(localStorage.getItem('serviceRequests') || '[]');
         requests.push({
             userId: user.id,
@@ -33,17 +33,17 @@ document.addEventListener('DOMContentLoaded', function () {
             description,
             expectedTime,
             submitTime: new Date().toISOString(),
-            status: '待处理'
+            status: 'Pending'
         });
         localStorage.setItem('serviceRequests', JSON.stringify(requests));
 
-        alert('服务申请已提交！');
+        alert('Service request submitted!');
         this.reset();
         loadServiceTracking();
     });
 });
 
-// 加载并显示当前用户的服务跟踪
+// Load and display current user's service tracking
 function loadServiceTracking() {
     const user = auth.getCurrentUser();
     const list = document.getElementById('trackingList');
@@ -51,26 +51,26 @@ function loadServiceTracking() {
     const requests = JSON.parse(localStorage.getItem('serviceRequests') || '[]');
     const myRequests = requests.filter(r => r.userId === user.id);
     if (myRequests.length === 0) {
-        list.innerHTML = '<p>暂无服务记录。</p>';
+        list.innerHTML = '<p>No service records.</p>';
         return;
     }
     myRequests.reverse().forEach(req => {
         const div = document.createElement('div');
         div.className = 'tracking-item';
         div.innerHTML = `
-            <div><strong>房间号：</strong>${req.roomNumber}</div>
-            <div><strong>类型：</strong>${req.serviceType}</div>
-            <div><strong>需求：</strong>${req.description}</div>
-            <div><strong>期望时间：</strong>${formatDateTime(req.expectedTime)}</div>
-            <div><strong>提交时间：</strong>${formatDateTime(req.submitTime)}</div>
-            <div><strong>状态：</strong><span class="status">${req.status}</span></div>
+            <div><strong>Room Number:</strong>${req.roomNumber}</div>
+            <div><strong>Type:</strong>${req.serviceType}</div>
+            <div><strong>Request:</strong>${req.description}</div>
+            <div><strong>Expected Time:</strong>${formatDateTime(req.expectedTime)}</div>
+            <div><strong>Submit Time:</strong>${formatDateTime(req.submitTime)}</div>
+            <div><strong>Status:</strong><span class="status">${req.status}</span></div>
             <hr>
         `;
         list.appendChild(div);
     });
 }
 
-// 格式化时间
+// Format date and time
 function formatDateTime(str) {
     if (!str) return '';
     const d = new Date(str);

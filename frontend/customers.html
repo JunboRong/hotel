@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>三山酒店</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/frontendCustomers.css">
 </head>
@@ -11,23 +11,23 @@
 <nav class="header not-logged-in">
     <div class="headerLeft">
         <a class="logo" href="index.html">
-            <img src="../image/logo.jpg" alt="三山酒店">
+            <img src="../image/logo.jpg" alt="Mountains Hotel">
         </a>
-        <a class="logo" href="index.html">三山酒店</a>
+        <a class="logo" href="index.html">Mountains Hotel</a>
     </div>
     <div class="menu">
-        <div><a href="index.html">首页</a></div>
-        <div><a href="reservation.html">客房预定</a></div>
-        <div><a href="service.html">客房服务</a></div>
-        <div><a href="expenses.html">客房费用</a></div>
-        <div><a href="customers.html">会员中心</a></div>
+        <div><a href="index.html">Home</a></div>
+        <div><a href="reservation.html">Room Reservation</a></div>
+        <div><a href="service.html">Room Service</a></div>
+        <div><a href="expenses.html">Room Expenses</a></div>
+        <div><a href="customers.html">Member Center</a></div>
     </div>
     <div class="headerRight">
-        <a href="logIn.html" class="logIn">登录</a>
-        <a href="signIn.html" class="signIn">注册</a>
+        <a href="logIn.html" class="logIn">Login</a>
+        <a href="signIn.html" class="signIn">Register</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">Logout</button>
         </div>
     </div>
 </nav>
@@ -35,123 +35,123 @@
 
 <main class="customers-container">
     <div class="customers-header">
-        <h1>会员中心</h1>
-        <p>管理您的会员信息和积分</p>
+        <h1>Member Center</h1>
+        <p>Manage your membership information and points</p>
     </div>
 
     <div class="customers-content">
-        <!-- 客户详情区域 -->
+        <!-- Customer details area -->
         <div class="customer-details">
             <div class="details-header">
-                <h2>会员详情</h2>
-                <button class="button secondary-button" onclick="editCustomer()">编辑信息</button>
+                <h2>Member Details</h2>
+                <button class="button secondary-button" onclick="editCustomer()">Edit Information</button>
             </div>
 
-            <!-- 会员卡片 -->
+            <!-- Membership card -->
             <div class="membership-card">
-                <h3>会员等级：<span id="membershipLevel">加载中...</span></h3>
-                <div class="points">积分：<span id="memberPoints">0</span></div>
+                <h3>Membership Level: <span id="membershipLevel">Loading...</span></h3>
+                <div class="points">Points: <span id="memberPoints">0</span></div>
                 <div class="membership-benefits" id="membershipBenefits">
-                    <!-- 会员权益将通过JavaScript动态添加 -->
+                    <!-- Membership benefits will be dynamically added via JavaScript -->
                 </div>
             </div>
 
-            <!-- 客户基本信息 -->
+            <!-- Customer basic information -->
             <div class="customer-info">
                 <div class="info-group">
-                    <label>姓名</label>
-                    <span id="customerName">加载中...</span>
+                    <label>Name</label>
+                    <span id="customerName">Loading...</span>
                     <input type="text" id="editName" class="edit-input" style="display: none;">
                 </div>
                 <div class="info-group">
-                    <label>手机号码</label>
-                    <span id="customerPhone">加载中...</span>
+                    <label>Phone Number</label>
+                    <span id="customerPhone">Loading...</span>
                     <input type="tel" id="editPhone" class="edit-input" style="display: none;">
                 </div>
                 <div class="info-group">
-                    <label>电子邮箱</label>
-                    <span id="customerEmail">加载中...</span>
+                    <label>Email</label>
+                    <span id="customerEmail">Loading...</span>
                     <input type="email" id="editEmail" class="edit-input" style="display: none;">
                 </div>
                 <div class="info-group">
-                    <label>注册日期</label>
-                    <span id="registrationDate">加载中...</span>
+                    <label>Registration Date</label>
+                    <span id="registrationDate">Loading...</span>
                 </div>
             </div>
 
-            <!-- 编辑表单按钮组 -->
+            <!-- Edit form button group -->
             <div class="edit-buttons" style="display: none;">
-                <button class="button primary-button" onclick="saveCustomerInfo()">保存</button>
-                <button class="button secondary-button" onclick="cancelEdit()">取消</button>
+                <button class="button primary-button" onclick="saveCustomerInfo()">Save</button>
+                <button class="button secondary-button" onclick="cancelEdit()">Cancel</button>
             </div>
 
-            <!-- 选项卡 -->
+            <!-- Tabs -->
             <div class="tabs">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="switchTab('preferences')">个人偏好</button>
-                    <button class="tab-button" onclick="switchTab('history')">入住历史</button>
-                    <button class="tab-button" onclick="switchTab('feedback')">评价反馈</button>
+                    <button class="tab-button active" onclick="switchTab('preferences')">Personal Preferences</button>
+                    <button class="tab-button" onclick="switchTab('history')">Stay History</button>
+                    <button class="tab-button" onclick="switchTab('feedback')">Feedback</button>
                 </div>
             </div>
 
-            <!-- 个人偏好 -->
+            <!-- Personal preferences -->
             <div class="tab-content" id="preferencesTab">
                 <div class="preferences-content">
                     <div class="info-group">
-                        <label>房型偏好</label>
-                        <span id="preferredRoomType">加载中...</span>
+                        <label>Preferred Room Type</label>
+                        <span id="preferredRoomType">Loading...</span>
                     </div>
                     <div class="info-group">
-                        <label>楼层偏好</label>
-                        <span id="floorPreference">加载中...</span>
+                        <label>Floor Preference</label>
+                        <span id="floorPreference">Loading...</span>
                     </div>
                     <div class="info-group">
-                        <label>是否吸烟</label>
-                        <span id="smokingPreference">加载中...</span>
+                        <label>Smoking Preference</label>
+                        <span id="smokingPreference">Loading...</span>
                     </div>
                     <div class="info-group">
-                        <label>饮食限制</label>
-                        <span id="dietaryRestrictions">加载中...</span>
+                        <label>Dietary Restrictions</label>
+                        <span id="dietaryRestrictions">Loading...</span>
                     </div>
                     <div class="info-group">
-                        <label>特殊要求</label>
-                        <span id="specialRequests">加载中...</span>
+                        <label>Special Requests</label>
+                        <span id="specialRequests">Loading...</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 入住历史 -->
+            <!-- Stay history -->
             <div class="tab-content" id="historyTab" style="display: none;">
                 <div class="stay-history">
                     <table>
                         <thead>
                             <tr>
-                                <th>入住日期</th>
-                                <th>退房日期</th>
-                                <th>房间号</th>
-                                <th>房型</th>
-                                <th>消费金额</th>
-                                <th>获得积分</th>
+                                <th>Check-in Date</th>
+                                <th>Check-out Date</th>
+                                <th>Room Number</th>
+                                <th>Room Type</th>
+                                <th>Total Spent</th>
+                                <th>Points Earned</th>
                             </tr>
                         </thead>
                         <tbody id="stayHistoryBody">
-                            <!-- 入住历史将通过JavaScript动态添加 -->
+                            <!-- Stay history will be dynamically added via JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- 评价反馈 -->
+            <!-- Feedback -->
             <div class="tab-content" id="feedbackTab" style="display: none;">
                 <div class="feedback-list" id="feedbackList">
-                    <!-- 评价反馈将通过JavaScript动态添加 -->
+                    <!-- Feedback will be dynamically added via JavaScript -->
                 </div>
 
-                <!-- 添加新反馈 -->
+                <!-- Add new feedback -->
                 <div class="feedback-form">
-                    <h3>添加新反馈</h3>
+                    <h3>Add New Feedback</h3>
                     <div class="form-group">
-                        <label>评分</label>
+                        <label>Rating</label>
                         <div class="rating-input" id="ratingInput">
                             <button onclick="setRating(1)">1</button>
                             <button onclick="setRating(2)">2</button>
@@ -161,17 +161,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>类别</label>
+                        <label>Category</label>
                         <select id="feedbackCategory">
-                            <option value="">请选择类别</option>
-                            <!-- 类别选项将通过JavaScript动态添加 -->
+                            <option value="">Please select a category</option>
+                            <!-- Category options will be dynamically added via JavaScript -->
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>评价内容</label>
-                        <textarea id="feedbackContent" placeholder="请输入您的评价内容..."></textarea>
+                        <label>Feedback Content</label>
+                        <textarea id="feedbackContent" placeholder="Please enter your feedback content..."></textarea>
                     </div>
-                    <button class="button primary-button" onclick="submitFeedback()">提交反馈</button>
+                    <button class="button primary-button" onclick="submitFeedback()">Submit Feedback</button>
                 </div>
             </div>
         </div>

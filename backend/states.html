@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>三山酒店</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/states.css">
 </head>
@@ -11,45 +11,45 @@
 <nav class="header not-logged-in">
     <div class="headerLeft">
         <a class="logo" href="../frontend/index.html">
-            <img src="../image/logo.jpg" alt="三山酒店">
+            <img src="../image/logo.jpg" alt="Mountains Hotel">
         </a>
-        <a class="logo" href="states.html">三山酒店</a>
+        <a class="logo" href="states.html">Mountains Hotel</a>
     </div>
     <div class="menu">
-        <div><a href="states.html">客房状态</a></div>
-        <div><a href="service.html">客房服务</a></div>
-        <div><a href="customers.html">会员中心</a></div>
-        <div><a href="analysis.html">客房分析</a></div>
+        <div><a href="states.html">Room Status</a></div>
+        <div><a href="service.html">Room Service</a></div>
+        <div><a href="customers.html">Member Center</a></div>
+        <div><a href="analysis.html">Room Analysis</a></div>
     </div>
     <div class="headerRight">
-        <a href="../frontend/logIn.html" class="logIn">登录</a>
-        <a href="../frontend/signIn.html" class="signIn">注册</a>
+        <a href="../frontend/logIn.html" class="logIn">Login</a>
+        <a href="../frontend/signIn.html" class="signIn">Register</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">Logout</button>
         </div>
     </div>
 </nav>
 <!--navigate end-->
 
 <div class="room-status-container">
-    <h2>客房状态实时监控</h2>
+    <h2>Real-time Room Status Monitoring</h2>
     <div class="filter-controls">
         <select id="statusFilter">
-            <option value="all">所有状态</option>
-            <option value="空闲">空闲</option>
-            <option value="已入住">已入住</option>
-            <option value="打扫中">打扫中</option>
-            <option value="维修中">维修中</option>
+            <option value="all">All Statuses</option>
+            <option value="空闲">Available</option>
+            <option value="已入住">Occupied</option>
+            <option value="打扫中">Cleaning</option>
+            <option value="维修中">Under Maintenance</option>
         </select>
         <select id="typeFilter">
-            <option value="all">所有房型</option>
-            <option value="标准间">标准间</option>
-            <option value="豪华间">豪华间</option>
+            <option value="all">All Room Types</option>
+            <option value="标准间">Standard Room</option>
+            <option value="豪华间">Deluxe Room</option>
         </select>
     </div>
     <div class="room-grid" id="roomGrid">
-        <!-- 房间信息将通过 JavaScript 动态加载 -->
+        <!-- Room information will be dynamically loaded via JavaScript -->
     </div>
 </div>
 

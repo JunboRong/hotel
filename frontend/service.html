@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>三山酒店</title>
+    <title>Mountains Hotel</title>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/frontendService.css">
 </head>
@@ -12,23 +12,23 @@
 <nav class="header not-logged-in">
     <div class="headerLeft">
         <a class="logo" href="index.html">
-            <img src="../image/logo.jpg" alt="三山酒店">
+            <img src="../image/logo.jpg" alt="Mountains Hotel">
         </a>
-        <a class="logo" href="index.html">三山酒店</a>
+        <a class="logo" href="index.html">Mountains Hotel</a>
     </div>
     <div class="menu">
-        <div><a href="index.html">首页</a></div>
-        <div><a href="reservation.html">客房预定</a></div>
-        <div><a href="service.html">客房服务</a></div>
-        <div><a href="expenses.html">客房费用</a></div>
-        <div><a href="customers.html">会员中心</a></div>
+        <div><a href="index.html">Home</a></div>
+        <div><a href="reservation.html">Room Reservation</a></div>
+        <div><a href="service.html">Room Service</a></div>
+        <div><a href="expenses.html">Room Expenses</a></div>
+        <div><a href="customers.html">Member Center</a></div>
     </div>
     <div class="headerRight">
-        <a href="logIn.html" class="logIn">登录</a>
-        <a href="signIn.html" class="signIn">注册</a>
+        <a href="logIn.html" class="logIn">Login</a>
+        <a href="signIn.html" class="signIn">Register</a>
         <div class="user-info">
             <span class="username"></span>
-            <button class="logout-btn" onclick="auth.logout()">退出登录</button>
+            <button class="logout-btn" onclick="auth.logout()">Logout</button>
         </div>
     </div>
 </nav>
@@ -36,50 +36,50 @@
 
 <main class="service-container">
     <div class="service-header">
-        <h1>客房服务</h1>
-        <p>为您提供24小时优质服务</p>
+        <h1>Room Service</h1>
+        <p>Providing you with 24-hour quality service</p>
     </div>
 
     <div class="service-content">
-        <!-- 服务申请表单 -->
+        <!-- Service Request Form -->
         <div class="service-form">
-            <h2>服务申请</h2>
+            <h2>Service Request</h2>
             <form id="serviceRequestForm">
                 <div class="form-group">
-                    <label for="roomNumber">房间号码</label>
+                    <label for="roomNumber">Room Number</label>
                     <input type="text" id="roomNumber" name="roomNumber" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="serviceType">服务类型</label>
+                    <label for="serviceType">Service Type</label>
                     <select id="serviceType" name="serviceType" required>
-                        <option value="">请选择服务类型</option>
-                        <option value="cleaning">客房清洁</option>
-                        <option value="supplies">物品补充</option>
-                        <option value="maintenance">设备报修</option>
-                        <option value="other">其他服务</option>
+                        <option value="">Please select a service type</option>
+                        <option value="cleaning">Room Cleaning</option>
+                        <option value="supplies">Supply Replenishment</option>
+                        <option value="maintenance">Equipment Repair</option>
+                        <option value="other">Other Services</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="description">具体需求</label>
+                    <label for="description">Specific Requirements</label>
                     <textarea id="description" name="description" rows="4" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="expectedTime">期望服务时间</label>
+                    <label for="expectedTime">Expected Service Time</label>
                     <input type="datetime-local" id="expectedTime" name="expectedTime" required>
                 </div>
 
-                <button type="submit" class="submit-btn">提交申请</button>
+                <button type="submit" class="submit-btn">Submit Request</button>
             </form>
         </div>
 
-        <!-- 服务跟踪列表 -->
+        <!-- Service Tracking List -->
         <div class="service-tracking">
-            <h2>服务跟踪</h2>
+            <h2>Service Tracking</h2>
             <div class="tracking-list" id="trackingList">
-                <!-- 服务记录将通过 JavaScript 动态添加 -->
+                <!-- Service records will be dynamically added via JavaScript -->
             </div>
         </div>
     </div>
