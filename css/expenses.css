@@ -303,22 +303,3 @@ tr:hover {
     }
 }
 
-/* 打印样式 */
-@media print {
-    .expenses-container {
-        max-width: none;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .payment-methods,
-    .pay-btn {
-        display: none;
-    }
-    
-    .expenses-table,
-    .expenses-summary {
-        box-shadow: none;
-        border: 1px solid #ddd;
-    }
-} 

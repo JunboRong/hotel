@@ -107,27 +107,3 @@ main {
     z-index: 10;
 }
 
-/* 响应式调整 */
-@media screen and (max-width: 768px) {
-    .brandBanner {
-        padding: 60px 15px;
-    }
-
-    .brandBanner h2 {
-        font-size: 28px;
-    }
-
-    .brandBanner p {
-        font-size: 16px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .brandBanner {
-        padding: 40px 10px;
-    }
-
-    .brandBanner h2 {
-        font-size: 24px;
-    }
-}

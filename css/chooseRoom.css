@@ -271,23 +271,3 @@ ul {
     transform: translateY(0);
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .booking-header {
-        flex-direction: column;
-    }
-    
-    .date-selector {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .guest-info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .room-options {
-        grid-template-columns: 1fr;
-    }
-}

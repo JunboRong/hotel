@@ -211,27 +211,6 @@
     color: #666;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 95%;
-        margin: 10px;
-    }
-
-    .stay-history {
-        overflow-x: auto;
-    }
-
-    .form-actions {
-        flex-direction: column;
-    }
-
-    .submit-btn,
-    .cancel-btn {
-        width: 100%;
-    }
-}
-
 /* 错误提示样式 */
 .error-message {
     color: #f44336;
