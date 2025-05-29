@@ -12,8 +12,8 @@
     {
       "id": "S002",
       "roomNumber": "102",
-      "type": "Maintenance Service",
-      "status": "In Progress",
+      "type": "Repair Service",
+      "status": "Processing",
       "requestTime": "2024-03-20T09:15:00",
       "description": "Air conditioning temperature control not responsive",
       "priority": "Urgent"
@@ -21,7 +21,7 @@
     {
       "id": "S003",
       "roomNumber": "201",
-      "type": "Dining Service",
+      "type": "Food Service",
       "status": "Completed",
       "requestTime": "2024-03-20T08:00:00",
       "description": "Room service delivery",
@@ -48,7 +48,7 @@
     {
       "id": "S006",
       "roomNumber": "104",
-      "type": "Maintenance Service",
+      "type": "Repair Service",
       "status": "Pending",
       "requestTime": "2024-03-21T13:30:00",
       "description": "TV remote battery depleted",
@@ -57,8 +57,8 @@
     {
       "id": "S007",
       "roomNumber": "203",
-      "type": "Dining Service",
-      "status": "In Progress",
+      "type": "Food Service",
+      "status": "Processing",
       "requestTime": "2024-03-21T14:45:00",
       "description": "Order dinner for room delivery",
       "priority": "Normal"
@@ -76,7 +76,7 @@
       "id": "S009",
       "roomNumber": "301",
       "type": "Cleaning Service",
-      "status": "In Progress",
+      "status": "Processing",
       "requestTime": "2024-03-21T16:10:00",
       "description": "Deep clean the room",
       "priority": "Urgent"
@@ -84,7 +84,7 @@
     {
       "id": "S010",
       "roomNumber": "302",
-      "type": "Maintenance Service",
+      "type": "Repair Service",
       "status": "Pending",
       "requestTime": "2024-03-21T17:00:00",
       "description": "Low water pressure in the shower",
