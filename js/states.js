@@ -37,10 +37,10 @@ function updateRoomDisplay(rooms) {
 // Get CSS class name for status
 function getStatusClass(status) {
     const statusMap = {
-        'Vacant': 'vacant',
+        'Available': 'vacant',
         'Occupied': 'occupied',
         'Cleaning': 'cleaning',
-        'Maintenance': 'maintenance'
+        'Under Maintenance': 'maintenance'
     };
     return statusMap[status] || 'vacant';
 }

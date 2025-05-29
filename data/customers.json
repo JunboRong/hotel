@@ -50,9 +50,9 @@
     "mockCustomers": [
         {
             "id": "C001",
-            "name": "Zhang San",
+            "name": "Tom",
             "phone": "13800138000",
-            "email": "zhangsan@example.com",
+            "email": "Tom@example.com",
             "birthDate": "1990-05-15",
             "membershipLevel": "gold",
             "points": 6800,
@@ -99,9 +99,9 @@
         },
         {
             "id": "C002",
-            "name": "Li Si",
+            "name": "John",
             "phone": "13900139000",
-            "email": "lisi@example.com",
+            "email": "John@example.com",
             "birthDate": "1988-08-08",
             "membershipLevel": "silver",
             "points": 2500,

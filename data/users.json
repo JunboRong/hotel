@@ -4,8 +4,8 @@
             "id": "C001",
             "phone": "13800138000",
             "password": "123456",
-            "name": "Zhang San",
-            "email": "zhangsan@example.com",
+            "name": "Tom",
+            "email": "Tom@example.com",
             "membershipLevel": "gold",
             "points": 5000,
             "registrationDate": "2023-01-15",
@@ -21,8 +21,8 @@
             "id": "C002",
             "phone": "13900139000",
             "password": "123456",
-            "name": "Li Si",
-            "email": "lisi@example.com",
+            "name": "John",
+            "email": "John@example.com",
             "membershipLevel": "silver",
             "points": 2500,
             "registrationDate": "2023-03-20",
@@ -40,7 +40,7 @@
             "id": "admin1",
             "username": "a",
             "password": "a",
-            "name": "System Administrator",
+            "name": "Administrator",
             "role": "admin"
         }
     ]
