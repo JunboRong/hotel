@@ -115,7 +115,6 @@ body, html {
     background-color: #e0e0e0;
 }
 
-/* 登录状态下的导航栏样式 */
 .logged-in .headerRight .logIn,
 .logged-in .headerRight .signIn {
     display: none;
@@ -125,7 +124,6 @@ body, html {
     display: flex;
 }
 
-/* 未登录状态下的导航栏样式 */
 .not-logged-in .user-info {
     display: none;
 }

@@ -1,11 +1,9 @@
-/* 客户管理页面主容器 */
 .customers-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
 }
 
-/* 页面标题 */
 .customers-header {
     text-align: center;
     margin-bottom: 40px;
@@ -22,13 +20,11 @@
     color: #666;
 }
 
-/* 主要内容区域 */
 .customers-content {
     max-width: 900px;
     margin: 0 auto;
 }
 
-/* 客户列表侧边栏 */
 .customers-sidebar {
     background: white;
     border-radius: 8px;
@@ -81,7 +77,6 @@
     font-size: 0.9em;
 }
 
-/* 客户详情区域 */
 .customer-details {
     background: white;
     border-radius: 8px;
@@ -119,7 +114,6 @@
     font-size: 1.1em;
 }
 
-/* 会员等级卡片 */
 .membership-card {
     background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
     color: white;
@@ -151,7 +145,6 @@
     font-size: 0.9em;
 }
 
-/* 选项卡样式 */
 .tabs {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
@@ -178,7 +171,6 @@
     border-bottom-color: #4a90e2;
 }
 
-/* 入住历史表格 */
 .stay-history table {
     width: 100%;
     border-collapse: collapse;
@@ -198,7 +190,6 @@
     color: #333;
 }
 
-/* 反馈评价部分 */
 .feedback-list {
     display: grid;
     gap: 20px;
@@ -224,7 +215,6 @@
     color: #333;
 }
 
-/* 添加反馈表单 */
 .feedback-form {
     margin-top: 20px;
     padding: 20px;
@@ -273,7 +263,6 @@
     border-color: #4a90e2;
 }
 
-/* 按钮样式 */
 .button {
     padding: 10px 20px;
     border: none;

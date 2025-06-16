@@ -91,7 +91,6 @@ ul {
     align-items: center;
 }
 
-/* 预订表单样式 */
 .booking-form {
     background-color: #fff;
     border-radius: 8px;
@@ -176,7 +175,6 @@ ul {
     text-align: center;
 }
 
-/* 房间选择区域 */
 .room-selection {
     margin: 30px 0;
 }
@@ -223,7 +221,6 @@ ul {
     font-weight: bold;
 }
 
-/* 预订摘要 */
 .booking-summary {
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -247,7 +244,6 @@ ul {
     font-weight: bold;
 }
 
-/* 提交按钮 */
 .submit-btn {
     width: 100%;
     padding: 15px;

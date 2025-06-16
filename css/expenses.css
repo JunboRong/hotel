@@ -1,4 +1,3 @@
-/* 费用管理页面主容器 */
 .expenses-container {
     max-width: 1200px;
     margin: 20px auto;
@@ -7,7 +6,6 @@
     min-height: calc(100vh - 80px);
 }
 
-/* 费用管理页面标题 */
 .expenses-header {
     text-align: center;
     margin-bottom: 40px;
@@ -29,14 +27,12 @@
     opacity: 0.9;
 }
 
-/* 费用管理主要内容区域 */
 .expenses-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
 }
 
-/* 费用明细表格 */
 .expenses-table {
     background: #fff;
     border-radius: 12px;
@@ -133,7 +129,6 @@ tr:hover {
     transition: all 0.3s ease;
 }
 
-/* 费用汇总和支付部分 */
 .expenses-summary {
     background: #fff;
     border-radius: 12px;
@@ -178,7 +173,6 @@ tr:hover {
     color: #2c3e50;
 }
 
-/* 支付部分样式 */
 .payment-section {
     margin-top: 35px;
     padding-top: 25px;
@@ -251,7 +245,6 @@ tr:hover {
     transform: translateY(0);
 }
 
-/* 状态标签样式 */
 .status-badge {
     padding: 6px 12px;
     border-radius: 20px;
@@ -268,38 +261,3 @@ tr:hover {
     background-color: #e8f5e9;
     color: #4CAF50;
 }
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .expenses-content {
-        grid-template-columns: 1fr;
-    }
-
-    .table-controls {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .filter-controls {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .date-range {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .payment-methods {
-        grid-template-columns: 1fr;
-    }
-
-    .expenses-header {
-        padding: 20px;
-    }
-
-    .expenses-header h1 {
-        font-size: 24px;
-    }
-}
-

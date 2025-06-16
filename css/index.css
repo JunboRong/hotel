@@ -1,4 +1,3 @@
-/* 首页主要样式 */
 main {
     padding: 20px;
     max-width: 1200px;
@@ -93,14 +92,12 @@ main {
     animation: yAxis5 2s 4s ease-out forwards, move 25s 15s linear infinite;
 }
 
-/* 水平移动动画 */
 @keyframes move {
     0% {left: 100%;opacity: 1;}
     90% {opacity: 1;}
     100% {left: -50%;opacity: 0;}
 }
 
-/* 悬停效果 */
 .comment:hover {
     animation-play-state: paused;
     transform: scale(1.1);

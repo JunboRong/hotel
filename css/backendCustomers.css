@@ -76,7 +76,6 @@
     color: white;
 }
 
-/* 模态框样式 */
 .modal {
     display: none;
     position: fixed;
@@ -167,7 +166,6 @@
     background-color: #da190b;
 }
 
-/* 会员详情样式 */
 .customer-info,
 .preferences,
 .stay-history,
@@ -211,14 +209,12 @@
     color: #666;
 }
 
-/* 错误提示样式 */
 .error-message {
     color: #f44336;
     font-size: 12px;
     margin-top: 5px;
 }
 
-/* 必填字段标记 */
 .required::after {
     content: '*';
     color: #f44336;
